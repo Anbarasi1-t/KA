@@ -1,0 +1,40 @@
+<div class="menubar-container">
+  <div class="left-section">
+    <div class="left-text">Total Contribution <span class="contribution-value">{{ totalContribution }}</span></div>
+  </div>
+  
+  <div class="right-section">
+<div class="search-container">
+  <label class="search-label">Search</label>
+  <input 
+    type="text" 
+    class="search-input" 
+    placeholder="Search" 
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange($event)"
+    [class.has-value]="searchTerm"
+  >
+  <button class="search-button" type="button" (click)="onSearchClick()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="white" viewBox="0 0 24 24"><path d="M21 20l-5.6-5.6a7 7 0 1 0-1.4 1.4L20 21zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg>
+  </button>
+  <button 
+    *ngIf="searchTerm" 
+    class="clear-button" 
+    (click)="clearSearch()"
+    type="button"
+  >
+    ×
+  </button>
+</div>
+    
+    <button class="icon-button filter-button" type="button" (click)="onFilterIconClick()" aria-label="Toggle filters">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#7D838B">
+        <path d="M3 5h18v2H3V5zm4 6h10v2H7v-2zm3 6h4v2h-4v-2z"/>
+      </svg>
+    </button>
+
+    <button class="right-button" (click)="showOverlay = true">Refer Someone</button>
+  </div>
+  
+  <app-form-type-overlay *ngIf="showOverlay" (closed)="showOverlay = false"></app-form-type-overlay>
+</div>

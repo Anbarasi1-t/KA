@@ -1,0 +1,13 @@
+<!-- admin-table.component.html -->
+<ag-grid-angular
+  class="ag-theme-alpine custom-ag-grid"
+  style="width: 100%; height: 100%;"
+  [rowData]="filteredData"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [animateRows]="true"
+  [rowHeight]="45"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>

@@ -1,0 +1,73 @@
+<div class="toast" *ngIf="toastMessage">{{ toastMessage }}</div>
+<div class="overlay-backdrop" (click)="closeOverlay()">
+  <div class="overlay-panel" (click)="$event.stopPropagation()">
+    <div class="close-button" (click)="closeOverlay()">×</div>
+    
+    <h2>Select Form Type</h2>
+    <p class="subtitle">Choose the type of support you want to refer someone for</p>
+    <div class="form-options">
+      <div class="option-card" (click)="openForm('education')">
+        <div class="icon education-icon">
+          <img src="assets/education.png" alt="Education Support" />
+        </div>
+        <h3>EDUCATION SUPPORT</h3>
+      </div>
+      <div class="option-card" (click)="openForm('ngo')">
+        <div class="icon ngo-icon">
+          <img src="assets/csr.png" alt="NGO" />
+        </div>
+        <h3>NGO</h3>
+      </div>
+      <div class="option-card" (click)="openForm('medical')">
+        <div class="icon medical-icon">
+          <img src="assets/medical.png" alt="Medical Support" />
+        </div>
+        <h3>MEDICAL SUPPORT</h3>
+      </div>
+      <div class="option-card" (click)="openForm('laptop')">
+        <div class="icon laptop-icon">
+          <img src="assets/laptop.png" alt="Laptop Request" />
+        </div>
+        <h3>LAPTOP REQUEST</h3>
+      </div>
+      <div class="option-card" (click)="openForm('csr')">
+        <div class="icon csr-icon">
+          <img src="assets/csr.png" alt="CSR & Claims" />
+        </div>
+        <h3>CSR & CLAIMS</h3>
+      </div>
+    </div>
+
+    <!-- Form Components -->
+    <app-education-form 
+      *ngIf="showEducationForm" 
+      (formClosed)="closeEducationForm()" 
+      (formChanged)="onFormChanged($event)">
+    </app-education-form>
+
+    <app-ngo-form 
+      *ngIf="showNgoForm" 
+      (formClosed)="closeNgoForm()" 
+      (formChanged)="onFormChanged($event)">
+    </app-ngo-form>
+
+    <app-medical-form 
+      *ngIf="showMedicalForm" 
+      (formClosed)="closeMedicalForm()" 
+      (formChanged)="onFormChanged($event)">
+    </app-medical-form>
+
+    <app-laptop-form 
+      *ngIf="showLaptopForm" 
+      (formClosed)="closeLaptopForm()" 
+      (formChanged)="onFormChanged($event)">
+    </app-laptop-form>
+
+    <app-csr-form 
+      *ngIf="showCsrForm" 
+      (formClosed)="closeCsrForm()" 
+      (formChanged)="onFormChanged($event)">
+    </app-csr-form>
+
+  </div>
+</div>

@@ -1,0 +1,122 @@
+/* === RESET AG GRID BORDERS AND OUTLINES === */
+
+.body {
+  margin-top: 0;
+  padding: 0;
+}
+
+.custom-ag-grid .ag-cell {
+  display: flex;
+  align-items: center;
+}
+
+.custom-ag-grid .ag-root-wrapper,
+.custom-ag-grid .ag-header,
+.custom-ag-grid .ag-header-cell,
+.custom-ag-grid .ag-cell,
+.custom-ag-grid .ag-row,
+.custom-ag-grid .ag-body-horizontal-scroll,
+.custom-ag-grid .ag-center-cols-clipper,
+.custom-ag-grid .ag-cell-focus,
+.custom-ag-grid .ag-row-focus,
+.custom-ag-grid .ag-cell.ag-cell-last-left-pinned,
+.custom-ag-grid .ag-cell.ag-cell-first-right-pinned {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Optional: Remove sidebar border */
+.custom-ag-grid {
+  border-left: none !important;
+  margin: 0;
+  border-radius: 8px;
+  /* height will be set dynamically */
+}
+
+/* HEADER STYLING */
+.custom-ag-grid .ag-header {
+  background-color: #F5F6F9 !important;
+}
+
+.custom-ag-grid .ag-header-cell {
+  background-color: #F0F0F0 !important;
+  color: #515965 !important;
+  font-weight: 600;
+  font-size: 14px;
+  border: none !important;
+}
+
+/* ROW STYLING */
+.custom-ag-grid .ag-row:nth-child(odd) {
+  background-color: #ffffff;
+  color: #87868c;
+}
+
+.custom-ag-grid .ag-row:nth-child(even) {
+  background-color: #ffffff;
+  color: #87868c;
+}
+
+.custom-ag-grid .ag-row:hover {
+  background-color: #fa575724 !important;
+  cursor: pointer;
+}
+
+/* Add only bottom border for rows */
+.custom-ag-grid .ag-row {
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+/* STATUS PILL STYLES */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 12px;
+  height: 15px;
+  width: 80px;
+  text-align: center;
+}
+
+.status-pill.approved {
+  background-color: rgba(56, 161, 105, 0.2);
+  color: #38a169;
+}
+
+.status-pill.rejected {
+  background-color: rgba(229, 62, 62, 0.2);
+  color: #e53e3e;
+}
+
+.status-pill.pending {
+  background-color: rgba(237, 137, 54, 0.2);
+  color: #ed8936;
+}
+
+.status-pill.unknown {
+  background-color: rgba(113, 128, 150, 0.2);
+  color: #718096;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ag-grid-angular {
+    height: 400px !important;
+  }
+  
+  .status-pill {
+    font-size: 11px;
+    padding: 3px 8px;
+    width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  ag-grid-angular {
+    height: 300px !important;
+  }
+}

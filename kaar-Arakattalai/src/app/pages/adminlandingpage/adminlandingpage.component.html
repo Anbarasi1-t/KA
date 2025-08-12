@@ -1,0 +1,18 @@
+<app-menubar
+  (searchChange)="onSearchChange($event)"
+  (filterToggle)="onFilterToggle()">
+</app-menubar>
+
+<div class="admin-content">
+  <div class="summary-section">
+    <app-summarycards-admin></app-summarycards-admin>
+  </div>
+
+  <div class="table-section">
+    <app-admin-table
+      [searchTerm]="searchTerm"
+      
+      style="width: 100%;">
+    </app-admin-table>
+  </div>
+</div>

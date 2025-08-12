@@ -1,0 +1,43 @@
+/* Force DM Sans ONLY - no fallbacks */
+body {
+  background-color: #FAFAFA;
+  margin: 0; /* Optional: to avoid default body margin */
+  min-height: 100vh; /* Ensure it covers full viewport height */
+}
+* {
+  font-family: 'DM Sans' !important;
+}
+
+body {
+  font-family: 'DM Sans' !important;
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings style */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans' !important;
+  font-weight: 500;
+  color: #272A47;
+}
+
+/* Paragraph style */
+p {
+  font-family: 'DM Sans' !important;
+}
+
+/* Force DM Sans on all elements */
+input, textarea, select, button, div, span, a {
+  font-family: 'DM Sans' !important;
+}
+@import 'ag-grid-community/styles/ag-grid.css';
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+.areachart-chart-wrapper {
+  height: 400px;
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}

@@ -1,0 +1,95 @@
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px;
+  box-sizing: border-box;
+}
+
+/* LEFT: Profile */
+.left-section {
+  flex: 1 1 320px; // Grow/shrink with min width
+  max-width: 400px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* RIGHT: Summary + Table */
+.right-section {
+  flex: 2 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* Table Section */
+.table-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Table Header */
+.table-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.table-header h3 {
+  margin: 0;
+  color: #495057;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Referral Table */
+.referraltable {
+  width: 100%;
+  flex: 1;
+  min-height: 300px;
+}
+
+/* Responsive Stack */
+@media (max-width: 768px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  
+  .right-section {
+    gap: 0.125rem;
+  }
+  
+  .table-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .referraltable {
+    width: 100%;
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 0.75rem;
+  }
+  
+  .table-header h3 {
+    font-size: 1rem;
+  }
+  
+  .referraltable {
+    height: 300px;
+  }
+}

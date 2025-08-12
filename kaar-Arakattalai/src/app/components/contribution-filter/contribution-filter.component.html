@@ -1,0 +1,34 @@
+<div class="filters">
+  <div class="filter-box" [class.open]="open.year">
+    <div class="filter-header" (click)="toggle('year')">
+      <span>Select Year</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="filter-display">{{ selected.year || 'Select' }}</div>
+    <ul class="options" *ngIf="open.year">
+      <li *ngFor="let y of years" (click)="selectYear(y)" [class.selected]="selected.year === y">{{ y }}</li>
+    </ul>
+  </div>
+
+  <div class="filter-box" [class.open]="open.month">
+    <div class="filter-header" (click)="toggle('month')">
+      <span>Select Month</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="filter-display">{{ selected.month || 'Select' }}</div>
+    <ul class="options" *ngIf="open.month">
+      <li *ngFor="let m of months" (click)="selectMonth(m)" [class.selected]="selected.month === m">{{ m }}</li>
+    </ul>
+  </div>
+
+  <div class="filter-box" [class.open]="open.type">
+    <div class="filter-header" (click)="toggle('type')">
+      <span>Contribution Type</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="filter-display">{{ selected.type || 'Select' }}</div>
+    <ul class="options" *ngIf="open.type">
+      <li *ngFor="let t of types" (click)="selectType(t)" [class.selected]="selected.type === t">{{ t }}</li>
+    </ul>
+  </div>
+</div>

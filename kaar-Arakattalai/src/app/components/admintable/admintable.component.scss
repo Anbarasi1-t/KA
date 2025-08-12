@@ -1,0 +1,97 @@
+/* admin-table.component.scss */
+
+/* === RESET AG GRID BORDERS AND OUTLINES === */
+:host { display: block; width: 100%; height: 100%; box-sizing: border-box; }
+
+.custom-ag-grid .ag-cell {
+  display: flex;
+  align-items: center;
+}
+
+/* Remove default borders/outlines to match design */
+.custom-ag-grid .ag-root-wrapper,
+.custom-ag-grid .ag-header,
+.custom-ag-grid .ag-header-cell,
+.custom-ag-grid .ag-cell,
+.custom-ag-grid .ag-row,
+.custom-ag-grid .ag-body-horizontal-scroll,
+.custom-ag-grid .ag-center-cols-clipper,
+.custom-ag-grid .ag-cell-focus,
+.custom-ag-grid .ag-row-focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-ag-grid {
+  border-radius: 8px;
+  /* grid height set by parent container or dynamically via component */
+}
+
+/* Header style */
+.custom-ag-grid .ag-header {
+  background-color: #F5F6F9 !important;
+}
+
+.custom-ag-grid .ag-header-cell {
+  background-color: #F0F0F0 !important;
+  color: #515965 !important;
+  font-weight: 600;
+  font-size: 14px;
+  border: none !important;
+}
+
+/* Row styles */
+.custom-ag-grid .ag-row {
+  border-bottom: 1px solid #eaeaea !important;
+  color: #6b7280;
+  background: #fff;
+}
+
+.custom-ag-grid .ag-row:hover {
+  background-color: rgba(250, 87, 87, 0.08) !important;
+  cursor: pointer;
+}
+
+/* Status pill (if needed) */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+/* Actions column style - center the icon */
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  border-radius: 6px;
+}
+.action-btn:hover {
+  background: rgba(55,65,81,0.06);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .custom-ag-grid { font-size: 13px; }
+}
+
+@media (max-width: 768px) {
+  ag-grid-angular.custom-ag-grid { height: 500px !important; }
+  .custom-ag-grid .ag-header-cell { font-size: 13px; }
+  .action-btn { padding: 6px; }
+}
+
+@media (max-width: 480px) {
+  ag-grid-angular.custom-ag-grid { height: 420px !important; }
+  .custom-ag-grid .ag-header-cell { font-size: 12px; }
+}

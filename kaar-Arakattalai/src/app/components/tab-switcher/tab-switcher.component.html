@@ -1,0 +1,15 @@
+<div class="tab-switcher">
+  <button 
+    class="tab" 
+    [class.active]="selectedTab === 'contribution'" 
+    (click)="selectTab('contribution')">
+    My Contribution
+  </button>
+  <button 
+    class="tab" 
+    [class.active]="selectedTab === 'referrals'" 
+    (click)="selectTab('referrals')">
+    My Referrals
+  </button>
+</div>
+

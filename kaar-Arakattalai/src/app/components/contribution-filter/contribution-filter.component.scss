@@ -1,0 +1,53 @@
+.filters {
+  display: flex;
+  gap: 16px;
+}
+
+.filter-box {
+  position: relative;
+  width: 240px;
+  background: #fff;
+  border: 1.5px solid #F5D7DB; /* soft pink border */
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9aa1ab;
+  margin-bottom: 6px;
+}
+
+.filter-display {
+  padding: 8px 10px;
+  border: 1px solid #E8E9EE;
+  border-radius: 4px;
+  color: #515965;
+  font-size: 14px;
+}
+
+.options {
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding: 0;
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid #F5D7DB;
+  border-radius: 4px;
+}
+
+.options li {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.options li:hover {
+  background: #FFF4F5;
+}
+
+.options li.selected {
+  background: #FBE3E5; /* selected pink */
+}

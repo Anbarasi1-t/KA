@@ -1,0 +1,40 @@
+.tab-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  padding-bottom: 8px; /* space for underline */
+  border: none;
+  width: 100%;
+  height: auto;
+}
+
+.tab {
+  background: transparent;
+  color: #9aa1ab; /* inactive grey */
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.tab:hover { color: #6f7782; }
+
+.tab.active {
+  color: #EE4961; /* active pink */
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -6px; /* sits just below text */
+  height: 2px;
+  background: #EE4961;
+  border-radius: 0px;
+}
+

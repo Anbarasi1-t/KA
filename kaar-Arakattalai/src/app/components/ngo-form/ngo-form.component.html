@@ -1,0 +1,146 @@
+<div class="overlay">
+  <div class="drawer">
+    <!-- Error Popup -->
+    <div class="error-popup" *ngIf="showErrorPopup">
+      <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <span class="error-text">{{ errorMessage }}</span>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="left">
+        <div class="form-dropdown">
+          <h2 (click)="toggleDropdown($event)" class="dropdown-trigger">
+            {{ currentForm }}
+            <span class="dropdown-arrow">▼</span>
+          </h2>
+          <div class="dropdown-menu" *ngIf="showDropdown">
+            <div 
+              class="dropdown-item" 
+              *ngFor="let form of formOptions" 
+              (click)="selectForm(form.id, $event)"
+            >
+              {{ form.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-buttons">
+        <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+        <button class="submit-btn" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+
+    <form [formGroup]="ngoForm" class="ngo-form">
+      <div class="form-grid">
+        <!-- NGO Information -->
+        <div class="form-group">
+          <label>NGO Name *</label>
+          <input formControlName="ngoName" placeholder="Enter Name" />
+        </div>
+        
+        <div class="form-group">
+          <label>NGO SPOC Name *</label>
+          <input formControlName="ngoSpocName" placeholder="Enter Full Name" />
+        </div>
+
+        <div class="form-group">
+          <label>SPOC's whatsapp number *</label>
+          <input formControlName="spocWhatsappNumber" placeholder="Ente Mobile Number" />
+        </div>
+
+        <div class="form-group">
+          <label>NGO Location *</label>
+          <input formControlName="ngoLocation" placeholder="Enter NGO Location" />
+        </div>
+
+        <div class="form-group">
+          <label>Number of Inmates maintained by NGO *</label>
+          <input formControlName="numberOfInmates" placeholder="Enter Full Name" />
+        </div>
+
+        <div class="form-group">
+          <label>Purpose of which Assistance Required *</label>
+          <input formControlName="purposeOfAssistance" placeholder="Enter Full Name" />
+        </div>
+
+        <div class="form-group">
+          <label>Amount Requested *</label>
+          <input formControlName="amountRequested" placeholder="Ente Mobile Number" />
+        </div>
+
+        <div class="form-group">
+          <label>Bank Account Name for issuance of DD *</label>
+          <input formControlName="accountNameForDD" placeholder="Enter Full DD Name" />
+        </div>
+
+        <!-- Employee's Justification -->
+        <div class="form-group full">
+          <label>Employee's Justification (in Detail) *</label>
+          <textarea formControlName="justification" (input)="onTextChange($event)" placeholder="Your Justification"></textarea>
+          <div class="char-count">{{charCount}} / 225</div>
+        </div>
+
+        <!-- Attachments Section -->
+        <div class="form-group full">
+          <label class="section-title">Attachments</label>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Profile of NGO *</label>
+            <input type="file" (change)="onFileChange($event, 'ngoProfile')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Beneficiary's Request Letter *</label>
+            <input type="file" (change)="onFileChange($event, 'requestLetter')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Registration Certificate of NGO/TRUST *</label>
+            <input type="file" (change)="onFileChange($event, 'registrationCertificate')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Declaration -->
+        <div class="form-group checkbox full">
+          <input type="checkbox" formControlName="declaration" />
+          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE *</label>
+        </div>
+
+        <!-- Spacing after declaration -->
+        <div class="spacing-after-declaration"></div>
+      </div>
+    </form>
+  </div>
+</div> 

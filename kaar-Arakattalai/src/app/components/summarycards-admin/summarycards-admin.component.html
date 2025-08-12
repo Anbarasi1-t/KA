@@ -1,0 +1,20 @@
+<!-- summarycards-admin.component.html -->
+<div class="summary-cards-root">
+  <button class="scroll-btn left" (click)="scrollLeft()" aria-label="Scroll left">&#9664;</button>
+
+  <div class="cards-wrapper" #scrollContainer>
+    <div
+      class="summary-card"
+      *ngFor="let card of summaryCards"
+      [style.border-left-color]="card.color"
+      (mouseenter)="hoverKey = card.key"
+      (mouseleave)="hoverKey = ''"
+      [class.hovered]="hoverKey === card.key"
+    >
+      <div class="title">{{ card.label }}</div>
+      <div class="count">{{ card.count | number }}</div>
+    </div>
+  </div>
+
+  <button class="scroll-btn right" (click)="scrollRight()" aria-label="Scroll right">&#9654;</button>
+</div>

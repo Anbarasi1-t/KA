@@ -1,0 +1,19 @@
+<table class="contrib-table">
+  <thead>
+    <tr>
+      <th>FY</th>
+      <th>Month</th>
+      <th>Amount</th>
+      <th>Transfer Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of filteredRows">
+      <td>{{ r.fy }}</td>
+      <td>{{ r.month }}</td>
+      <td>{{ r.amount | number }}</td>
+      <td>{{ r.transferType }}</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,73 @@
+.summary-cons-wrapper {
+  display: left;
+  justify-content: left;
+  padding: 0;
+}
+
+.summary-cons-card {
+  width: 500px;
+  max-width: 400px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-container {
+  display: left;
+  flex-wrap: wrap;
+  gap: 0rem;
+  align-items: flex-start;
+}
+
+// 🟨 This is where the hover animation happens
+.summary-box {
+  flex: 0 1 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border-left: 6px solid;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  min-width: 120px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  // 👇 Hover effect: Slightly lift the box
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    background-color: #f3f3f3;
+  }
+}
+
+.label {
+  flex: 1;
+}
+
+.count {
+  font-weight: bold;
+  padding-left: 0.5rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .summary-cons-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .summary-container {
+    gap: 0.5rem;
+  }
+  
+  .summary-box {
+    flex: 1 1 120px;
+    min-width: 100px;
+  }
+}

@@ -1,0 +1,194 @@
+<div class="overlay">
+  <div class="drawer">
+    <!-- Error Popup -->
+    <div class="error-popup" *ngIf="showErrorPopup">
+      <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <span class="error-text">{{ errorMessage }}</span>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="left">
+        <div class="form-dropdown">
+          <h2 (click)="toggleDropdown($event)" class="dropdown-trigger">
+            {{ currentForm }}
+            <span class="dropdown-arrow">▼</span>
+          </h2>
+          <div class="dropdown-menu" *ngIf="showDropdown">
+            <div 
+              class="dropdown-item" 
+              *ngFor="let form of formOptions" 
+              (click)="selectForm(form.id, $event)"
+            >
+              {{ form.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-buttons">
+        <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+        <button class="submit-btn" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+
+    <form [formGroup]="scholarshipForm" class="scholarship-form">
+      <div class="form-grid">
+        <!-- Beneficiary Information -->
+        <div class="form-group">
+          <label>Benificiary Name *</label>
+          <input formControlName="beneficiaryName" placeholder="Enter Full Name" />
+        </div>
+        
+        <div class="form-group">
+          <label>Beneficiary's Whatsapp Number *</label>
+          <input formControlName="whatsappNumber" placeholder="Enter Whatsapp Number" />
+        </div>
+
+        <!-- Educational Institution Information -->
+        <div class="form-group">
+          <label>Educational Institution's Name *</label>
+          <input formControlName="institutionName" placeholder="Enter Educational Institution's Name" />
+        </div>
+
+        <div class="form-group">
+          <label>Educational Institution's Location *</label>
+          <input formControlName="institutionLocation" placeholder="Enter Educational Institution's Location" />
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-group">
+          <label>Tuition Fees Payable *</label>
+          <input formControlName="tuitionFees" placeholder="Enter Full DD Name" />
+        </div>
+
+        <div class="form-group">
+          <label>All Other Fees Payable *</label>
+          <input formControlName="otherFees" placeholder="Enter Full DD Name" />
+        </div>
+
+        <div class="form-group">
+          <label>Semester For Which Fees Is Payable *</label>
+          <input formControlName="semester" placeholder="Enter Full DD Name" />
+        </div>
+
+        <!-- Employee's Justification -->
+        <div class="form-group full">
+          <label>Employee's Justification (In Detail) *</label>
+          <textarea formControlName="justification" (input)="onTextChange($event)" placeholder="Type Something..."></textarea>
+          <div class="char-count">{{charCount}} / 225</div>
+        </div>
+
+        <!-- Bank Account Information -->
+        <div class="form-group full">
+          <label>Educational Institution's Bank Account Name for issuance of DD *</label>
+          <input formControlName="bankAccountName" placeholder="Enter Full DD Name" />
+        </div>
+
+        <!-- Supporting Documents Section -->
+        <div class="form-group full">
+          <label class="section-title">Supporting Documents</label>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Beneficiary's Request Letter *</label>
+            <input type="file" (change)="onFileChange($event, 'requestLetter')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Student's ID Card Copy *</label>
+            <input type="file" (change)="onFileChange($event, 'idCard')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Parents' Aadhar Card *</label>
+            <input type="file" (change)="onFileChange($event, 'aadharCard')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Family Ration Card *</label>
+            <input type="file" (change)="onFileChange($event, 'rationCard')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Bonafide Certificate (As per Template) *</label>
+            <input type="file" (change)="onFileChange($event, 'bonafideCertificate')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <div class="file-input-wrapper">
+            <label>Death Certificate Of Parent(s) / Certificate For Disability - if applicable</label>
+            <input type="file" (change)="onFileChange($event, 'deathCertificate')" />
+            <div class="file-display-content">
+              <span class="file-name"></span>
+              <span class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Declaration -->
+        <div class="form-group checkbox full">
+          <input type="checkbox" formControlName="declaration" />
+          <label>I hereby declare that the information provided about the beneficiary referred and the documents uploaded in support of my request have been verified by me. *</label>
+        </div>
+
+        <!-- Spacing after declaration -->
+        <div class="spacing-after-declaration"></div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+.overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-panel {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 1200px;
+  max-width: 95%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.overlay-panel h2 {
+  font-size: 16px;
+  margin-bottom: -20px;
+  font-weight: bold;
+  color: #EE4961;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #A8ACB2;
+  margin-bottom: 30px;
+  font-weight: light;
+}
+
+.form-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.option-card {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px 15px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #EE4961;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(238, 73, 97, 0.15);
+  }
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  
+  img {
+    width: 130px;
+    height: 130px;
+    object-fit: center;
+  }
+}
+
+.option-card h3 {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  margin: 20px 0 0 0;
+  text-align: center;
+  line-height: 1.2;
+}

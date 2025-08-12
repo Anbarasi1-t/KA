@@ -1,0 +1,24 @@
+.contrib-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.contrib-table thead tr {
+  background: #F5F6F9;
+}
+
+.contrib-table th, .contrib-table td {
+  text-align: left;
+  padding: 10px 12px;
+  color: #515965;
+}
+
+.contrib-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.contrib-table tbody tr:hover {
+  background: #fa575724;
+}
+
