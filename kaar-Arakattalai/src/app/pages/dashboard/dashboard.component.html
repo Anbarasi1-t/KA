@@ -8,7 +8,14 @@
   </div>
   <div class="right-section" #rightCol>
     <div class="right-scroll">
-      <app-tab-switcher [selectedTab]="selectedTab" style="margin-bottom: 6px;" (tabChange)="onTabChange($event)"></app-tab-switcher>
+      <div class="tab-filter-row">
+        <app-tab-switcher [selectedTab]="selectedTab" style="margin-bottom: 0;" (tabChange)="onTabChange($event)"></app-tab-switcher>
+        <button *ngIf="selectedTab === 'contribution'" class="icon-button filter-button" type="button" (click)="onFilterToggle()" aria-label="Toggle filters">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#7D838B">
+            <path d="M3 5h18v2H3V5zm4 6h10v2H7v-2zm3 6h4v2h-4v-2z"/>
+          </svg>
+        </button>
+      </div>
       
       <ng-container *ngIf="selectedTab === 'contribution'; else referralsView">
         <app-contribution-filter *ngIf="showFilters" (filtersChange)="onContributionFiltersChange($event)" style="margin: 0 0 6px 0;"></app-contribution-filter>

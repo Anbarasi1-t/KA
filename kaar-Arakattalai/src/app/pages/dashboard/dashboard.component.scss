@@ -39,6 +39,32 @@
   margin-bottom: 6px;
 }
 
+/* Tab and filter button row */
+.tab-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.tab-filter-row .icon-button.filter-button {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #E8E9EE;
+  border-radius: 6px;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.tab-filter-row .icon-button.filter-button:hover {
+  border-color: #EE4961;
+  background: #fff5f6;
+}
+
 /* Table Section */
 .table-section {
   flex: 1;

@@ -47,7 +47,8 @@ export class MenubarComponent implements OnInit {
     this.searchChange.emit('');
   }
 
+  // Filter icon moved to dashboard component
   onFilterIconClick(): void {
-    this.filterToggle.emit();
+    // This method is no longer used as filter icon is now in dashboard
   }
 }

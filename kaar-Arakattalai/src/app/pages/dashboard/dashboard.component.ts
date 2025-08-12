@@ -8,6 +8,7 @@ import { UserProfileComponent } from '../../components/user-profile/user-profile
 import { TabSwitcherComponent } from '../../components/tab-switcher';
 import { ContributionFilterComponent, ContributionFilters } from '../../components/contribution-filter/contribution-filter.component';
 import { ContributionTableComponent, ContributionRow } from '../../components/contribution-table/contribution-table.component';
+import { RequestService } from '../../services/requests.service';
 
 @Component({
   selector: 'dashboard',
@@ -32,20 +33,10 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
   showFilters = false;
   contributionFilters: ContributionFilters | null = null;
   filteredCount: number = 0;
-  contributionRows: ContributionRow[] = [
-    { fy: '2023', month: 'January', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'February', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'March', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'April', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'May', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'June', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'July', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'August', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'September', amount: 1000, transferType: 'Bank Transfer' }
-  ];
+  contributionRows: ContributionRow[] = [];
 
-  constructor() {
-    this.updateFilteredCount();
+  constructor(private requestService: RequestService) {
+    this.loadContributions();
   }
 
   onFilterToggle() {
@@ -73,6 +64,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
     this.filteredCount = this.contributionRows.filter(r =>
       (!f.year || r.fy === f.year) && (!f.month || r.month === f.month)
     ).length;
+  }
+
+  private loadContributions() {
+    this.requestService.getContributions().subscribe((rows: any[]) => {
+      // Map backend fields directly as ContributionRow
+      this.contributionRows = rows as ContributionRow[];
+      this.updateFilteredCount();
+    });
   }
 
   // Keep right column from exceeding left column height
