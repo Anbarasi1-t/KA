@@ -1,0 +1,27 @@
+<!-- <div class="ag-theme-alpine" style="height: 400px; width: 100%;">
+  <ag-grid-angular
+  class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [animateRows]="true"
+    [pagination]="true"
+  >
+  </ag-grid-angular>
+</div> -->
+
+
+<div class="top-contributors-card">
+  <h3>Top Contributors</h3>
+  <ag-grid-angular
+    class="ag-theme-alpine contributors-grid"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [pagination]="false"
+    [domLayout]="'autoHeight'"
+    [suppressHorizontalScroll]="true"
+    [suppressCellFocus]="true"
+    [headerHeight]="35"
+    [rowHeight]="40">
+  </ag-grid-angular>
+</div>
+

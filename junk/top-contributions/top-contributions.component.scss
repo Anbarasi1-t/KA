@@ -1,0 +1,128 @@
+  .top-contributors-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px;
+    left: 750px;
+    width: calc(100% - 320px);
+    max-width: 400px;
+
+    h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .contributors-grid {
+      width: 100%;
+
+      ::ng-deep .ag-root-wrapper {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+    ::ng-deep .ag-header {
+        background-color: #f8f9fa;
+        font-size: 11px;
+        font-weight: 600;
+        color: #555;
+
+      ::ng-deep .ag-header-cell {
+        padding: 10px 15px;
+      }
+
+      ::ng-deep .ag-row {
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+      }
+
+      ::ng-deep .ag-cell {
+        border: none;
+        padding: 10px 15px;
+      }
+
+      ::ng-deep .ag-center-cols-container {
+        background-color: transparent;
+      }
+
+      ::ng-deep .ag-body-horizontal-scroll {
+        display: none !important;
+      }
+    }
+
+    .refer-someone-button {
+      background-color: #e53935;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      float: right;
+      margin-top: -3.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .contributors-grid {
+        ::ng-deep .ag-header-cell-label {
+          font-size: 12px;
+        }
+
+        ::ng-deep .ag-cell {
+          font-size: 12px;
+          padding: 6px;
+        }
+      }
+
+      .refer-someone-button {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        margin-top: -2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.8rem;
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 10px);
+
+      h3 {
+        font-size: 0.9rem;
+      }
+
+      .contributors-grid {
+        ::ng-deep .ag-header-cell-label {
+          font-size: 10px;
+        }
+
+        ::ng-deep .ag-cell {
+          font-size: 10px;
+          padding: 4px;
+        }
+      }
+
+      .refer-someone-button {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+        margin-top: -2rem;
+      }
+    }
+  }
+}

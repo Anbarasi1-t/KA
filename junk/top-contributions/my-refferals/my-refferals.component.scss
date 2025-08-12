@@ -1,0 +1,23 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  &.sm { font-size: 12px; padding: 2px 8px; }
+  &.md { font-size: 12px; padding: 2px 10px; }
+}
+
+.approved {
+  background-color: #e9f9ee;
+  color: #16a34a;
+}
+.rejected {
+  background-color: #fdecec;
+  color: #dc2626;
+}
+.pending {
+  background-color: #fef9e7;
+  color: #d97706;
+}

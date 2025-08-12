@@ -1,0 +1,16 @@
+.update-contribution {
+  padding: 16px;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  font-family: Arial, sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+  .update-contribution {
+    padding: 12px;
+  }
+}
+
