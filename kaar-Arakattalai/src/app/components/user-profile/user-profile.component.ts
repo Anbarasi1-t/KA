@@ -113,74 +113,18 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, UserProfile } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateContributionComponent } from '../update-contribution/update-contribution.component';
 
 @Component({
   standalone: true,
   selector: 'app-user-profile',
-  imports: [CommonModule, HttpClientModule],
-  template: `
-    <div class="profile-container" *ngIf="user">
-      <img class="profile-image" [src]="user.profilePicture" alt="Profile Picture">
-      <div class="info-grid">
-        <div><strong>{{ user.name }}</strong><div>Name</div></div>
-        <div><strong>{{ user.aid }}</strong><div>AID</div></div>
-        <div><strong>{{ user.designation }}</strong><div>Designation</div></div>
-        <div><strong>{{ user.manager }}</strong><div>Direct Manager</div></div>
-        <div><strong>{{ user.annualContribution }}</strong><div>Annual Contribution <br>(For Current FY)</div></div>
-        <div><strong>{{ user.annualEligibleReferral }}</strong><div>Annual Eligible <br>Referral Amount</div></div>
-        <div><strong>{{ user.balanceEligibleReferral }}</strong><div>Balance Eligible <br>Referral Amount</div></div>
-        <div><strong>{{ user.myReferrals }}</strong><div>My Referrals</div></div>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .profile-container {
-      width: 330px;
-      height: 100%;
-      margin: 0;
-      padding: 2rem;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
-      text-align: center;
-      background-color: #fff;
-    }
-    .profile-image {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 3rem;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem 5rem;
-      text-align: left;
-      margin-left: 0;
-    
-      div {
-        strong {
-          display: block;
-          font-size: 14px;
-          font-weight: 500;
-          color: #272A47;
-        }
-        div {
-          font-size: 12px;
-          color: #7D838B;
-        }
-      }
-    }
-    @media (max-width: 480px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  `]
+  imports: [CommonModule, HttpClientModule, UpdateContributionComponent],
+  templateUrl: './user-profile.component.html',
+  styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent implements OnInit {
   user!: UserProfile;
+  showUpdateModal: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -188,6 +132,14 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserProfile().subscribe(data => {
       this.user = data;
     });
+  }
+
+  openUpdateModal() {
+    this.showUpdateModal = true;
+  }
+
+  closeUpdateModal() {
+    this.showUpdateModal = false;
   }
 }
 

@@ -1,0 +1,138 @@
+<div class="overlay" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="header">
+      <h2>Update Contribution</h2>
+      <button class="close-btn" (click)="onClose()">&times;</button>
+    </div>
+    
+    <form (submit)="onSubmit()">
+      <div class="form-grid">
+        <!-- Payment Method Selection -->
+        <div class="form-group full">
+          <label class="section-title">Payment Method</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input 
+                type="radio" 
+                name="paymentMethod" 
+                value="salary" 
+                [(ngModel)]="paymentMethod"
+                (change)="onPaymentMethodChange()"
+              >
+              <span>Salary</span>
+            </label>
+            <label class="radio-label">
+              <input 
+                type="radio" 
+                name="paymentMethod" 
+                value="bank" 
+                [(ngModel)]="paymentMethod"
+                (change)="onPaymentMethodChange()"
+              >
+              <span>Bank Transfer</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Salary Section -->
+        <div class="form-group" *ngIf="paymentMethod === 'salary'">
+          <label>Monthly Contribution</label>
+          <input 
+            type="number" 
+            [(ngModel)]="monthlyContribution"
+            name="monthlyContribution"
+            min="0"
+            required
+            placeholder="Enter monthly contribution"
+            (change)="calculateSalaryDetails()"
+          >
+        </div>
+
+        <div class="form-group" *ngIf="paymentMethod === 'salary'">
+          <label>Duration</label>
+          <select 
+            [(ngModel)]="selectedDuration"
+            name="selectedDuration"
+            (change)="calculateSalaryDetails()"
+          >
+            <option value="12">12 months</option>
+            <option value="24">24 months</option>
+            <option value="36">36 months</option>
+            <option value="retirement">Until retirement</option>
+          </select>
+        </div>
+
+        <!-- Bank Transfer Section -->
+        <div class="form-group" *ngIf="paymentMethod === 'bank'">
+          <label>Amount to Transfer</label>
+          <input 
+            type="number" 
+            [(ngModel)]="transferAmount"
+            name="transferAmount"
+            min="0"
+            required
+            placeholder="Enter transfer amount"
+          >
+        </div>
+
+        <!-- Calculation Results -->
+        <div class="form-group full" *ngIf="paymentMethod === 'salary' && calculatedYears.length > 0">
+          <label class="section-title">Annual Contributions</label>
+          <div class="calculation-results">
+            <div class="year-item" *ngFor="let year of calculatedYears">
+              <span>{{ year.year }}:</span>
+              <span class="amount">₹{{ year.amount | number }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referral Amount -->
+        <div class="form-group full" *ngIf="paymentMethod === 'salary' && eligibleReferralAmount > 0">
+          <label class="section-title">Eligible Referral Amount</label>
+          <div class="referral-info">
+            <div class="amount">₹{{ eligibleReferralAmount | number }}</div>
+          </div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="form-group full" *ngIf="paymentMethod === 'bank'">
+          <label class="section-title">Bank Account Details</label>
+          <div class="bank-details">
+            <div class="detail-item">
+              <strong>Account Holder Name:</strong> Kaar Arakattalai
+            </div>
+            <div class="detail-item">
+              <strong>Account Type:</strong> Current Account
+            </div>
+            <div class="detail-item">
+              <strong>Account Number:</strong> 0630102000026743
+            </div>
+            <div class="detail-item">
+              <strong>IFSC Code:</strong> IBKL0000630
+            </div>
+            <div class="detail-item">
+              <strong>Bank & Branch:</strong> IDBI, Ashok Nagar Branch
+            </div>
+          </div>
+        </div>
+
+        <!-- Common Note Section -->
+        <div class="form-group full">
+          <label class="section-title">Note</label>
+          <div class="note-box">
+            <p><strong>Onsite Employee:</strong> Online Transfer your contribution to Kaar Arakkatalai's Bank Account (Details given below) directly.</p>
+            <p><strong>Offshore Employee:</strong> Send a mail to payroll&#64;kaartech.com, indicating your contribution amount and your contribution will be deducted from your monthly salary.</p>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-group full">
+          <div class="form-actions">
+            <button type="button" class="btn btn-cancel" (click)="onClose()">Cancel</button>
+            <button type="submit" class="btn btn-save" [disabled]="!isFormValid()">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
