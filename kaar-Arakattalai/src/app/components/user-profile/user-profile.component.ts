@@ -131,6 +131,7 @@ import { HttpClientModule } from '@angular/common/http';
         <div><strong>{{ user.balanceEligibleReferral }}</strong><div>Balance Eligible <br>Referral Amount</div></div>
         <div><strong>{{ user.myReferrals }}</strong><div>My Referrals</div></div>
       </div>
+      <button type="button" class="update-btn">Update Contribution</button>
     </div>
   `,
   styles: [`
@@ -146,8 +147,8 @@ import { HttpClientModule } from '@angular/common/http';
       background-color: #fff;
     }
     .profile-image {
-      width: 140px;
-      height: 140px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 3rem;
@@ -171,6 +172,21 @@ import { HttpClientModule } from '@angular/common/http';
           color: #7D838B;
         }
       }
+    }
+    .update-btn {
+      width: 100%;
+      margin-top: 16px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border: 1.5px solid #A8B0BF; /* subtle bluish grey */
+      color: #45546E;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .update-btn:hover {
+      background: #f1f5f9;
     }
     @media (max-width: 480px) {
       .info-grid {

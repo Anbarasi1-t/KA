@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 0px;
-  padding-bottom: 8px; /* space for underline */
+  padding-bottom: 2px; /* tiny spacing for visual separation */
   border: none;
   width: 100%;
   height: auto;
@@ -32,7 +32,7 @@
   position: absolute;
   left: 8px;
   right: 8px;
-  bottom: -6px; /* sits just below text */
+  bottom: -2px; /* sits just below text */
   height: 2px;
   background: #EE4961;
   border-radius: 0px;

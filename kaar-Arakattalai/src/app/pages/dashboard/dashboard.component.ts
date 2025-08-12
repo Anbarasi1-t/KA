@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenubarComponent } from '../../components/menubar/menubar.component';
 import { ReferralTableComponent } from '../../components/referral-table/referral-table.component';
@@ -25,32 +25,39 @@ import { ContributionTableComponent, ContributionRow } from '../../components/co
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit, OnDestroy {
   searchTerm: string = '';
   selectedTab: 'contribution' | 'referrals' = 'contribution';
 
   showFilters = false;
   contributionFilters: ContributionFilters | null = null;
+  filteredCount: number = 0;
   contributionRows: ContributionRow[] = [
-    { fy: 'FY 26', month: 'March', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'April', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'May', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'June', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'July', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'August', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'September', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'October', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: 'FY 26', month: 'November', amount: 1000, transferType: 'Bank Transfer' }
+    { fy: '2023', month: 'January', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'February', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'March', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'April', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'May', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'June', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'July', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'August', amount: 1000, transferType: 'Bank Transfer' },
+    { fy: '2023', month: 'September', amount: 1000, transferType: 'Bank Transfer' }
   ];
+
+  constructor() {
+    this.updateFilteredCount();
+  }
 
   onFilterToggle() {
     if (this.selectedTab === 'contribution') {
       this.showFilters = !this.showFilters;
+      this.updateFilteredCount();
     }
   }
 
   onContributionFiltersChange(f: ContributionFilters) {
     this.contributionFilters = { ...f };
+    this.updateFilteredCount();
   }
 
   onTabChange(tab: 'contribution' | 'referrals') {
@@ -59,5 +66,48 @@ export class DashboardComponent {
 
   onSearchChange(term: string) {
     this.searchTerm = term;
+  }
+
+  private updateFilteredCount() {
+    const f = this.contributionFilters || { year: null, month: null } as any;
+    this.filteredCount = this.contributionRows.filter(r =>
+      (!f.year || r.fy === f.year) && (!f.month || r.month === f.month)
+    ).length;
+  }
+
+  // Keep right column from exceeding left column height
+  @ViewChild('leftCol', { static: true }) leftCol!: ElementRef<HTMLDivElement>;
+  @ViewChild('rightCol', { static: true }) rightCol!: ElementRef<HTMLDivElement>;
+  private leftResizeObserver?: ResizeObserver;
+
+  ngAfterViewInit(): void {
+    this.syncRightHeight();
+    // Observe changes in left column size (e.g., image load, responsive changes)
+    if ('ResizeObserver' in window) {
+      this.leftResizeObserver = new ResizeObserver(() => this.syncRightHeight());
+      this.leftResizeObserver.observe(this.leftCol.nativeElement);
+    } else {
+      // Fallback: re-sync after a short delay for assets like images
+      setTimeout(() => this.syncRightHeight(), 300);
+    }
+  }
+
+  @HostListener('window:resize') onResize() {
+    this.syncRightHeight();
+  }
+
+  private syncRightHeight() {
+    const leftHeight = this.leftCol?.nativeElement.getBoundingClientRect().height || 0;
+    if (leftHeight > 0) {
+      const right = this.rightCol.nativeElement;
+      right.style.maxHeight = leftHeight + 'px';
+      right.style.overflow = 'auto';
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.leftResizeObserver) {
+      this.leftResizeObserver.disconnect();
+    }
   }
 }

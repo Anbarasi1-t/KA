@@ -3,22 +3,24 @@
 <app-menubar (searchChange)="onSearchChange($event)" (filterToggle)="onFilterToggle()"></app-menubar>
 
 <div class="dashboard-content">
-  <div class="left-section">
+  <div class="left-section" #leftCol>
     <app-user-profile></app-user-profile>
   </div>
-  <div class="right-section">
-  <app-tab-switcher [selectedTab]="selectedTab" style="margin-bottom: 1.5rem;" (tabChange)="onTabChange($event)"></app-tab-switcher>
-    
-    <ng-container *ngIf="selectedTab === 'contribution'; else referralsView">
-      <app-contribution-filter *ngIf="showFilters" (filtersChange)="onContributionFiltersChange($event)" style="margin-bottom: 1rem;"></app-contribution-filter>
-      <app-contribution-table [rows]="contributionRows" [filters]="contributionFilters"></app-contribution-table>
-    </ng-container>
-
-    <ng-template #referralsView>
-      <app-summary-cons class="summarycons"></app-summary-cons>
-      <div class="table-container">
-        <app-referral-table class="referraltable" style="width: 100%;" [searchTerm]="searchTerm"></app-referral-table>
-      </div>
-    </ng-template>
+  <div class="right-section" #rightCol>
+    <div class="right-scroll">
+      <app-tab-switcher [selectedTab]="selectedTab" style="margin-bottom: 6px;" (tabChange)="onTabChange($event)"></app-tab-switcher>
+      
+      <ng-container *ngIf="selectedTab === 'contribution'; else referralsView">
+        <app-contribution-filter *ngIf="showFilters" (filtersChange)="onContributionFiltersChange($event)" style="margin: 0 0 6px 0;"></app-contribution-filter>
+        <app-contribution-table [rows]="contributionRows" [filters]="contributionFilters"></app-contribution-table>
+      </ng-container>
+      
+      <ng-template #referralsView>
+        <app-summary-cons class="summarycons"></app-summary-cons>
+        <div class="table-container">
+          <app-referral-table class="referraltable" style="width: 100%;" [searchTerm]="searchTerm"></app-referral-table>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>

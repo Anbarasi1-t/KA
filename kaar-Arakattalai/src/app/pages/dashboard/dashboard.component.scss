@@ -23,6 +23,20 @@
   flex-direction: column;
   gap: 12px;
   box-sizing: border-box;
+  min-height: 0; /* allow flex child to shrink and enable overflow when constrained */
+}
+
+.right-section .right-scroll {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  overflow: auto; /* this is where scrolling will occur when limited by max-height */
+}
+
+/* Tiny gap between summary-cons and referral table */
+.summarycons {
+  margin-bottom: 6px;
 }
 
 /* Table Section */
