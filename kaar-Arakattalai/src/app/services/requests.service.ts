@@ -35,4 +35,24 @@ export class RequestService {
   getRejectedCount(): Observable<number> {
     return this.http.get<number>('http://localhost:3000/api/summarycons/rejected');
   }
+
+  getSanctionedCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/api/categorycounts/sanctioned');
+  }
+
+  getEducationCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/api/categorycounts/education');
+  }
+
+  getMedicalCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/api/categorycounts/medical');
+  }
+
+  getCsrClaimsCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/api/categorycounts/csrclaims');
+  }
+
+  getLaptopCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/api/categorycounts/laptop');
+  }
 }

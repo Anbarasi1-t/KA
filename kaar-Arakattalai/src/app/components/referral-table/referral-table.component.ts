@@ -16,6 +16,7 @@ import {
 } from 'ag-grid-community';
 
 import { RequestService } from '../../services/requests.service';
+import { ReferralDetailsComponent } from '../referral-details/referral-details.component';
 
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
@@ -33,7 +34,7 @@ ModuleRegistry.registerModules([
 @Component({
   selector: 'app-referral-table',
   standalone: true,
-  imports: [CommonModule, AgGridModule],
+  imports: [CommonModule, AgGridModule, ReferralDetailsComponent],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './referral-table.component.html',
   styleUrls: ['./referral-table.component.scss']
@@ -43,6 +44,7 @@ export class ReferralTableComponent implements OnInit, OnChanges {
   
   rowData: any[] = [];
   filteredData: any[] = [];
+  selectedReferral: any = null;
   
   columnDefs: ColDef[] = [
     { field: 'id', headerName: 'ID', flex: 1, cellClass: 'grey-cell' },
@@ -137,6 +139,14 @@ export class ReferralTableComponent implements OnInit, OnChanges {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.setGridHeight();
+  }
+
+  onRowClicked(event: any) {
+    this.selectedReferral = event.data;
+  }
+
+  closeDetails() {
+    this.selectedReferral = null;
   }
 
   setGridHeight() {

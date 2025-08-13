@@ -1,0 +1,52 @@
+.referral-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #444;
+
+  thead {
+    background-color: #f8f9fa;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    padding: 4px;
+
+    svg {
+      stroke: #555;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover svg {
+      stroke: #d32f2f;
+    }
+  }
+}

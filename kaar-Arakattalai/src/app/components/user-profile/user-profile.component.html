@@ -1,0 +1,24 @@
+<div class="profile-container" *ngIf="user">
+      <img class="profile-image" [src]="user.profilePicture" alt="Profile Picture">
+      <div class="info-grid">
+        <div><strong>{{ user.name }}</strong><div>Name</div></div>
+        <div><strong>{{ user.aid }}</strong><div>AID</div></div>
+        <div><strong>{{ user.designation }}</strong><div>Designation</div></div>
+        <div><strong>{{ user.manager }}</strong><div>Direct Manager</div></div>
+        <div><strong>{{ user.annualContribution }}</strong><div>Annual Contribution <br>(For Current FY)</div></div>
+        <div><strong>{{ user.annualEligibleReferral }}</strong><div>Annual Eligible <br>Referral Amount</div></div>
+        <div><strong>{{ user.balanceEligibleReferral }}</strong><div>Balance Eligible <br>Referral Amount</div></div>
+        <div><strong>{{ user.myReferrals }}</strong><div>My Referrals</div></div>
+      </div>
+      
+      <div class="action-section">
+        <button class="update-btn" (click)="openUpdateModal()">
+          Update Contribution
+        </button>
+      </div>
+      
+      <app-update-contribution 
+        [isOpen]="showUpdateModal" 
+        (close)="closeUpdateModal()">
+      </app-update-contribution>
+    </div>
