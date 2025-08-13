@@ -38,7 +38,7 @@
 
         <!-- Salary Section -->
         <div class="form-group" *ngIf="paymentMethod === 'salary'">
-          <label>Monthly Contribution INR</label>
+          <label class="section-title">Monthly Contribution INR</label>
           <input 
             type="number" 
             [(ngModel)]="monthlyContribution"
@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group" *ngIf="paymentMethod === 'salary'">
-          <label>Duration</label>
+          <label class="section-title">Duration</label>
           <select 
             [(ngModel)]="selectedDuration"
             name="selectedDuration"
