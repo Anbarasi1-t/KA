@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const referralRoutes = require('./routes/referralRoutes');
+const contributionRoutes = require('./routes/contributionRoutes');
 const totalcontributionsroutes = require('./routes/totalcontributionsroutes');
 const summaryconsroutes = require('./routes/summaryconsroutes');
 const userRoutes = require('./routes/userRoutes');
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/referrals', referralRoutes);
+app.use('/api/contributions', contributionRoutes);
 app.use('/api/totalcontributions', totalcontributionsroutes);
 app.use('/api/summarycons', summaryconsroutes);
 app.use('/api/user', userRoutes);

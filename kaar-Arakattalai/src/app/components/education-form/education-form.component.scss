@@ -1,3 +1,5 @@
+
+
 .overlay {
   position: fixed;
   top: 0;
@@ -7,31 +9,31 @@
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: flex-end;
+  align-items: stretch;
   z-index: 9999;
 }
 
 .drawer {
-  background: white;
-  width: 50vw; // Changed to 50% as requested
-  max-width: 600px;
-  height: 100%;
-  padding: 1.5rem;
-  overflow-y: auto;
-  animation: slideIn 0.3s ease-out;
-  font-size: 12px; // Small text as requested
+  background: #fff;
+  width: 50vw;
+  max-width: 650px;
+  min-width: 320px;
+  height: 100vh;
+  border-radius: 18px 0 0 18px;
+  box-shadow: -4px 0 32px rgba(0,0,0,0.18);
+  padding: 2.5rem 2rem 2rem 2rem;
   position: relative;
+  overflow-y: auto;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  right: 0;
 
-  @media (max-width: 768px) {
-    width: 100vw;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0%);
+  @media (max-width: 900px) {
+    width: 90vw;
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+    border-radius: 0;
   }
 }
 
@@ -41,7 +43,7 @@
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #ff4444;
+  background: #EE4961;
   color: white;
   padding: 0.8rem 1.2rem;
   border-radius: 6px;
@@ -145,21 +147,30 @@
 
   .cancel-btn, .submit-btn {
     margin-left: 0.5rem;
-    padding: 0.3rem 0.8rem;
-    border: none;
+    height: 35px;
+    padding: 0 1.2rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 12px;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, border 0.2s;
   }
 
   .cancel-btn {
-    background: #eee;
-    color: #333;
+    background: #fff;
+    color: #45546E;
+    border: 1px solid #45546E;
+    font-weight: 500;
   }
 
   .submit-btn {
-    background: #e03b58;
-    color: white;
+    background: #EE4961;
+    color: #fff;
+    border: 1px solid #EE4961;
+    font-weight: 500;
   }
 }
 
@@ -176,9 +187,9 @@
     cursor: pointer;
 
     &.active {
-      background: crimson;
+      background: #EE4961;
       color: white;
-      border-color: crimson;
+      border-color: #EE4961;
     }
   }
 }
@@ -247,17 +258,23 @@
     label {
       font-weight: 500;
       margin-bottom: 0.2rem;
-      font-size: 11px;
-      color: #333;
+      font-size: 12px;
+      color: #5F6C81;
       text-align: left;
 
       &.section-title {
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
-        color: #555;
+        color: #5F6C81;
         text-align: left;
+      }
+
+      .required {
+        color: #EE4961;
+        font-size: 12px;
+        margin-left: 2px;
       }
     }
 
@@ -266,17 +283,17 @@
       padding: 0.4rem;
       border: 1px solid #ddd;
       border-radius: 3px;
-      font-size: 11px;
+      font-size: 12px;
       background: #fafafa;
 
       &::placeholder {
-        color: #999;
-        font-size: 10px;
+        color: #B9C0CA;
+        font-size: 12px;
       }
 
       &:focus {
         outline: none;
-        border-color: #e03b58;
+        border-color: #EE4961;
         background: white;
       }
     }
