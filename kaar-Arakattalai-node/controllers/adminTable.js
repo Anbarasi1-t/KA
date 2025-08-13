@@ -30,7 +30,7 @@ exports.getAllEmployeeRequests = (req, res) => {
       },
       {
         id: '4',
-        employeeName: 'Mark Atwood',
+        employeeName: 'Charles Leclerc',
         employeeAID: '98765',
         referralType: 'Laptop',
         annualContribution: 100000,
@@ -38,7 +38,7 @@ exports.getAllEmployeeRequests = (req, res) => {
       },
       {
         id: '5',
-        employeeName: 'Corin Freemark',
+        employeeName: 'Ben Stokes',
         employeeAID: '8765',
         referralType: 'Education',
         annualContribution: 100000,
