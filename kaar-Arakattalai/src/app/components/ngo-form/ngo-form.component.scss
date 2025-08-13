@@ -1,3 +1,7 @@
+/* Style for asterisks in labels */
+.asterisk {
+  color: #EE4961;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -191,7 +195,11 @@
         font-weight: 600;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
-        color: #555;
+      @import '../education-form/education-form.component.scss';
+
+        .ngo-form {
+          @extend .ngo-form;
+        }
         text-align: left;
       }
     }

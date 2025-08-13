@@ -1,3 +1,7 @@
+/* Style for asterisks in labels */
+.asterisk {
+  color: #EE4961;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -8,6 +12,19 @@
   display: flex;
   justify-content: flex-end;
   z-index: 9999;
+}
+
+/* Style for asterisks in labels */
+.asterisk {
+  color: #EE4961;
+}
+
+// ...existing education-form SCSS up to .scholarship-form, but use .csr-form instead...
+.csr-form {
+  // ...all rules from .scholarship-form, replacing .scholarship-form with .csr-form...
+  display: flex;
+  flex-direction: column;
+  // ...rest of the rules from .scholarship-form...
 }
 
 .drawer {
