@@ -9,7 +9,7 @@ exports.getContributions = (req, res) => {
     { fy: '2023', month: 'June', amount: 1000, transferType: 'Bank Transfer' },
     { fy: '2023', month: 'July', amount: 1000, transferType: 'Bank Transfer' },
     { fy: '2023', month: 'August', amount: 1000, transferType: 'Bank Transfer' },
-    { fy: '2023', month: 'September', amount: 1000, transferType: 'Bank Transfer' }
+    { fy: '2024', month: 'September', amount: 1000, transferType: 'Bank Transfer' }
   ];
   res.json(data);
 };
