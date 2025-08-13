@@ -1,0 +1,74 @@
+<div class="backdrop" (click)="onClose()"></div>
+<div class="details-container" (click)="$event.stopPropagation()">
+  <div class="header">
+    <button class="back-button" (click)="onClose()">
+      ←
+    </button>
+    <h2>Details</h2>
+  </div>
+
+  <section class="beneficiary-details-section">
+    <h3 class="section-title">Beneficiary Details</h3>
+    <div class="details-grid">
+      <div class="detail-item">
+        <label>Beneficiary Type</label>
+        <div class="value">{{ referral.beneficiaryType || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Beneficiary Name</label>
+        <div class="value">{{ referral.beneficiaryName || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Beneficiary Mobile Number</label>
+        <div class="value">{{ referral.beneficiaryMobileNumber || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Institution Name</label>
+        <div class="value">{{ referral.institutionName || '-' }}</div>
+      </div>
+
+      <div class="detail-item">
+        <label>Institution Location</label>
+        <div class="value">{{ referral.institutionLocation || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Annual Contribution (INR)</label>
+        <div class="value">{{ referral.annualContribution || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Amount Requested (INR)</label>
+        <div class="value">{{ referral.amountRequested || '-' }}</div>
+      </div>
+      <div class="detail-item">
+        <label>Account Name For DD</label>
+        <div class="value">{{ referral.accountNameForDD || '-' }}</div>
+      </div>
+
+      <div class="detail-item full-width">
+        <label>Employee Justification</label>
+        <div class="value">{{ referral.employeeJustification || '-' }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="attachments-section">
+    <h3 class="section-title">Attachments</h3>
+    <div class="attachments-list">
+      <div class="attachment-item" *ngFor="let file of referral.attachments || []">
+        <div class="file-icon">PDF</div>
+        <div class="file-info">
+          <div class="file-title">{{ file.title || 'File Title.pdf' }}</div>
+          <div class="file-meta">{{ file.size || '313 KB' }} · {{ file.date || '31 Aug, 2022' }}</div>
+        </div>
+        <div class="file-actions">
+          <button class="view-btn" title="View">
+            👁️
+          </button>
+          <button class="download-btn" title="Download">
+            ⬇️
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

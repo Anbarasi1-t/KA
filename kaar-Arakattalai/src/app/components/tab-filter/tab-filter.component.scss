@@ -1,0 +1,89 @@
+.tab-filter-wrapper {
+  display: left;
+  justify-content: left;
+  padding: 0;
+}
+
+.tab-filter-card {
+  width: 500px;
+  max-width: 400px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tab-filter-container {
+  display: left;
+  flex-wrap: wrap;
+  gap: 0rem;
+  align-items: flex-start;
+}
+
+.tab-box {
+  flex: 0 1 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border-left: 6px solid;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  min-width: 120px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    background-color: #f3f3f3;
+  }
+
+  &.sanctioned {
+    border-left-color: #2a4dff;
+  }
+  &.rejected {
+    border-left-color: #d32f2f;
+  }
+  &.education {
+    border-left-color: #00bfa5;
+  }
+  &.medical {
+    border-left-color: #e91e63;
+  }
+  &.csr {
+    border-left-color: #9c27b0;
+  }
+  &.laptop {
+    border-left-color: #3f51b5;
+  }
+
+  .label {
+    flex: 1;
+  }
+
+  .count {
+    font-weight: bold;
+    padding-left: 0.5rem;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .tab-filter-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .tab-filter-container {
+    gap: 0.5rem;
+  }
+  
+  .tab-box {
+    flex: 1 1 120px;
+  }
+}

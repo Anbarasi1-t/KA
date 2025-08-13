@@ -1,0 +1,10 @@
+<div class="tab-filter-wrapper">
+  <div class="tab-filter-card">
+    <div class="tab-filter-container">
+      <div *ngFor="let category of categories" class="tab-box" [ngClass]="category.colorClass">
+        <span class="label">{{ category.name }}</span>
+        <span class="count">{{ category.count }}</span>
+      </div>
+    </div>
+  </div>
+</div>

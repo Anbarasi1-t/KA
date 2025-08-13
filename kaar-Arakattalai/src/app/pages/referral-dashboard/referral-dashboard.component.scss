@@ -1,0 +1,41 @@
+.referral-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+
+  app-top-bar {
+    flex: 0 0 auto;
+  }
+
+  app-tab-filter {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    padding: 0 20px;
+  }
+
+  .main-content {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+
+    app-referral-table-new {
+      flex: 1 1 auto;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: auto;
+    }
+
+    app-columns-toggle {
+      flex: 0 0 40px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

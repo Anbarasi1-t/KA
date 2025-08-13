@@ -36,7 +36,7 @@
 
         <!-- Salary Section -->
         <div class="form-group" *ngIf="paymentMethod === 'salary'">
-          <label>Monthly Contribution</label>
+          <label>Monthly Contribution INR</label>
           <input 
             type="number" 
             [(ngModel)]="monthlyContribution"
@@ -64,7 +64,7 @@
 
         <!-- Bank Transfer Section -->
         <div class="form-group" *ngIf="paymentMethod === 'bank'">
-          <label>Amount to Transfer</label>
+          <label>Amount to Transfer INR</label>
           <input 
             type="number" 
             [(ngModel)]="transferAmount"

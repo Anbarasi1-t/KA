@@ -8,5 +8,12 @@
   [rowHeight]="35"
   [gridOptions]="gridOptions"
   (gridReady)="onGridReady($event)"
+  (rowClicked)="onRowClicked($event)"
 >
 </ag-grid-angular>
+
+<app-referral-details
+  *ngIf="selectedReferral"
+  [referral]="selectedReferral"
+  (close)="closeDetails()"
+></app-referral-details>
