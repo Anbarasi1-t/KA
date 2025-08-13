@@ -30,8 +30,7 @@ export class ContributionTableComponent implements OnChanges {
     const f = this.filters || { year: null, month: null, type: null };
     this.filteredRows = this.rows.filter(r =>
       (!f.year || r.fy === f.year) &&
-      (!f.month || r.month === f.month) &&
-      (!f.type || r.transferType === f.type)
+      (!f.month || r.month === f.month)
     );
   }
 }

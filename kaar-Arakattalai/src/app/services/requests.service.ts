@@ -12,6 +12,9 @@ export class RequestService {
     // MUST match the backend route
     return this.http.get<any[]>('http://localhost:3000/api/referrals');
   }
+  getContributions(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/api/contributions');
+  }
   getTotalContribution(): Observable<any> {
     return this.http.get<number>('http://localhost:3000/api/totalcontributions');
   }

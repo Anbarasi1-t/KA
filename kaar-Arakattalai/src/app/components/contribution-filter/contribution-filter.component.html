@@ -1,34 +1,41 @@
 <div class="filters">
-  <div class="filter-box" [class.open]="open.year">
-    <div class="filter-header" (click)="toggle('year')">
-      <span>Select Year</span>
-      <span class="chev">▾</span>
+  <div class="filter-card">
+    <div class="filter-card__header">
+      <div class="filter-card__title">
+        <span class="icon-search" aria-hidden="true">🔍</span>
+        <span>Financial Year</span>
+      </div>
+      <div class="filter-card__actions">
+        <button class="icon-btn" title="Clear" (click)="clearYear()">✖</button>
+      </div>
     </div>
-    <div class="filter-display">{{ selected.year || 'Select' }}</div>
-    <ul class="options" *ngIf="open.year">
-      <li *ngFor="let y of years" (click)="selectYear(y)" [class.selected]="selected.year === y">{{ y }}</li>
-    </ul>
+    <div class="filter-card__list">
+      <button
+        *ngFor="let y of years"
+        type="button"
+        class="list-item"
+        [class.selected]="selected.year === y"
+        (click)="selectYear(y)">{{ y }}</button>
+    </div>
   </div>
 
-  <div class="filter-box" [class.open]="open.month">
-    <div class="filter-header" (click)="toggle('month')">
-      <span>Select Month</span>
-      <span class="chev">▾</span>
+  <div class="filter-card">
+    <div class="filter-card__header">
+      <div class="filter-card__title">
+        <span class="icon-search" aria-hidden="true">🔍</span>
+        <span>Month</span>
+      </div>
+      <div class="filter-card__actions">
+        <button class="icon-btn" title="Clear" (click)="clearMonth()">✖</button>
+      </div>
     </div>
-    <div class="filter-display">{{ selected.month || 'Select' }}</div>
-    <ul class="options" *ngIf="open.month">
-      <li *ngFor="let m of months" (click)="selectMonth(m)" [class.selected]="selected.month === m">{{ m }}</li>
-    </ul>
-  </div>
-
-  <div class="filter-box" [class.open]="open.type">
-    <div class="filter-header" (click)="toggle('type')">
-      <span>Contribution Type</span>
-      <span class="chev">▾</span>
+    <div class="filter-card__list">
+      <button
+        *ngFor="let m of months"
+        type="button"
+        class="list-item"
+        [class.selected]="selected.month === m"
+        (click)="selectMonth(m)">{{ m }}</button>
     </div>
-    <div class="filter-display">{{ selected.type || 'Select' }}</div>
-    <ul class="options" *ngIf="open.type">
-      <li *ngFor="let t of types" (click)="selectType(t)" [class.selected]="selected.type === t">{{ t }}</li>
-    </ul>
   </div>
 </div>
