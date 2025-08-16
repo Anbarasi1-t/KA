@@ -1,6 +1,6 @@
 // admin.service.spec.ts
 import { TestBed } from '@angular/core/testing';
-import { AdminService } from './admin.service';
+import { AdminService } from './summarycards.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('AdminService', () => {

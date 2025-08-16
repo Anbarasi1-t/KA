@@ -1,4 +1,3 @@
-// admin-table.component.ts
 import { Component, OnInit, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
@@ -15,10 +14,10 @@ import {
   ICellRendererParams,
   GridOptions
 } from 'ag-grid-community';
-import { AdminService } from '../../services/admin.service';
+import { AdminTableService } from '../../services/admintable.service';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-// Register AG Grid modules used
+// Register AG Grid modules
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
   TextFilterModule,
@@ -45,70 +44,43 @@ export class AdminTableComponent implements OnInit, OnChanges {
 
   columnDefs: ColDef[] = [
     { headerName: 'S. No.', field: 'sno', width: 80, sortable: true, cellClass: 'grey-cell' },
-    {
-      headerName: 'Employee Name',
-      field: 'employeeName',
-      flex: 2,
-      cellClass: 'grey-cell',
-      sortable: true,
-      filter: 'agTextColumnFilter'
-    },
+    { headerName: 'Employee Name', field: 'employeeName', flex: 2, cellClass: 'grey-cell', sortable: true, filter: 'agTextColumnFilter' },
     { headerName: 'Employee AID', field: 'employeeAID', flex: 1, sortable: true, filter: 'agNumberColumnFilter' },
     { headerName: 'Referral Type', field: 'referralType', flex: 1.5, sortable: true },
-    {
-      headerName: 'Annual Contribution',
-      field: 'annualContribution',
-      flex: 1,
-      sortable: true,
-      valueFormatter: (params) => this.currencyFormatter(params.value)
-    },
-    {
-      headerName: 'Amount Requested',
-      field: 'amountRequested',
-      flex: 1,
-      sortable: true,
-      valueFormatter: (params) => this.currencyFormatter(params.value)
-    },
+    { headerName: 'Annual Contribution', field: 'annualContribution', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
+    { headerName: 'Amount Requested', field: 'amountRequested', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
     {
       headerName: 'Actions',
       field: 'actions',
       width: 90,
       cellRenderer: (params: ICellRendererParams) => {
-        // Render a simple pencil icon button; you can replace with SVG markup
         return `<button class="action-btn" data-action="edit" data-id="${params.data?.id || ''}" title="Edit">&#9998;</button>`;
       },
-      cellRendererParams: {
-        suppressSanitizeHtml: true
-      },
+      cellRendererParams: { suppressSanitizeHtml: true },
       pinned: 'right'
     }
   ];
 
-  defaultColDef: ColDef = {
-    sortable: true,
-    filter: false,
-    resizable: true
-  };
+  defaultColDef: ColDef = { sortable: true, filter: false, resizable: true };
 
   gridOptions: GridOptions = {
     suppressMovableColumns: true,
-    onCellClicked: (event) => this.onCellClicked(event)
+    onCellClicked: event => this.onCellClicked(event)
   };
 
   gridApi: any;
   gridColumnApi: any;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminTableService: AdminTableService) {}
 
   ngOnInit(): void {
-    this.adminService.getEmployees().subscribe({
+    this.adminTableService.getEmployees().subscribe({
       next: (data: any[]) => {
-        // Add S. No field
         this.rowData = data.map((row, index) => ({ ...row, sno: index + 1 }));
         this.filteredData = this.rowData;
         this.setGridHeight();
       },
-      error: (err) => {
+      error: (err: any) => { // <-- added type here
         console.error('Error fetching employees:', err);
         this.rowData = [];
         this.filteredData = [];
@@ -141,10 +113,9 @@ export class AdminTableComponent implements OnInit, OnChanges {
   }
 
   setGridHeight() {
-    // set grid height depending on number of rows (like your example)
     const rowCount = this.filteredData.length;
-    const headerHeight = 40; // header approx
-    const rowHeight = 45; // as set in template
+    const headerHeight = 40;
+    const rowHeight = 45;
     const maxHeight = 800;
     const height = Math.min(headerHeight + rowCount * rowHeight + 10, maxHeight);
     const gridDiv = document.querySelector('.custom-ag-grid') as HTMLElement;
@@ -154,28 +125,19 @@ export class AdminTableComponent implements OnInit, OnChanges {
   }
 
   currencyFormatter(value: any): string {
-    if (value == null) {
-      return '';
-    }
-    // Format as plain number (no currency symbol) to match your screenshot
-    return Number(value).toLocaleString('en-IN');
+    return value == null ? '' : Number(value).toLocaleString('en-IN');
   }
 
   onCellClicked(event: any): void {
-    // Handle click on the action button
-    if (event.event && event.event.target) {
-      const target = event.event.target as HTMLElement;
-      const action = target.getAttribute('data-action');
-      const id = target.getAttribute('data-id');
-      if (action === 'edit' && id) {
-        this.onEdit(id);
-      }
+    const target = event.event?.target as HTMLElement;
+    const action = target?.getAttribute('data-action');
+    const id = target?.getAttribute('data-id');
+    if (action === 'edit' && id) {
+      this.onEdit(id);
     }
   }
 
   onEdit(id: string): void {
-    // Replace with navigation or modal open in your real app
     console.log('Edit clicked for ID:', id);
-    // e.g., this.router.navigate(['/admin/edit', id]);
   }
 }
