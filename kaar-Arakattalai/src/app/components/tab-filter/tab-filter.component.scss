@@ -1,23 +1,24 @@
 .tab-filter-wrapper {
   display: left;
-  justify-content: left;
+  
+  
   padding: 0;
 }
 
-.tab-filter-card {
-  width: 500px;
-  max-width: 400px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  background-color: #f9f9f9;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+// .tab-filter-card {
+//   border-radius: 1rem;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+//   padding: 1rem;
+//   background-color: #f9f9f9;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease;
+// }
 
 .tab-filter-container {
-  display: left;
+
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 0rem;
+  gap: 1.5rem;
   align-items: flex-start;
 }
 
