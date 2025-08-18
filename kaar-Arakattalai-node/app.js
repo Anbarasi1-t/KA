@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const app = express();
 
 app.use(cors()); // ✅ Allow all origins
 app.use(express.json());
@@ -13,7 +14,7 @@ const userRoutes = require('./routes/userRoutes');
 const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
 
-const app = express();
+
 
 // // ✅ Enable CORS for all origins (with preflight)
 // app.use(cors({
@@ -33,8 +34,9 @@ app.use('/api/contributions', contributionRoutes);
 app.use('/api/totalcontributions', totalContributionsRoutes);
 app.use('/api/summarycons', summaryConsRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/admintable', adminTableRoutes);
+app.use('/api/employees', adminTableRoutes);
 app.use('/api/summarycards', summaryCardsRoutes);
+ // Ensure this file exists
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
