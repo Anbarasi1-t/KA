@@ -35,11 +35,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
   filteredCount: number = 0;
   contributionRows: ContributionRow[] = [];
 
+  filterActive = false;
+
   constructor(private requestService: RequestService) {
     this.loadContributions();
   }
 
   onFilterToggle() {
+    this.filterActive = !this.filterActive;
     if (this.selectedTab === 'contribution') {
       this.showFilters = !this.showFilters;
       this.updateFilteredCount();

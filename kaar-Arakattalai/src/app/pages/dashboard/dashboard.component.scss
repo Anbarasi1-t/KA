@@ -94,6 +94,11 @@
   min-height: 300px;
 }
 
+/* Filter Cross Color */
+.filter-cross {
+  stroke: #7D838B;
+}
+
 /* Responsive Stack */
 @media (max-width: 768px) {
   .dashboard-content {
@@ -133,3 +138,4 @@
     height: 300px;
   }
 }
+
