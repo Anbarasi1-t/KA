@@ -1,5 +1,3 @@
-
-
 <app-menubar (searchChange)="onSearchChange($event)" (filterToggle)="onFilterToggle()"></app-menubar>
 
 <div class="dashboard-content">
@@ -10,9 +8,22 @@
     <div class="right-scroll">
       <div class="tab-filter-row">
         <app-tab-switcher [selectedTab]="selectedTab" style="margin-bottom: 0;" (tabChange)="onTabChange($event)"></app-tab-switcher>
-        <button *ngIf="selectedTab === 'contribution'" class="icon-button filter-button" type="button" (click)="onFilterToggle()" aria-label="Toggle filters">
+        <button
+          *ngIf="selectedTab === 'contribution'"
+          class="icon-button filter-button"
+          type="button"
+          (click)="onFilterToggle()"
+          aria-label="Toggle filters"
+        >
+          <!-- Replace your SVG with this for a crossed-out effect -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#7D838B">
             <path d="M3 5h18v2H3V5zm4 6h10v2H7v-2zm3 6h4v2h-4v-2z"/>
+            <line
+              *ngIf="filterActive"
+              class="filter-cross"
+              x1="5" y1="5" x2="17" y2="17"
+              stroke-width="2"
+            />
           </svg>
         </button>
       </div>
