@@ -1,7 +1,7 @@
 // src/app/components/summarycards-admin/summarycards-admin.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SummarycardsAdminComponent } from './summarycards-admin.component';
-import { AdminService } from '../../services/admin.service';
+import { AdminService } from '../../services/summarycards.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 

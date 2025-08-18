@@ -1,20 +1,40 @@
 const express = require('express');
 const cors = require('cors');
-const referralRoutes = require('./routes/referralRoutes');
-const contributionRoutes = require('./routes/contributionRoutes');
-const totalcontributionsroutes = require('./routes/totalcontributionsroutes');
-const summaryconsroutes = require('./routes/summaryconsroutes');
-const userRoutes = require('./routes/userRoutes');
 
-const app = express();
-app.use(cors());
+app.use(cors()); // ✅ Allow all origins
 app.use(express.json());
 
+// Import route files (match exact names from your /routes folder)
+const referralRoutes = require('./routes/referralRoutes');
+const contributionRoutes = require('./routes/contributionRoutes');
+const totalContributionsRoutes = require('./routes/totalcontributionsroutes'); // lowercase file name
+const summaryConsRoutes = require('./routes/summaryconsroutes'); // lowercase file name
+const userRoutes = require('./routes/userRoutes');
+const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
+const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
+
+const app = express();
+
+// // ✅ Enable CORS for all origins (with preflight)
+// app.use(cors({
+//   origin: '*',              // Allow all domains
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
+// // ✅ Handle preflight OPTIONS requests globally
+// app.options('*', cors());
+
+// app.use(express.json());
+
+// Mount the routes
 app.use('/api/referrals', referralRoutes);
 app.use('/api/contributions', contributionRoutes);
-app.use('/api/totalcontributions', totalcontributionsroutes);
-app.use('/api/summarycons', summaryconsroutes);
+app.use('/api/totalcontributions', totalContributionsRoutes);
+app.use('/api/summarycons', summaryConsRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/admintable', adminTableRoutes);
+app.use('/api/summarycards', summaryCardsRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

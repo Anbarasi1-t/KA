@@ -1,7 +1,7 @@
 // admin-table.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AdminTableComponent } from './admin-table.component';
-import { AdminService } from '../../services/admin.service';
+import { AdminTableComponent } from './admintable.component';
+import { AdminService } from '../../services/summarycards.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 

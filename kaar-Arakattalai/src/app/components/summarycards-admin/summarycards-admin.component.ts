@@ -1,7 +1,7 @@
 // src/app/components/summarycards-admin/summarycards-admin.component.ts
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminService } from '../../services/admin.service';
+import { AdminService } from '../../services/summarycards.service';
 import { HttpClientModule } from '@angular/common/http';
 
 interface SummaryCard {
