@@ -14,11 +14,14 @@ export class UpdateContributionComponent {
   @Input() isOpen: boolean = false;
   @Output() close = new EventEmitter<void>();
   
+  isSaving = false; // <-- Add this line
+
   // Form data
   paymentMethod: string = 'salary';
   monthlyContribution: number = 0;
+  transferAmount: number | null = null;
   selectedDuration: string = '12';
-  transferAmount: number = 0;
+  duration: string = '';
   
   // Calculated data
   calculatedYears: Array<{year: string, amount: number}> = [];
@@ -28,6 +31,8 @@ export class UpdateContributionComponent {
   salaryContributions: Array<any> = [];
   bankTransfers: Array<any> = [];
   
+  contribution: number | null = null; // or string, depending on your form
+
   constructor(private http: HttpClient) {}
   
   onClose() {
@@ -49,7 +54,7 @@ export class UpdateContributionComponent {
     this.calculatedYears = [];
     this.eligibleReferralAmount = 0;
     
-    if (this.monthlyContribution <= 0) return;
+    if (this.monthlyContribution && this.monthlyContribution <= 0) return;
     
     const monthly = this.monthlyContribution;
     let months = 0;
@@ -70,12 +75,12 @@ export class UpdateContributionComponent {
     }
     
     const years = Math.ceil(months / 12);
-    const annualAmount = monthly * 12;
+    const annualAmount = monthly! * 12;
     
     for (let i = 0; i < years; i++) {
       const year = 2025 + i;
       const remainingMonths = months - (i * 12);
-      const currentYearAmount = remainingMonths >= 12 ? annualAmount : monthly * remainingMonths;
+      const currentYearAmount = remainingMonths >= 12 ? annualAmount : monthly! * remainingMonths;
       
       this.calculatedYears.push({
         year: `FY${year}`,
@@ -88,12 +93,21 @@ export class UpdateContributionComponent {
   
   isFormValid(): boolean {
     if (this.paymentMethod === 'salary') {
-      return this.monthlyContribution > 0 && this.selectedDuration !== '';
+      return this.monthlyContribution !== null && this.monthlyContribution > 0 && this.selectedDuration !== '';
     } else {
-      return this.transferAmount > 0;
+      return this.transferAmount !== null && this.transferAmount > 0;
     }
   }
   
+  get isContributionValid(): boolean {
+    if (this.paymentMethod === 'salary') {
+      return !!this.monthlyContribution && Number(this.monthlyContribution) > 0;
+    } else if (this.paymentMethod === 'bank') {
+      return !!this.transferAmount && Number(this.transferAmount) > 0;
+    }
+    return false;
+  }
+
   onSubmit() {
     if (!this.isFormValid()) return;
     
@@ -186,5 +200,11 @@ export class UpdateContributionComponent {
   resetCalculation() {
     this.calculatedYears = [];
     this.eligibleReferralAmount = 0;
+  }
+
+  get annualContribution(): number {
+    // Example calculation, adjust as needed
+    if (!this.duration || this.duration === 'retirement') return 0;
+    return Number(this.duration) * (this.monthlyContribution || 0);
   }
 }

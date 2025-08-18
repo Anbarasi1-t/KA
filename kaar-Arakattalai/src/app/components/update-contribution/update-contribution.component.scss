@@ -31,6 +31,10 @@
               0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid #e5e7eb;
   padding: 0;
+  max-height: 90vh;
+  overflow-y: auto;      // Make modal scrollable with parent
+  display: flex;
+  flex-direction: column;
 }
 
 /* Animation */
@@ -88,7 +92,7 @@
 .form-grid {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; // Changed from center to left-align content
   gap: 20px;
   padding: 0 20px 20px 20px;
 }
@@ -103,20 +107,23 @@
   gap: 8px;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0; // Remove auto margin to left-align
 }
 
 /* Labels */
 .form-group label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #5F6C81;
+  font-size: 12px;
+  font-weight: 400;
+  color: #111434;
 }
 
 .form-group label.section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111434;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5F6C81;
+  text-align: left; // Add this line to left-align bold section titles
+  width: 100%;      // Ensure it spans the full width of the form group
+  display: block;   // Ensure block-level for alignment
 }
 
 /* Inputs */
@@ -133,6 +140,7 @@
   transition: all 0.2s ease;
   box-sizing: border-box;
   width: 100%;
+  outline: none; // Ensure no default outline
 }
 
 .form-group input::placeholder {
@@ -141,13 +149,42 @@
 }
 
 .form-group input:focus,
-.form-group select:focus {
-  border-color: #EE4961;
-  box-shadow: 0 0 0 2px rgba(238, 73, 97, 0.08);
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #EE4961 !important;
+  box-shadow: 0 0 0 2px rgba(238, 73, 97, 0.10);
 }
 
 .form-group input[type="number"] {
   text-align: center;
+}
+
+/* Custom select dropdown color */
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  /* Add a custom arrow if needed */
+}
+
+.form-group select:focus {
+  border-color: #EE4961 !important;
+  box-shadow: 0 0 0 2px rgba(238, 73, 97, 0.10);
+}
+
+/* Change the highlighted/selected option color in dropdown */
+.form-group select option:checked,
+.form-group select option:focus,
+.form-group select option:hover {
+  background: #FEE6EA !important; /* Light pink background */
+  color: #EE4961 !important;      /* Highlight text in brand color */
+}
+
+/* For browsers that use the system dropdown (like Chrome/Edge), override highlight */
+.form-group select:focus option:checked {
+  background: #FEE6EA !important;
+  color: #EE4961 !important;
 }
 
 /* Radio Buttons */
@@ -175,8 +212,8 @@
 }
 
 .radio-label .custom-radio {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border: 2px solid #EE4961;
   border-radius: 50%;
   background: #fff;
@@ -226,7 +263,7 @@
 .referral-info .amount {
   font-size: 24px;
   font-weight: 700;
-  color: #dc2626;
+  color: #EE4961;
   display: block;
 }
 
@@ -278,20 +315,20 @@
 .info-box {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: #FFF2F4;
-  border: 1px solid #FECAD6;
+  gap: 10px;
+  background: #f8fafc; // match account details box
+  border: 1px solid #e2e8f0; // match account details box
   border-radius: 8px;
   padding: 16px;
   margin-top: 4px;
-  font-size: 14px;
-  color: #EE4961;
-  font-weight: 500;
-  justify-content: center;
+  font-size: 14px; // match account details font size
+  color: #5F6C81; // match account details color
+  font-weight: 500; // match account details font weight
+  justify-content: flex-start; // left align like account details
 }
 
 .info-icon {
-  color: #EE4961;
+  color: #5F6C81; // match text color
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -303,9 +340,10 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid #f3f4f6;
+  margin-top: 32px;      // Increased gap above buttons
+  margin-bottom: 24px;   // Add space below buttons to lift them up
+  padding-top: 0;
+  border-top: none;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -369,6 +407,7 @@
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 0 20px 20px 20px;
+    align-items: flex-start; // Ensure left alignment on mobile too
   }
   
   .form-grid .full {

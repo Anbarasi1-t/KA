@@ -38,18 +38,22 @@
     }
     
     .action-section {
-      padding-top: 1.5rem;
-      border-top: 1px solid #e0e0e0;
+      width: 100%;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      // border-top: 1px solid #e0e0e0;
     }
     
     .update-btn {
+
+      width: 100%;
       background-color: #FFFFFF;
       color: rgba(69, 84, 110, 1);
-      border: 2px solid rgba(69, 84, 110, 1);
+      border: 1px solid #d1d5db;
       padding: 0.5rem 1.25rem;
-      border-radius: 8px;
-      font-size: 1.125rem;
-      font-weight: 600;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -57,6 +61,7 @@
     .update-btn:hover {
       background-color: #FFFFFF;
       box-shadow: 0 6px 8px rgba(131, 132, 132, 0.2);
+      border: 1px solid rgba(69, 84, 110, 1);
     }
     
     @media (max-width: 480px) {
