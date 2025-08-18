@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 export interface ContributionFilters {
   year: string | null;
   month: string | null;
+  type: string | null;
 }
 
 @Component({
@@ -22,6 +23,7 @@ export class ContributionFilterComponent {
   selected: ContributionFilters = {
     year: null,
     month: null,
+    type: null
   };
 
   @Output() filtersChange = new EventEmitter<ContributionFilters>();

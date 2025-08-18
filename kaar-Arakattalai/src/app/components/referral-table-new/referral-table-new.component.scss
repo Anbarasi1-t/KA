@@ -1,52 +1,58 @@
-.referral-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #444;
+:host ::ng-deep .ag-theme-alpine {
+  border: none !important;
+  font-family: 'DM Sans', sans-serif;
 
-  thead {
-    background-color: #f8f9fa;
+  .ag-root-wrapper {
+    border: none !important;
   }
 
-  th, td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-  }
-
-  th {
+  .ag-header {
+    background-color: #f8f9fa !important;
     font-weight: 600;
-    cursor: pointer;
+    color: #5f6368 !important;
+    border-bottom: 1px solid #e0e0e0 !important;
   }
 
-  tbody tr:hover {
-    background-color: #f1f1f1;
+  .ag-cell {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f1f1f1 !important;
+  }
+
+  .ag-row:hover {
+    background-color: #fc757574  !important;
+  }
+
+  .ag-cell-actions {
+    justify-content: center;
   }
 
   .avatar {
     width: 24px;
-    height: 24px;
+    height: 20px;
     border-radius: 50%;
     margin-right: 8px;
-    vertical-align: middle;
+    margin-top: 8px;
   }
 
   .edit-button {
     background: none;
     border: none;
     cursor: pointer;
-    color: #555;
-    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     svg {
       stroke: #555;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
 
     &:hover svg {
-      stroke: #d32f2f;
+      stroke: #1976d2;
     }
   }
 }

@@ -1,33 +1,13 @@
-<table class="referral-table">
-  <thead>
-    <tr>
-      <th>S. No.</th>
-      <th>Employee Name</th>
-      <th>Employee AID</th>
-      <th>Referral type</th>
-      <th>Annual Contribution</th>
-      <th>Amount Requested</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let referral of referrals; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>
-        <img src="assets/profile_picture.png" alt="avatar" class="avatar" />
-        {{ referral.employeeName }}
-      </td>
-      <td>{{ referral.employeeAID }}</td>
-      <td>{{ referral.referralType }}</td>
-      <td>{{ referral.annualContribution }}</td>
-      <td>{{ referral.amountRequested }}</td>
-      <td>
-        <button class="edit-button" aria-label="Edit">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h8"></path>
-            <path d="M16 4l4 4-12 12H4v-4z"></path>
-          </svg>
-        </button>
-      </td>
-    </tr>
-  </tbody>
+<div class="ag-theme-alpine referral-grid">
+  <ag-grid-angular
+    [rowData]="filteredReferrals"
+    [rowHeight]="30"
+    [columnDefs]="colDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="single"
+    (rowClicked)="onReferralSelect($event.data)"
+    class="ag-grid-custom"
+    
+    style="width: 100%;">
+  </ag-grid-angular>
+</div>
