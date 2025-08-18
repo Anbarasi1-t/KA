@@ -4,6 +4,6 @@ const router = express.Router();
 const { getAllEmployeeRequests } = require('../controllers/admintableController');
 
 // GET all employee referral rows
-router.get('/employees', getAllEmployeeRequests);
+router.get('/', getAllEmployeeRequests);
 
 module.exports = router;
