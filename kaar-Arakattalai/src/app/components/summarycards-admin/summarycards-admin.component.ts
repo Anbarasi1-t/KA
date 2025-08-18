@@ -1,5 +1,5 @@
 // src/app/components/summarycards-admin/summarycards-admin.component.ts
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../services/summarycards.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,20 @@ interface SummaryCard {
   styleUrls: ['./summarycards-admin.component.scss'],
   // AdminService providedIn: 'root' already, no need to add providers here
 })
-export class SummarycardsAdminComponent implements OnInit {
+export class SummarycardsAdminComponent implements OnInit, AfterViewInit {
+  canScrollRight = false;
+  canScrollLeft = false;
+  ngAfterViewInit(): void {
+    this.updateScrollButtons();
+    this.scrollContainer.nativeElement.addEventListener('scroll', () => this.updateScrollButtons());
+    window.addEventListener('resize', () => this.updateScrollButtons());
+  }
+
+  updateScrollButtons(): void {
+    const el = this.scrollContainer.nativeElement;
+    this.canScrollRight = el.scrollLeft + el.clientWidth < el.scrollWidth - 1;
+    this.canScrollLeft = el.scrollLeft > 1;
+  }
   @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef<HTMLDivElement>;
 
   hoverKey = '';
@@ -66,9 +79,11 @@ export class SummarycardsAdminComponent implements OnInit {
 
   scrollLeft(): void {
     this.scrollContainer.nativeElement.scrollBy({ left: -220, behavior: 'smooth' });
+    setTimeout(() => this.updateScrollButtons(), 300);
   }
 
   scrollRight(): void {
     this.scrollContainer.nativeElement.scrollBy({ left: 220, behavior: 'smooth' });
+    setTimeout(() => this.updateScrollButtons(), 300);
   }
 }

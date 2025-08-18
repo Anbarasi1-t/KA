@@ -1,3 +1,29 @@
+
+.summary-cards-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: 0;
+  flex-shrink: 1;
+  margin-top: 8px;
+}
+.scroll-btn-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+    gap: 4px;
+    max-width: 100%;
+}
+.scroll-btn-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0;
+  height: 48px;
+}
 // /* summarycards-admin.component.scss */
 // :host { display: block; width: 100%; box-sizing: border-box; }
 
@@ -50,17 +76,30 @@
 //   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s;
 //   cursor: pointer;
 // }
-// .summary-card .title {
-//   font-size: 13px;
-//   font-weight: 600;
-//   color: #2d3748;
-// }
-// .summary-card .count {
-//   margin-top: 3px;
-//   font-size: 18px;
-//   font-weight: 700;
-//   color: #0f172a;
-// }
+.card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+.summary-card .title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.summary-card .count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-top: 0;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
 
 // .summary-card:hover,
 // .summary-card.hovered {
@@ -92,16 +131,30 @@
 /* scroll arrow buttons */
 .scroll-btn {
   flex: 0 0 auto;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.06);
-  padding: 6px; /* reduced */
-  border-radius: 50%;
+  background: #f6f7f9;
+  border: 1.5px solid #d1d5db;
+  padding: 0;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  font-size: 16px; /* reduced */
-  transition: background 0.12s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 14px;
+  transition: background 0.12s ease, box-shadow 0.12s, border 0.12s;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
 }
-.scroll-btn:hover { background: #f3f3f3; }
+.scroll-btn:hover:not(:disabled) {
+  background: #f0f1f3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+.scroll-btn:disabled {
+  background: #f6f7f9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
 /* container that scrolls horizontally */
 .cards-wrapper {
@@ -134,15 +187,15 @@
   cursor: pointer;
 }
 .summary-card .title {
-  font-size: 12px; /* reduced */
-  font-weight: 600;
-  color: #2d3748;
+  font-size: 13px; /* reduced */
+  font-weight: 500;
+  color: #515965;
 }
 .summary-card .count {
   margin-top: 2px; /* reduced */
-  font-size: 16px; /* reduced from 18px */
-  font-weight: 700;
-  color: #0f172a;
+  font-size: 13px; /* reduced from 18px */
+  font-weight: 500;
+  color: #515965;
 }
 
 .summary-card:hover,
