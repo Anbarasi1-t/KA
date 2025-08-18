@@ -36,48 +36,48 @@
       <div class="form-grid">
         <!-- NGO Information -->
         <div class="form-group">
-          <label>NGO Name *</label>
+          <label>NGO Name <span class="asterisk">*</span></label>
           <input formControlName="ngoName" placeholder="Enter Name" />
         </div>
         
         <div class="form-group">
-          <label>NGO SPOC Name *</label>
+          <label>NGO SPOC Name <span class="asterisk">*</span></label>
           <input formControlName="ngoSpocName" placeholder="Enter Full Name" />
         </div>
 
         <div class="form-group">
-          <label>SPOC's whatsapp number *</label>
+          <label>SPOC's whatsapp number <span class="asterisk">*</span></label>
           <input formControlName="spocWhatsappNumber" placeholder="Ente Mobile Number" />
         </div>
 
         <div class="form-group">
-          <label>NGO Location *</label>
+          <label>NGO Location <span class="asterisk">*</span></label>
           <input formControlName="ngoLocation" placeholder="Enter NGO Location" />
         </div>
 
         <div class="form-group">
-          <label>Number of Inmates maintained by NGO *</label>
+          <label>Number of Inmates maintained by NGO <span class="asterisk">*</span></label>
           <input formControlName="numberOfInmates" placeholder="Enter Full Name" />
         </div>
 
         <div class="form-group">
-          <label>Purpose of which Assistance Required *</label>
+          <label>Purpose of which Assistance Required <span class="asterisk">*</span></label>
           <input formControlName="purposeOfAssistance" placeholder="Enter Full Name" />
         </div>
 
         <div class="form-group">
-          <label>Amount Requested *</label>
+          <label>Amount Requested <span class="asterisk">*</span></label>
           <input formControlName="amountRequested" placeholder="Ente Mobile Number" />
         </div>
 
         <div class="form-group">
-          <label>Bank Account Name for issuance of DD *</label>
+          <label>Bank Account Name for issuance of DD <span class="asterisk">*</span></label>
           <input formControlName="accountNameForDD" placeholder="Enter Full DD Name" />
         </div>
 
         <!-- Employee's Justification -->
         <div class="form-group full">
-          <label>Employee's Justification (in Detail) *</label>
+          <label>Employee's Justification (in Detail) <span class="asterisk">*</span></label>
           <textarea formControlName="justification" (input)="onTextChange($event)" placeholder="Your Justification"></textarea>
           <div class="char-count">{{charCount}} / 225</div>
         </div>
@@ -89,7 +89,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Profile of NGO *</label>
+            <label>Profile of NGO <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'ngoProfile')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -104,7 +104,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Beneficiary's Request Letter *</label>
+            <label>Beneficiary's Request Letter <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'requestLetter')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -119,7 +119,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Registration Certificate of NGO/TRUST *</label>
+            <label>Registration Certificate of NGO/TRUST <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'registrationCertificate')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -135,7 +135,7 @@
         <!-- Declaration -->
         <div class="form-group checkbox full">
           <input type="checkbox" formControlName="declaration" />
-          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE *</label>
+          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE <span class="asterisk">*</span></label>
         </div>
 
         <!-- Spacing after declaration -->

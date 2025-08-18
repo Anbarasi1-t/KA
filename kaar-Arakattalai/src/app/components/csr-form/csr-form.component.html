@@ -36,12 +36,12 @@
       <div class="form-grid">
         <!-- Event Information -->
         <div class="form-group">
-          <label>Event Name *</label>
+          <label>Event Name <span class="asterisk">*</span></label>
           <input formControlName="eventName" placeholder="Enter Full Name" />
         </div>
         
         <div class="form-group">
-          <label>Claim amount *</label>
+          <label>Claim amount <span class="asterisk">*</span></label>
           <input formControlName="claimAmount" placeholder="Enter Claim Amount" />
         </div>
 
@@ -52,7 +52,7 @@
 
         <!-- Employee's Justification -->
         <div class="form-group full">
-          <label>Employee's Justification (in Detail) *</label>
+          <label>Employee's Justification (in Detail) <span class="asterisk">*</span></label>
           <textarea formControlName="justification" (input)="onTextChange($event)" placeholder="Your Justification"></textarea>
           <div class="char-count">{{charCount}} / 225</div>
         </div>
@@ -80,7 +80,7 @@
         <!-- Declaration -->
         <div class="form-group checkbox full">
           <input type="checkbox" formControlName="declaration" />
-          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE *</label>
+          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE <span class="asterisk">*</span></label>
         </div>
 
         <!-- Spacing after declaration -->

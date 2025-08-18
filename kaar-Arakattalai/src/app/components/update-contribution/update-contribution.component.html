@@ -19,6 +19,7 @@
                 [(ngModel)]="paymentMethod"
                 (change)="onPaymentMethodChange()"
               >
+              <span class="custom-radio"></span>
               <span>Salary</span>
             </label>
             <label class="radio-label">
@@ -29,6 +30,7 @@
                 [(ngModel)]="paymentMethod"
                 (change)="onPaymentMethodChange()"
               >
+              <span class="custom-radio"></span>
               <span>Bank Transfer</span>
             </label>
           </div>
@@ -36,7 +38,7 @@
 
         <!-- Salary Section -->
         <div class="form-group" *ngIf="paymentMethod === 'salary'">
-          <label>Monthly Contribution INR</label>
+          <label class="section-title">Monthly Contribution INR</label>
           <input 
             type="number" 
             [(ngModel)]="monthlyContribution"
@@ -49,7 +51,7 @@
         </div>
 
         <div class="form-group" *ngIf="paymentMethod === 'salary'">
-          <label>Duration</label>
+          <label class="section-title">Duration</label>
           <select 
             [(ngModel)]="selectedDuration"
             name="selectedDuration"
@@ -64,7 +66,7 @@
 
         <!-- Bank Transfer Section -->
         <div class="form-group" *ngIf="paymentMethod === 'bank'">
-          <label>Amount to Transfer INR</label>
+          <label class="section-title">Amount to Transfer INR</label>
           <input 
             type="number" 
             [(ngModel)]="transferAmount"
@@ -116,17 +118,20 @@
           </div>
         </div>
 
-        <!-- Common Note Section -->
-        <div class="form-group full">
-          <label class="section-title">Note</label>
-          <div class="note-box">
-            <p><strong>Onsite Employee:</strong> Online Transfer your contribution to Kaar Arakkatalai's Bank Account (Details given below) directly.</p>
-            <p><strong>Offshore Employee:</strong> Send a mail to payroll&#64;kaartech.com, indicating your contribution amount and your contribution will be deducted from your monthly salary.</p>
+        <!-- Info Section for Salary Payment Method -->
+        <div class="form-group full" *ngIf="paymentMethod === 'salary'">
+          <div class="info-box">
+            <svg class="info-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9,12 3,3 3,-3"></path>
+              <path d="m12,8 0,4"></path>
+            </svg>
+            <span>Contribution will be deducted from your salary</span>
           </div>
         </div>
 
         <!-- Form Actions -->
-        <div class="form-group full">
+        <div class="form-g  roup full">
           <div class="form-actions">
             <button type="button" class="btn btn-cancel" (click)="onClose()">Cancel</button>
             <button type="submit" class="btn btn-save" [disabled]="!isFormValid()">Save</button>

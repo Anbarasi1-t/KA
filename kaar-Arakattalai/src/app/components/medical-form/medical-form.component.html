@@ -36,35 +36,35 @@
       <div class="form-grid">
         <!-- Beneficiary Information -->
         <div class="form-group">
-          <label>Benificiary Name *</label>
+          <label>Benificiary Name <span class="asterisk">*</span></label>
           <input formControlName="beneficiaryName" placeholder="Enter Full Name" />
         </div>
         
         <div class="form-group">
-          <label>Beneficiary's Whatsapp number *</label>
+          <label>Beneficiary's Whatsapp number <span class="asterisk">*</span></label>
           <input formControlName="whatsappNumber" placeholder="Enter Whatsapp Number" />
         </div>
 
         <div class="form-group">
-          <label>Purpose of Medical Assistance required *</label>
+          <label>Purpose of Medical Assistance required <span class="asterisk">*</span></label>
           <input formControlName="purposeOfMedicalAssistance" placeholder="Enter Full DD Name" />
         </div>
 
         <div class="form-group">
-          <label>Amount Requested *</label>
+          <label>Amount Requested <span class="asterisk">*</span></label>
           <input formControlName="amountRequested" placeholder="Enter Full DD Name" />
         </div>
 
         <!-- Employee's Justification -->
         <div class="form-group full">
-          <label>Employee's Justification (in Detail) *</label>
+          <label>Employee's Justification (in Detail) <span class="asterisk">*</span></label>
           <textarea formControlName="justification" (input)="onTextChange($event)" placeholder="Type Something..."></textarea>
           <div class="char-count">{{charCount}} / 225</div>
         </div>
 
         <!-- Bank Account Information -->
         <div class="form-group full">
-          <label>Educational Institution's Bank Account Name for issuance of DD *</label>
+          <label>Educational Institution's Bank Account Name for issuance of DD <span class="asterisk">*</span></label>
           <input formControlName="bankAccountName" placeholder="Enter Full DD Name" />
         </div>
 
@@ -75,7 +75,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Beneficiary's Request letter *</label>
+            <label>Beneficiary's Request letter <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'requestLetter')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -90,7 +90,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Beneficiary's Aadhar Card *</label>
+            <label>Beneficiary's Aadhar Card <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'aadharCard')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -105,7 +105,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Beneficiary's Ration Card *</label>
+            <label>Beneficiary's Ration Card <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'rationCard')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -120,7 +120,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Medical bills *</label>
+            <label>Medical bills <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'medicalBills')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -136,7 +136,7 @@
         <!-- Declaration -->
         <div class="form-group checkbox full">
           <input type="checkbox" formControlName="declaration" />
-          <label>I hereby declare that the information provided about the beneficiary referred and the documents uploaded in support of my request have been verified by me. *</label>
+          <label>I hereby declare that the information provided about the beneficiary referred and the documents uploaded in support of my request have been verified by me. <span class="asterisk">*</span></label>
         </div>
 
         <!-- Spacing after declaration -->
