@@ -121,22 +121,21 @@
         <!-- Info Section for Salary Payment Method -->
         <div class="form-group full" *ngIf="paymentMethod === 'salary'">
           <div class="info-box">
-            <svg class="info-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="m9,12 3,3 3,-3"></path>
-              <path d="m12,8 0,4"></path>
+            <!-- Geometric "i" for perfect centering -->
+            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="11" r="8" stroke="#5F6C81" stroke-width="1.5" fill="#f8fafc"/>
+              <rect x="11" y="9" width="2" height="6" rx="1" fill="#5F6C81"/>
+              <circle cx="12" cy="7" r="1" fill="#5F6C81"/>
             </svg>
             <span>Contribution will be deducted from your salary</span>
           </div>
         </div>
+      </div>
 
-        <!-- Form Actions -->
-        <div class="form-g  roup full">
-          <div class="form-actions">
-            <button type="button" class="btn btn-cancel" (click)="onClose()">Cancel</button>
-            <button type="submit" class="btn btn-save" [disabled]="!isFormValid()">Save</button>
-          </div>
-        </div>
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-cancel" (click)="onClose()">Cancel</button>
+        <button type="submit" class="btn btn-save" [disabled]="isSaving">Save</button>
       </div>
     </form>
   </div>
