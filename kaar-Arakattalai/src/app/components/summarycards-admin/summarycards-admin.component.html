@@ -15,31 +15,29 @@
       </div>
     </div>
   </div>
-  <div class="summary-cards-row">
-    <div class="scroll-btn-group">
-      <button 
-        class="scroll-btn left" 
-        (click)="scrollLeft()" 
-        aria-label="Scroll left"
-        [disabled]="!canScrollLeft"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="24" height="24" rx="8" fill="none"/>
-          <path d="M15 6L9 12L15 18" [attr.stroke]="canScrollLeft ? '#232B36' : '#BFC5CC'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button 
-        class="scroll-btn right" 
-        (click)="scrollRight()" 
-        aria-label="Scroll right"
-        [disabled]="!canScrollRight"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="24" height="24" rx="8" fill="none"/>
-          <path d="M9 6L15 12L9 18" [attr.stroke]="canScrollRight ? '#232B36' : '#BFC5CC'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-    
+
+  <div class="scroll-btn-group">
+    <button 
+      class="scroll-btn left" 
+      (click)="scrollLeft()" 
+      aria-label="Scroll left"
+      [disabled]="!canScrollLeft"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="8" fill="none"/>
+        <path d="M15 6L9 12L15 18" [attr.stroke]="canScrollLeft ? '#232B36' : '#BFC5CC'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button 
+      class="scroll-btn right" 
+      (click)="scrollRight()" 
+      aria-label="Scroll right"
+      [disabled]="!canScrollRight"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="8" fill="none"/>
+        <path d="M9 6L15 12L9 18" [attr.stroke]="canScrollRight ? '#232B36' : '#BFC5CC'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 </div>

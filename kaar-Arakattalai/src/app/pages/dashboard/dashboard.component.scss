@@ -31,7 +31,8 @@
   flex-direction: column;
   min-height: 0;
   height: 100%;
-  overflow: auto; /* this is where scrolling will occur when limited by max-height */
+  overflow-y: auto; /* vertical scroll only */
+  overflow-x: hidden; /* prevent horizontal page scroll */
 }
 
 /* Tiny gap between summary-cons and referral table */
@@ -92,6 +93,12 @@
   width: 100%;
   flex: 1;
   min-height: 300px;
+}
+
+/* Ensure the referral ag-grid never overflows horizontally */
+.table-container {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Filter Cross Color */
