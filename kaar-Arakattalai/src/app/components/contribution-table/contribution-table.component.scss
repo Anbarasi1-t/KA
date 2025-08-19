@@ -35,48 +35,134 @@
 //   }
 // }
 
-.contribution-grid {
-  font-size: 14px;
-  color: #515965;
+/* === AG GRID CUSTOM STYLES === */
+.ag-theme-alpine {
+  font-family: 'DM Sans', sans-serif;
+}
 
-  // Header row
-  .ag-header {
-    background: #F5F6F9;
-    font-weight: 600;
+.body {
+  margin-top: 0;
+  padding: 0;
+}
 
-    // Header text color
-    .ag-header-cell-label .ag-header-cell-text {
-      color: #36536be4 !important;
-    }
-  }
+.custom-ag-grid {
+  height: 100%;
+  width: 100%;
+  border: none !important;
+  border-radius: 8px;
+  overflow: hidden;
 
-  // Individual cells
-  .ag-cell {
-    padding: 10px 12px;
-    text-align: left;
-    color: #515965;
-  }
-
-  // Row borders
-  .ag-row {
-    border-bottom: 1px solid #e0e0e0;
-  }
-
-  // Row hover effect
-  .ag-row-hover,
-  .ag-row:hover {
-    background-color: #fa575724 !important;
-  }
-
-  // Remove focus outline for cleaner look
-  .ag-row-focus {
-    outline: none;
-  }
-
-  // Optional: remove default AG Grid cell borders for cleaner look
+  // Remove all borders and outlines
+  .ag-root-wrapper,
+  .ag-header,
+  .ag-header-cell,
   .ag-cell,
-  .ag-header-cell {
-    border-right: none;
+  .ag-row,
+  .ag-body-horizontal-scroll,
+  .ag-center-cols-clipper,
+  .ag-cell-focus,
+  .ag-row-focus,
+  .ag-cell.ag-cell-last-left-pinned,
+  .ag-cell.ag-cell-first-right-pinned {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  }}
+
+/* Optional: Remove sidebar border */
+.custom-ag-grid {
+  border-left: none !important;
+  margin: 0;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* HEADER STYLING */
+.custom-ag-grid .ag-header {
+  background-color: #F5F6F9 !important;
+}
+
+.custom-ag-grid .ag-header-cell {
+  background-color: #F0F0F0 !important;
+  color: #515965 !important;
+  font-weight: 600;
+  font-size: 14px;
+  border: none !important;
+}
+
+/* ROW STYLING */
+.custom-ag-grid .ag-row:nth-child(odd) {
+  background-color: #ffffff;
+  color: #87868c;
+}
+
+.custom-ag-grid .ag-row:nth-child(even) {
+  background-color: #ffffff;
+  color: #87868c;
+}
+
+.custom-ag-grid .ag-row:hover {
+  background-color: #fa575724 !important;
+  cursor: pointer;
+}
+
+/* Add only bottom border for rows */
+.custom-ag-grid .ag-row {
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+/* STATUS PILL STYLES */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 12px;
+  height: 15px;
+  width: 80px;
+  text-align: center;
+}
+
+.status-pill.approved {
+  background-color: rgba(56, 161, 105, 0.2);
+  color: #38a169;
+}
+
+.status-pill.rejected {
+  background-color: rgba(229, 62, 62, 0.2);
+  color: #e53e3e;
+}
+
+.status-pill.pending {
+  background-color: rgba(237, 137, 54, 0.2);
+  color: #ed8936;
+}
+
+.status-pill.unknown {
+  background-color: rgba(113, 128, 150, 0.2);
+  color: #718096;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ag-grid-angular { 
+    height: 400px !important; 
+  }
+  
+  .status-pill {
+    font-size: 11px;
+    padding: 3px 8px;
+    width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  ag-grid-angular { 
+    height: 300px !important; 
   }
 }
 

@@ -57,7 +57,7 @@ export class AdminTableComponent implements OnInit, OnChanges {
         return `<button class="action-btn" data-action="edit" data-id="${params.data?.id || ''}" title="Edit">&#9998;</button>`;
       },
       cellRendererParams: { suppressSanitizeHtml: true },
-      pinned: 'right'
+      // Keep actions in the main grid (not pinned) so it doesn't look like a separate table
     }
   ];
 

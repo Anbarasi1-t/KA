@@ -31,7 +31,8 @@
   border-left: none !important;
   margin: 0;
   border-radius: 8px;
-  /* height will be set dynamically */
+  width: 100%;
+  max-width: 100%;
 }
 
 /* HEADER STYLING */
@@ -104,9 +105,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  ag-grid-angular {
-    height: 400px !important;
-  }
+  ag-grid-angular { height: 400px !important; }
   
   .status-pill {
     font-size: 11px;
@@ -116,7 +115,5 @@
 }
 
 @media (max-width: 480px) {
-  ag-grid-angular {
-    height: 300px !important;
-  }
+  ag-grid-angular { height: 300px !important; }
 }

@@ -113,7 +113,7 @@
               <strong>IFSC Code:</strong> IBKL0000630
             </div>
             <div class="detail-item">
-              <strong>Bank & Branch:</strong> IDBI, Ashok Nagar Branch
+              <strong>Bank & Branch:</strong> IDBI, Ashok Nagar Branch, Chennai
             </div>
           </div>
         </div>
@@ -122,12 +122,15 @@
         <div class="form-group full" *ngIf="paymentMethod === 'salary'">
           <div class="info-box">
             <!-- Geometric "i" for perfect centering -->
-            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg class="info-icon" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="11" r="8" stroke="#5F6C81" stroke-width="1.5" fill="#f8fafc"/>
               <rect x="11" y="9" width="2" height="6" rx="1" fill="#5F6C81"/>
               <circle cx="12" cy="7" r="1" fill="#5F6C81"/>
             </svg>
-            <span>Contribution will be deducted from your salary</span>
+            <span class="info-text">
+              Contribution will be deducted from your salary and<br>
+              a confirmation email will be sent to payroll&#64;kaartech.com
+            </span>
           </div>
         </div>
       </div>
