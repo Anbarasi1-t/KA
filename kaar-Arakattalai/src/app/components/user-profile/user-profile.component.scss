@@ -1,6 +1,6 @@
 .profile-container {
       width: 330px;
-      height: 100%;
+      height: auto;
       margin: 0;
       padding: 2rem;
       border-radius: 12px;
@@ -10,18 +10,19 @@
       position: relative;
     }
     .profile-image {
-      width: 140px;
-      height: 140px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
     }
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem 5rem;
+      gap: 1.5rem 5rem; // Reduced vertical gap from 3rem to 1.5rem
       text-align: left;
       margin-left: 0;
+    
     
       div {
         strong {

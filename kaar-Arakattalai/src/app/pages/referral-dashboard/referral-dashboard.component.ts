@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TopBarComponent } from '../../components/top-bar/top-bar.component';
+
 import { TabFilterComponent } from '../../components/tab-filter/tab-filter.component';
 import { ReferralTableNewComponent } from '../../components/referral-table-new/referral-table-new.component';
 import { ColumnsToggleComponent } from '../../components/columns-toggle/columns-toggle.component';

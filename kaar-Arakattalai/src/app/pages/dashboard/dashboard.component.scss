@@ -3,8 +3,8 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 12px;
+  gap: 8px;
+  padding: 8px 8px;
   box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@
   flex: 2 1 500px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   box-sizing: border-box;
   min-height: 0; /* allow flex child to shrink and enable overflow when constrained */
 }

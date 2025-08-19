@@ -55,9 +55,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px 20px 0 20px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   border-bottom: 1px solid #f3f4f6;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
 }
 
 .header h2 {
@@ -93,7 +93,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start; // Changed from center to left-align content
-  gap: 20px;
+  gap: 12px;
   padding: 0 20px 20px 20px;
 }
 
@@ -354,8 +354,8 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 32px;      // Increased gap above buttons
-  margin-bottom: 24px;   // Add space below buttons to lift them up
+  margin-top: 20px;      // Reduced gap above buttons
+  margin-bottom: 20px;   // Reduced space below buttons
   padding-top: 0;
   border-top: none;
   padding-left: 20px;
