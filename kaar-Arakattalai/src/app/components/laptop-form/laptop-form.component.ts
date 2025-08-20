@@ -32,7 +32,7 @@ export class LaptopFormComponent implements OnInit {
   showErrorPopup = false;
   errorMessage = '';
   showDropdown = false;
-  currentForm = 'Laptop Form';
+  currentForm = 'Request for Laptop Form';
 
   formOptions = [
     { id: 'scholarship', name: 'Scholarship Form' },

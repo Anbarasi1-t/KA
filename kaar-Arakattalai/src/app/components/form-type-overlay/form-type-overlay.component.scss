@@ -15,16 +15,16 @@
   background: #fff;
   padding: 2rem;
   border-radius: 20px;
-  width: 900px;
-  max-width: 95%;
+  width: 924px; /* 4 cards: 4*200 + 3*20 + 2*32 (padding) */
+  max-width: 95vw;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   position: relative;
+  overflow-x: auto;
 
   &:has(.form-options .option-card:nth-child(5)) {
-    width: 1000px;
-    max-width: 95%;
-    position: relative;
+    width: 1144px; /* 5 cards: 5*200 + 4*20 + 2*32 (padding) */
+    max-width: 95vw;
   }
 }
 
@@ -38,7 +38,7 @@
   color: #666;
 
   &:hover {
-    color: #000;
+    color: #45546E;
   }
 }
 
@@ -58,15 +58,15 @@
 
 .form-options {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 200px);
+  gap: 30px;
   justify-items: center;
   justify-content: center;
-  max-width: 700px;
   margin: 0 auto;
+  width: fit-content;
 
   &:has(.option-card:nth-child(5)) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 200px);
   }
 }
 
@@ -76,8 +76,8 @@
   border: 2px solid #e5e7eb;
   border-radius: 10px;
   padding: 15px 10px;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,7 +132,7 @@
     .description {
       font-size: 11px;
       line-height: 1.4;
-      color: #000;
+      color: #111434;
       text-align: center;
     }
   }
@@ -161,7 +161,7 @@
 .option-card:nth-child(1) .card-overlay {
   background: linear-gradient(
     to top,
-    rgba(238, 73, 97, 0.518) 0%,
+    rgba(238, 73, 98, 0.338) 0%,
     rgba(255, 255, 255, 0.75) 100%
   );
 }
@@ -169,7 +169,7 @@
 .option-card:nth-child(2) .card-overlay {
   background: linear-gradient(
     to top,
-    rgba(238, 73, 97, 0.518) 0%,
+    rgba(238, 73, 98, 0.338) 0%,
     rgba(255, 255, 255, 0.75) 100%
   );
 }
@@ -177,7 +177,7 @@
 .option-card:nth-child(3) .card-overlay {
   background: linear-gradient(
     to top,
-    rgba(238, 73, 97, 0.518) 0%,
+    rgba(238, 73, 98, 0.338) 0%,
     rgba(255, 255, 255, 0.75) 100%
   );
 }
@@ -185,7 +185,7 @@
 .option-card:nth-child(4) .card-overlay {
   background: linear-gradient(
     to top,
-    rgba(238, 73, 97, 0.518) 0%,
+    rgba(238, 73, 98, 0.338) 0%,
     rgba(255, 255, 255, 0.75) 100%
   );
 }
@@ -193,7 +193,7 @@
 .option-card:nth-child(5) .card-overlay {
   background: linear-gradient(
     to top,
-    rgba(238, 73, 97, 0.518) 0%,
+    rgba(238, 73, 98, 0.338) 0%,
     rgba(255, 255, 255, 0.75) 100%
   );
 }

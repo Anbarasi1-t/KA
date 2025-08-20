@@ -120,22 +120,22 @@ export class FormTypeOverlayComponent implements OnInit {
         break;
       case 'medical':
         this.showMedicalForm = true;
-        this.currentForm = 'medical';
+        this.currentForm = 'medical assistance';
         break;
       case 'ngo':
         this.showNgoForm = true;
-        this.currentForm = 'ngo';
+        this.currentForm = 'ngo form';
         break;
       case 'laptop':
         this.showLaptopForm = true;
-        this.currentForm = 'laptop';
+        this.currentForm = 'request for refurbished laptop form';
         break;
       case 'csr':
         // Only show CSR form if we're in admin route
         if (this.isAdminRoute()) {
           console.log('Opening CSR form in admin view');
           this.showCsrForm = true;
-          this.currentForm = 'csr';
+          this.currentForm = 'csr - claims & expenses';
         } else {
           console.log('CSR form not available in current route');
         }

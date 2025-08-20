@@ -37,8 +37,8 @@ export class NgoFormComponent implements OnInit {
   formOptions = [
     { id: 'scholarship', name: 'Scholarship Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
-    { id: 'laptop', name: 'Laptop Form' },
-    { id: 'csr', name: 'CSR Claims Form' }
+    { id: 'laptop', name: 'Request for Refurbished Laptop Form' },
+    { id: 'csr', name: 'CSR - Claims & Expenses Form' }
   ];
 
   constructor(private fb: FormBuilder, private eRef: ElementRef) {
