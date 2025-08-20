@@ -36,22 +36,22 @@
       <div class="form-grid">
         <!-- Beneficiary Information -->
         <div class="form-group">
-          <label>Benificiary Name <span class="asterisk">*</span></label>
-          <input formControlName="beneficiaryName" placeholder="Enter Full Name" />
+          <label>Beneficiary Name <span class="asterisk">*</span></label>
+          <input formControlName="beneficiaryName" placeholder="Enter Beneficiary Name" />
         </div>
         
         <div class="form-group">
           <label>Beneficiary Mobile number <span class="asterisk">*</span></label>
-          <input formControlName="beneficiaryMobileNumber" placeholder="Enter Mobile Number" />
+          <input formControlName="beneficiaryMobileNumber" placeholder="Enter Beneficiary Mobile Number" />
         </div>
 
         <div class="form-group">
           <label>Account Name for DD <span class="asterisk">*</span></label>
-          <input formControlName="accountNameForDD" placeholder="Enter Full DD Name" />
+          <input formControlName="accountNameForDD" placeholder="Enter Bank Account Name" />
         </div> 
         <div class="form-group">
-          <label>Purpose of Medical Assistance required</label>
-          <input formControlName="purposeOfMedicalAssistance" placeholder="Enter Full DD Name" />
+          <label>Purpose for which Laptop is required<span class="asterisk">*</span></label>
+          <input formControlName="purposeOfMedicalAssistance" placeholder="Enter Purpose for which Laptop is required" />
         </div>
 
         <!-- Employee's Justification -->
@@ -68,7 +68,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>Original Request Letter <span class="asterisk">*</span></label>
+            <label>Beneficiary's Request Letter <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'requestLetter')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -83,7 +83,7 @@
 
         <div class="form-group full">
           <div class="file-input-wrapper">
-            <label>School/ID card <span class="asterisk">*</span></label>
+            <label>School/College ID card <span class="asterisk">*</span></label>
             <input type="file" (change)="onFileChange($event, 'schoolIdCard')" />
             <div class="file-display-content">
               <span class="file-name"></span>
@@ -129,7 +129,7 @@
         <!-- Declaration -->
         <div class="form-group checkbox full">
           <input type="checkbox" formControlName="declaration" />
-          <label>I hereby authenticate that the documents & details provided by the beneficiary are GENUINE *</label>
+          <label>I hereby declare that the information provided about the beneficiary referred and the documents uploaded in support of my request have been verified by me.<span class="asterisk">*</span></label>
         </div>
 
         <!-- Spacing after declaration -->

@@ -4,6 +4,7 @@ import {
   Output,
   ElementRef,
   HostListener,
+  OnInit,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -21,23 +22,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './laptop-form.component.html',
   styleUrls: ['./laptop-form.component.scss'],
 })
-export class LaptopFormComponent {
+export class LaptopFormComponent implements OnInit {
   @Output() formClosed = new EventEmitter<void>();
   @Output() formChanged = new EventEmitter<string>();
   @Output() formSubmitted = new EventEmitter<void>();
-
+  
   laptopForm: FormGroup;
   charCount = 0;
   showErrorPopup = false;
   errorMessage = '';
   showDropdown = false;
-  currentForm = 'Laptop Form';
+  currentForm = 'Request for Laptop Form';
 
   formOptions = [
     { id: 'scholarship', name: 'Scholarship Form' },
     { id: 'ngo', name: 'NGO Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
-    { id: 'laptop', name: 'Laptop Form' },
     { id: 'csr', name: 'CSR Claims Form' }
   ];
 
@@ -53,6 +53,20 @@ export class LaptopFormComponent {
       otherDocuments: [null],
       declaration: [false, Validators.requiredTrue]
     });
+  }
+
+  ngOnInit() {
+    if (!this.isAdminRoute()) {
+      this.formOptions = this.formOptions.filter(option => option.id !== 'csr');
+    }
+  }
+
+  private isAdminRoute(): boolean {
+    const adminComponent = document.querySelector('app-adminlandingpage');
+    const isVisible = adminComponent !== null &&
+                     !adminComponent.closest('[style*="display: none"]') &&
+                     !adminComponent.parentElement?.hasAttribute('hidden');
+    return isVisible;
   }
 
   @HostListener('document:click', ['$event'])

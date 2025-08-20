@@ -6,6 +6,12 @@ import { NgoFormComponent } from '../ngo-form/ngo-form.component';
 import { LaptopFormComponent } from '../laptop-form/laptop-form.component';
 import { CsrFormComponent } from '../csr-form/csr-form.component';
 
+interface FormOption {
+  id: string;
+  name: string;
+  component: string;
+}
+
 @Component({
   selector: 'app-form-type-overlay',
   standalone: true,
@@ -32,6 +38,48 @@ export class FormTypeOverlayComponent implements OnInit {
     setTimeout(() => {
       this.ignoreNextClick = false;
     }, 0);
+    this.updateFormOptions();
+    
+    // Log component presence for debugging
+    console.log('Is admin route:', this.isAdminRoute());
+    console.log('Is dashboard route:', this.isDashboardRoute());
+  }
+
+  isAdminRoute(): boolean {
+    // Check if admin component is present and not commented out
+    const adminComponent = document.querySelector('app-adminlandingpage');
+    const isVisible = adminComponent !== null && 
+                     !adminComponent.closest('[style*="display: none"]') &&
+                     !adminComponent.parentElement?.hasAttribute('hidden');
+    
+    console.log('Admin component check:', { exists: adminComponent !== null, isVisible });
+    return isVisible;
+  }
+
+  isDashboardRoute(): boolean {
+    return document.querySelector('app-referral-dashboard, router-outlet') !== null;
+  }
+
+  private updateFormOptions() {
+    // Base forms available for dashboard and referral dashboard
+    const baseFormOptions = [
+      { id: 'scholarship', name: 'Scholarship Form', component: 'education' },
+      { id: 'ngo', name: 'NGO Form', component: 'ngo' },
+      { id: 'medical', name: 'Medical Assistance Form', component: 'medical' },
+      { id: 'laptop', name: 'Laptop Form', component: 'laptop' }
+    ];
+
+    // Add CSR form only for admin route
+    if (this.isAdminRoute()) {
+      console.log('Admin route detected - showing all 5 forms including CSR');
+      this.formOptions = [
+        ...baseFormOptions,
+        { id: 'csr', name: 'CSR Claims Form', component: 'csr' }
+      ];
+    } else {
+      console.log('Dashboard/Referral route detected - showing 4 forms (excluding CSR)');
+      this.formOptions = baseFormOptions;
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -57,16 +105,11 @@ export class FormTypeOverlayComponent implements OnInit {
   currentForm: string = '';
 
   // Form options for dropdown
-  formOptions = [
-    { id: 'scholarship', name: 'Scholarship Form', component: 'education' },
-    { id: 'ngo', name: 'NGO Form', component: 'ngo' },
-    { id: 'medical', name: 'Medical Assistance Form', component: 'medical' },
-    { id: 'laptop', name: 'Laptop Form', component: 'laptop' },
-    { id: 'csr', name: 'CSR Claims Form', component: 'csr' }
-  ];
+  formOptions: FormOption[] = [];
 
   openForm(formType: string) {
-    // Close all forms first
+    console.log('Opening form:', formType);
+    this.updateFormOptions(); // Update options before opening form
     this.closeAllForms();
     
     // Open the selected form
@@ -77,19 +120,25 @@ export class FormTypeOverlayComponent implements OnInit {
         break;
       case 'medical':
         this.showMedicalForm = true;
-        this.currentForm = 'medical';
+        this.currentForm = 'medical assistance';
         break;
       case 'ngo':
         this.showNgoForm = true;
-        this.currentForm = 'ngo';
+        this.currentForm = 'ngo form';
         break;
       case 'laptop':
         this.showLaptopForm = true;
-        this.currentForm = 'laptop';
+        this.currentForm = 'request for refurbished laptop form';
         break;
       case 'csr':
-        this.showCsrForm = true;
-        this.currentForm = 'csr';
+        // Only show CSR form if we're in admin route
+        if (this.isAdminRoute()) {
+          console.log('Opening CSR form in admin view');
+          this.showCsrForm = true;
+          this.currentForm = 'csr - claims & expenses';
+        } else {
+          console.log('CSR form not available in current route');
+        }
         break;
     }
   }
@@ -145,6 +194,8 @@ export class FormTypeOverlayComponent implements OnInit {
       this.closeOverlay();
     }, 2500);
   }
+
+
 }
 
 

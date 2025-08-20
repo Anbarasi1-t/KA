@@ -4,6 +4,7 @@ import {
   Output,
   ElementRef,
   HostListener,
+  OnInit,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ngo-form.component.html',
   styleUrls: ['./ngo-form.component.scss'],
 })
-export class NgoFormComponent {
+export class NgoFormComponent implements OnInit {
   @Output() formClosed = new EventEmitter<void>();
   @Output() formChanged = new EventEmitter<string>();
   @Output() formSubmitted = new EventEmitter<void>();
@@ -35,10 +36,9 @@ export class NgoFormComponent {
 
   formOptions = [
     { id: 'scholarship', name: 'Scholarship Form' },
-    { id: 'ngo', name: 'NGO Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
-    { id: 'laptop', name: 'Laptop Form' },
-    { id: 'csr', name: 'CSR Claims Form' }
+    { id: 'laptop', name: 'Request for Refurbished Laptop Form' },
+    { id: 'csr', name: 'CSR - Claims & Expenses Form' }
   ];
 
   constructor(private fb: FormBuilder, private eRef: ElementRef) {
@@ -57,6 +57,20 @@ export class NgoFormComponent {
       registrationCertificate: [null, Validators.required],
       declaration: [false, Validators.requiredTrue]
     });
+  }
+
+  ngOnInit() {
+    if (!this.isAdminRoute()) {
+      this.formOptions = this.formOptions.filter(option => option.id !== 'csr');
+    }
+  }
+
+  private isAdminRoute(): boolean {
+    const adminComponent = document.querySelector('app-adminlandingpage');
+    const isVisible = adminComponent !== null &&
+                     !adminComponent.closest('[style*="display: none"]') &&
+                     !adminComponent.parentElement?.hasAttribute('hidden');
+    return isVisible;
   }
 
   @HostListener('document:click', ['$event'])

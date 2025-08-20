@@ -6,36 +6,62 @@
     <h2>Select Form Type</h2>
     <p class="subtitle">Choose the type of support you want to refer someone for</p>
     <div class="form-options">
+
+      <!-- Education -->
       <div class="option-card" (click)="openForm('education')">
         <div class="icon education-icon">
           <img src="assets/education.png" alt="Education Support" />
         </div>
         <h3>EDUCATION SUPPORT</h3>
+        <div class="card-overlay">
+          <p class="description">Disbursement of Tuition Fees (only) for deserving students studying in educational institutions (preferably Government-run, Government-aided and Corporation-run Schools & Colleges) from humble families. Top priority is given to special children (students) /  children with mental and physical disabilities, children of Single Parents and War widows and Children of daily wage workers.</p>
+        </div>
       </div>
+
+      <!-- NGO -->
       <div class="option-card" (click)="openForm('ngo')">
         <div class="icon ngo-icon">
           <img src="assets/csr.png" alt="NGO" />
         </div>
         <h3>NGO</h3>
+        <div class="card-overlay">
+          <p class="description">Disbursement of financial assistance to NGOs/Trusts/Sports Associations which take care of abandoned Senior Citizens and orphaned children by providing them free food, free shelter, free medical aid and other assistances. Also disbursement for upgrading infrastructure facilities at Government-run Schools.</p>
+        </div>
       </div>
+
+      <!-- Medical -->
       <div class="option-card" (click)="openForm('medical')">
         <div class="icon medical-icon">
           <img src="assets/medical.png" alt="Medical Support" />
         </div>
         <h3>MEDICAL SUPPORT</h3>
+        <div class="card-overlay">
+          <p class="description">Financial assistance to Hospitals for medical treatments of patients specially recommended by Kaar Arakattalai Committee only.</p>
+        </div>
       </div>
+
+      <!-- Laptop -->
       <div class="option-card" (click)="openForm('laptop')">
         <div class="icon laptop-icon">
           <img src="assets/laptop.png" alt="Laptop Request" />
         </div>
-        <h3>LAPTOP REQUEST</h3>
+        <h3>REFURBISHED LAPTOP</h3>
+        <div class="card-overlay">
+          <p class="description">Disbursement of used laptops to College Students, who pursue computer-related UG / PG courses, from humble background and to Government-run schools which request used laptops for their Computer Labs.</p>
+        </div>
       </div>
-      <div class="option-card" (click)="openForm('csr')">
+
+      <!-- CSR (only visible for Admin) -->
+      <div class="option-card" (click)="openForm('csr')" *ngIf="isAdminRoute()">
         <div class="icon csr-icon">
           <img src="assets/csr.png" alt="CSR & Claims" />
         </div>
-        <h3>CSR & CLAIMS</h3>
+        <h3>CSR - CLAIMS & EXPENSES</h3>
+        <div class="card-overlay">
+          <p class="description">Covers CSR activities, claims processing, and company-driven initiatives.</p>
+        </div>
       </div>
+
     </div>
 
     <!-- Form Components -->
