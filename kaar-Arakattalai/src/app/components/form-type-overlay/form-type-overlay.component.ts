@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output, ElementRef, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { EducationFormComponent } from '../education-form/education-form.component';
 import { MedicalFormComponent } from '../medical-form/medical-form.component';
 import { NgoFormComponent } from '../ngo-form/ngo-form.component';
@@ -32,10 +31,7 @@ export class FormTypeOverlayComponent implements OnInit {
 
   private ignoreNextClick = false;
 
-  constructor(
-    private eRef: ElementRef,
-    private router: Router
-  ) {}
+  constructor(private eRef: ElementRef) {}
 
   ngOnInit() {
     this.ignoreNextClick = true;
@@ -44,20 +40,24 @@ export class FormTypeOverlayComponent implements OnInit {
     }, 0);
     this.updateFormOptions();
     
-    // Log current route for debugging
-    console.log('Current route:', this.router.url);
+    // Log component presence for debugging
     console.log('Is admin route:', this.isAdminRoute());
     console.log('Is dashboard route:', this.isDashboardRoute());
   }
 
   isAdminRoute(): boolean {
-    const currentUrl = this.router.url;
-    return currentUrl.includes('admin-landing') || currentUrl.includes('adminlandingpage');
+    // Check if admin component is present and not commented out
+    const adminComponent = document.querySelector('app-adminlandingpage');
+    const isVisible = adminComponent !== null && 
+                     !adminComponent.closest('[style*="display: none"]') &&
+                     !adminComponent.parentElement?.hasAttribute('hidden');
+    
+    console.log('Admin component check:', { exists: adminComponent !== null, isVisible });
+    return isVisible;
   }
 
   isDashboardRoute(): boolean {
-    const currentUrl = this.router.url;
-    return currentUrl === '/' || currentUrl === '' || currentUrl.includes('dashboard') || currentUrl.includes('referral-dashboard');
+    return document.querySelector('app-referral-dashboard, router-outlet') !== null;
   }
 
   private updateFormOptions() {

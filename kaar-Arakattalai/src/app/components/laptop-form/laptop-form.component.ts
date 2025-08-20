@@ -25,7 +25,7 @@ export class LaptopFormComponent {
   @Output() formClosed = new EventEmitter<void>();
   @Output() formChanged = new EventEmitter<string>();
   @Output() formSubmitted = new EventEmitter<void>();
-
+  
   laptopForm: FormGroup;
   charCount = 0;
   showErrorPopup = false;
@@ -37,7 +37,6 @@ export class LaptopFormComponent {
     { id: 'scholarship', name: 'Scholarship Form' },
     { id: 'ngo', name: 'NGO Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
-    { id: 'laptop', name: 'Laptop Form' },
     { id: 'csr', name: 'CSR Claims Form' }
   ];
 
