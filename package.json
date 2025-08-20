@@ -1,6 +1,10 @@
 {
   "devDependencies": {
+    "@angular/cli": "^18.2.13",
     "concurrently": "^9.2.0",
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "@angular/core": "^20.1.7"
   }
 }
