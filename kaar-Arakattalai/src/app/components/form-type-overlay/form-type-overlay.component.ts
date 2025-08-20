@@ -1,10 +1,17 @@
 import { Component, EventEmitter, Output, ElementRef, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { EducationFormComponent } from '../education-form/education-form.component';
 import { MedicalFormComponent } from '../medical-form/medical-form.component';
 import { NgoFormComponent } from '../ngo-form/ngo-form.component';
 import { LaptopFormComponent } from '../laptop-form/laptop-form.component';
 import { CsrFormComponent } from '../csr-form/csr-form.component';
+
+interface FormOption {
+  id: string;
+  name: string;
+  component: string;
+}
 
 @Component({
   selector: 'app-form-type-overlay',
@@ -25,13 +32,54 @@ export class FormTypeOverlayComponent implements OnInit {
 
   private ignoreNextClick = false;
 
-  constructor(private eRef: ElementRef) {}
+  constructor(
+    private eRef: ElementRef,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.ignoreNextClick = true;
     setTimeout(() => {
       this.ignoreNextClick = false;
     }, 0);
+    this.updateFormOptions();
+    
+    // Log current route for debugging
+    console.log('Current route:', this.router.url);
+    console.log('Is admin route:', this.isAdminRoute());
+    console.log('Is dashboard route:', this.isDashboardRoute());
+  }
+
+  isAdminRoute(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl.includes('admin-landing') || currentUrl.includes('adminlandingpage');
+  }
+
+  isDashboardRoute(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl === '/' || currentUrl === '' || currentUrl.includes('dashboard') || currentUrl.includes('referral-dashboard');
+  }
+
+  private updateFormOptions() {
+    // Base forms available for dashboard and referral dashboard
+    const baseFormOptions = [
+      { id: 'scholarship', name: 'Scholarship Form', component: 'education' },
+      { id: 'ngo', name: 'NGO Form', component: 'ngo' },
+      { id: 'medical', name: 'Medical Assistance Form', component: 'medical' },
+      { id: 'laptop', name: 'Laptop Form', component: 'laptop' }
+    ];
+
+    // Add CSR form only for admin route
+    if (this.isAdminRoute()) {
+      console.log('Admin route detected - showing all 5 forms including CSR');
+      this.formOptions = [
+        ...baseFormOptions,
+        { id: 'csr', name: 'CSR Claims Form', component: 'csr' }
+      ];
+    } else {
+      console.log('Dashboard/Referral route detected - showing 4 forms (excluding CSR)');
+      this.formOptions = baseFormOptions;
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -57,16 +105,11 @@ export class FormTypeOverlayComponent implements OnInit {
   currentForm: string = '';
 
   // Form options for dropdown
-  formOptions = [
-    { id: 'scholarship', name: 'Scholarship Form', component: 'education' },
-    { id: 'ngo', name: 'NGO Form', component: 'ngo' },
-    { id: 'medical', name: 'Medical Assistance Form', component: 'medical' },
-    { id: 'laptop', name: 'Laptop Form', component: 'laptop' },
-    { id: 'csr', name: 'CSR Claims Form', component: 'csr' }
-  ];
+  formOptions: FormOption[] = [];
 
   openForm(formType: string) {
-    // Close all forms first
+    console.log('Opening form:', formType);
+    this.updateFormOptions(); // Update options before opening form
     this.closeAllForms();
     
     // Open the selected form
@@ -88,8 +131,14 @@ export class FormTypeOverlayComponent implements OnInit {
         this.currentForm = 'laptop';
         break;
       case 'csr':
-        this.showCsrForm = true;
-        this.currentForm = 'csr';
+        // Only show CSR form if we're in admin route
+        if (this.isAdminRoute()) {
+          console.log('Opening CSR form in admin view');
+          this.showCsrForm = true;
+          this.currentForm = 'csr';
+        } else {
+          console.log('CSR form not available in current route');
+        }
         break;
     }
   }
@@ -145,6 +194,8 @@ export class FormTypeOverlayComponent implements OnInit {
       this.closeOverlay();
     }, 2500);
   }
+
+
 }
 
 
