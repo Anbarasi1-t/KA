@@ -21,7 +21,6 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   position: relative;
 
-  // When there are 5 cards (admin view), make panel wider
   &:has(.form-options .option-card:nth-child(5)) {
     width: 1000px;
     max-width: 95%;
@@ -37,7 +36,7 @@
   font-weight: bold;
   cursor: pointer;
   color: #666;
-  
+
   &:hover {
     color: #000;
   }
@@ -66,19 +65,13 @@
   max-width: 700px;
   margin: 0 auto;
 
-  // When there are 5 cards (admin view), adjust the layout
   &:has(.option-card:nth-child(5)) {
-    display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    justify-items: center;
-    justify-content: center;
-    max-width: 700px;
-    margin:0 auto;
   }
 }
 
 .option-card {
+  position: relative;
   background: #fff;
   border: 2px solid #e5e7eb;
   border-radius: 10px;
@@ -91,35 +84,116 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+  text-align: center;
+  overflow: hidden;
+
+  h3 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+    margin: 8px 0 0 0;
+    line-height: 1.2;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    transition: opacity 0.3s ease;
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+
+    .description {
+      font-size: 11px;
+      line-height: 1.4;
+      color: #000;
+      text-align: center;
+    }
+  }
+
   &:hover {
     border-color: #EE4961;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(238, 73, 97, 0.15);
+    box-shadow: 0 4px 14px rgba(238, 73, 97, 0.18);
+
+    .icon,
+    h3 {
+      opacity: 0.15;
+    }
+
+    .icon img {
+      transform: scale(1.05);
+    }
+
+    .card-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-.icon {
-  font-size: 35px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: center;
-  }
+/* 🌈 Dynamic gradient overlays */
+.option-card:nth-child(1) .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(238, 73, 97, 0.518) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
 }
 
-.option-card h3 {
-  font-size: 11px;
-  font-weight: 600;
-  color: #374151;
-  margin: 20px 0 0 0;
-  text-align: center;
-  line-height: 1.2;
+.option-card:nth-child(2) .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(238, 73, 97, 0.518) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+}
+
+.option-card:nth-child(3) .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(238, 73, 97, 0.518) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+}
+
+.option-card:nth-child(4) .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(238, 73, 97, 0.518) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+}
+
+.option-card:nth-child(5) .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(238, 73, 97, 0.518) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
 }

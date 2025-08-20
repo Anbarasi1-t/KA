@@ -4,6 +4,7 @@ import {
   Output,
   ElementRef,
   HostListener,
+  OnInit,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss'],
 })
-export class EducationFormComponent {
+export class EducationFormComponent implements OnInit {
   @Output() formClosed = new EventEmitter<void>();
   @Output() formChanged = new EventEmitter<string>();
   @Output() formSubmitted = new EventEmitter<void>();
@@ -34,7 +35,6 @@ export class EducationFormComponent {
   currentForm = 'Scholarship Form';
 
   formOptions = [
-    { id: 'scholarship', name: 'Scholarship Form' },
     { id: 'ngo', name: 'NGO Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
     { id: 'laptop', name: 'Laptop Form' },
@@ -60,6 +60,21 @@ export class EducationFormComponent {
       deathCertificate: [null],
       declaration: [false, Validators.requiredTrue]
     });
+  }
+
+  ngOnInit() {
+    // Remove CSR option for non-admin routes
+    if (!this.isAdminRoute()) {
+      this.formOptions = this.formOptions.filter(option => option.id !== 'csr');
+    }
+  }
+
+  private isAdminRoute(): boolean {
+    const adminComponent = document.querySelector('app-adminlandingpage');
+    const isVisible = adminComponent !== null &&
+                     !adminComponent.closest('[style*="display: none"]') &&
+                     !adminComponent.parentElement?.hasAttribute('hidden');
+    return isVisible;
   }
 
   @HostListener('document:click', ['$event'])

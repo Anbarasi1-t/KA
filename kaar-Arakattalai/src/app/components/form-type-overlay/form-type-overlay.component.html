@@ -6,37 +6,62 @@
     <h2>Select Form Type</h2>
     <p class="subtitle">Choose the type of support you want to refer someone for</p>
     <div class="form-options">
+
+      <!-- Education -->
       <div class="option-card" (click)="openForm('education')">
         <div class="icon education-icon">
           <img src="assets/education.png" alt="Education Support" />
         </div>
         <h3>EDUCATION SUPPORT</h3>
+        <div class="card-overlay">
+          <p class="description">Provides assistance for tuition, books, and other essential educational needs.</p>
+        </div>
       </div>
+
+      <!-- NGO -->
       <div class="option-card" (click)="openForm('ngo')">
         <div class="icon ngo-icon">
           <img src="assets/csr.png" alt="NGO" />
         </div>
         <h3>NGO</h3>
+        <div class="card-overlay">
+          <p class="description">Supports NGO partnerships and initiatives for community development.</p>
+        </div>
       </div>
+
+      <!-- Medical -->
       <div class="option-card" (click)="openForm('medical')">
         <div class="icon medical-icon">
           <img src="assets/medical.png" alt="Medical Support" />
         </div>
         <h3>MEDICAL SUPPORT</h3>
+        <div class="card-overlay">
+          <p class="description">Helps with medical expenses, treatments, and health-related emergencies.</p>
+        </div>
       </div>
+
+      <!-- Laptop -->
       <div class="option-card" (click)="openForm('laptop')">
         <div class="icon laptop-icon">
           <img src="assets/laptop.png" alt="Laptop Request" />
         </div>
         <h3>LAPTOP REQUEST</h3>
+        <div class="card-overlay">
+          <p class="description">Request laptops to support education, research, or work requirements.</p>
+        </div>
       </div>
-      <!-- CSR form option - only visible in admin route -->
+
+      <!-- CSR (only visible for Admin) -->
       <div class="option-card" (click)="openForm('csr')" *ngIf="isAdminRoute()">
         <div class="icon csr-icon">
           <img src="assets/csr.png" alt="CSR & Claims" />
         </div>
         <h3>CSR & CLAIMS</h3>
+        <div class="card-overlay">
+          <p class="description">Covers CSR activities, claims processing, and company-driven initiatives.</p>
+        </div>
       </div>
+
     </div>
 
     <!-- Form Components -->
