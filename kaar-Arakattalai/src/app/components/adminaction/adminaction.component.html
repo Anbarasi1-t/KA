@@ -1,0 +1,20 @@
+<div class="backdrop" (click)="onClose()"></div>
+<div class="popup-container" (click)="$event.stopPropagation()">
+  <div class="popup-header">
+    <h3>Final Amount To Be Approved</h3>
+  </div>
+
+  <div class="popup-body">
+    <label for="amountInput">Enter Amount:</label>
+    <input 
+      id="amountInput" 
+      type="number" 
+      [(ngModel)]="amount" 
+      placeholder="Enter amount in digits"
+    />
+  </div>
+
+  <div class="popup-footer">
+    <button class="approve-btn" (click)="onApprove()">Save & Approve</button>
+  </div>
+</div>

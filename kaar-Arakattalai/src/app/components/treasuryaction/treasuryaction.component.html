@@ -1,0 +1,40 @@
+<div class="overlay-backdrop" *ngIf="isOpen">
+  <div class="overlay-panel">
+    <span class="close-button" (click)="closePopup()">&times;</span>
+
+    <h2>Add Transaction Details</h2>
+    <p class="subtitle">Please provide transaction details below</p>
+
+    <form class="form-grid">
+      <!-- Account Name -->
+      <div class="form-group">
+        <label>Account Name For DD <span class="required">*</span></label>
+        <input type="text" placeholder="Enter Account Name" />
+      </div>
+
+      <!-- Transaction Amount -->
+      <div class="form-group">
+        <label>Transaction Amount <span class="required">*</span></label>
+        <input type="number" placeholder="Enter Transaction Amount" />
+      </div>
+
+      <!-- Check/DD Number -->
+      <div class="form-group">
+        <label>Check/DD Number <span class="required">*</span></label>
+        <input type="text" placeholder="Enter Check/DD Number" />
+      </div>
+
+      <!-- Transaction Date -->
+      <div class="form-group">
+        <label>Transaction Date <span class="required">*</span></label>
+        <input type="date" />
+      </div>
+    </form>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="cancel-btn" (click)="closePopup()">Cancel</button>
+      <button class="ok-btn">OK</button>
+    </div>
+  </div>
+</div>
