@@ -11,9 +11,14 @@
         <div><strong>{{ user.myReferrals }}</strong><div>My Referrals</div></div>
       </div>
       
-      <div class="action-section">
+      <!-- <div class="action-section">
         <button class="update-btn" (click)="openUpdateModal()">
           Update Contribution
+        </button>
+      </div> -->
+      <div class="action-section">
+        <button class="update-btn" (click)="openUpdateModal()">
+          {{ user.annualContribution === 0 ? 'Start Contributing to Kaar Arakkatalai' : 'Update Contribution' }}
         </button>
       </div>
       

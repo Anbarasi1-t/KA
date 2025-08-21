@@ -9,6 +9,8 @@ import { TabSwitcherComponent } from '../../components/tab-switcher';
 import { ContributionFilterComponent, ContributionFilters } from '../../components/contribution-filter/contribution-filter.component';
 import { ContributionTableComponent, ContributionRow } from '../../components/contribution-table/contribution-table.component';
 import { RequestService } from '../../services/requests.service';
+import { UserService, UserProfile } from '../../services/user.service';
+import { NoContributionComponent } from '../../components/no-contribution/no-contribution.component';
 
 @Component({
   selector: 'dashboard',
@@ -21,7 +23,8 @@ import { RequestService } from '../../services/requests.service';
     UserProfileComponent,
     TabSwitcherComponent,
     ContributionFilterComponent,
-    ContributionTableComponent
+    ContributionTableComponent,
+    NoContributionComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
@@ -34,11 +37,13 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
   contributionFilters: ContributionFilters | null = null;
   filteredCount: number = 0;
   contributionRows: ContributionRow[] = [];
+  userProfile: UserProfile | null = null;
 
   filterActive = false;
 
-  constructor(private requestService: RequestService) {
+  constructor(private requestService: RequestService, private userService: UserService) {
     this.loadContributions();
+    this.loadUserProfile();
   }
 
   onFilterToggle() {
@@ -74,6 +79,12 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
       // Map backend fields directly as ContributionRow
       this.contributionRows = rows as ContributionRow[];
       this.updateFilteredCount();
+    });
+  }
+
+  private loadUserProfile() {
+    this.userService.getUserProfile().subscribe((profile: UserProfile) => {
+      this.userProfile = profile;
     });
   }
 

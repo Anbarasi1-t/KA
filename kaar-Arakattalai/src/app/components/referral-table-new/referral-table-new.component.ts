@@ -1,9 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
+import { AgGridAngular, AgGridModule,  } from 'ag-grid-angular';
+import { ModuleRegistry } from 'ag-grid-community';
 import { ColDef } from 'ag-grid-community';
+import { RowSelectionModule } from 'ag-grid-community';
 import { RequestService } from '../../services/requests.service';
-
+ 
+ 
+ModuleRegistry.registerModules([RowSelectionModule]);
+ 
 interface Referral {
   id: number;
   employeeName: string;
@@ -15,7 +20,7 @@ interface Referral {
   submissionDate: string;
   beneficiaryName?: string;
 }
-
+ 
 @Component({
   selector: 'app-referral-table-new',
   standalone: true,
@@ -26,34 +31,34 @@ interface Referral {
 export class ReferralTableNewComponent implements OnInit {
   @Input() searchTerm: string = '';
   @Output() referralSelected = new EventEmitter<Referral>();
-
+ 
   referrals: Referral[] = [];
   filteredReferrals: Referral[] = [];
   loading: boolean = true;
   error: string | null = null;
-
+ 
   colDefs: ColDef[] = [
     { headerName: 'S. No.', valueGetter: 'node.rowIndex + 1', width: 90 },
-    { 
+    {
       headerName: 'Employee Name',
       field: 'employeeName',
       flex: 1,
       cellRenderer: (params: any) => `
-        <img src="assets/profile_picture.png" class="avatar"/> 
+        <img src="assets/profile_picture.png" class="avatar"/>
         ${params.value || ''}
       `
     },
     { headerName: 'Employee AID', field: 'employeeAID', flex: 1 },
     { headerName: 'Referral Type', field: 'referralType', flex: 1 },
-    { 
-      headerName: 'Annual Contribution', 
-      field: 'annualContribution', 
+    {
+      headerName: 'Annual Contribution',
+      field: 'annualContribution',
       flex: 1,
       valueFormatter: (p) => this.formatCurrency(p.value)
     },
-    { 
-      headerName: 'Amount Requested', 
-      field: 'amountRequested', 
+    {
+      headerName: 'Amount Requested',
+      field: 'amountRequested',
       flex: 1,
       valueFormatter: (p) => this.formatCurrency(p.value)
     },
@@ -70,21 +75,21 @@ export class ReferralTableNewComponent implements OnInit {
   `,
   width: 100
 }
-
+ 
   ];
-
+ 
   defaultColDef: ColDef = {
     sortable: true,
     filter: false,
     resizable: false,
   };
-
+ 
   constructor(private requestService: RequestService) {}
-
+ 
   ngOnInit(): void {
     this.loadReferrals();
   }
-
+ 
   loadReferrals(): void {
     this.loading = true;
     this.requestService.getRequests().subscribe({
@@ -109,7 +114,7 @@ export class ReferralTableNewComponent implements OnInit {
       }
     });
   }
-
+ 
   applyFilters(): void {
     if (!this.searchTerm) {
       this.filteredReferrals = this.referrals;
@@ -122,11 +127,11 @@ export class ReferralTableNewComponent implements OnInit {
       referral.referralType.toLowerCase().includes(term)
     );
   }
-
+ 
   onReferralSelect(referral: Referral): void {
     this.referralSelected.emit(referral);
   }
-
+ 
   formatCurrency(amount: number): string {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -134,3 +139,4 @@ export class ReferralTableNewComponent implements OnInit {
     }).format(amount);
   }
 }
+ 

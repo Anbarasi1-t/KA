@@ -1,4 +1,4 @@
-<div class="ag-theme-alpine referral-grid">
+<div class="ag-theme-alpine referral-grid" style="width: 100%; height: 100%;">
   <ag-grid-angular
     [rowData]="filteredReferrals"
     [rowHeight]="30"
@@ -6,8 +6,6 @@
     [defaultColDef]="defaultColDef"
     rowSelection="single"
     (rowClicked)="onReferralSelect($event.data)"
-    class="ag-grid-custom"
-    
-    style="width: 100%;">
+    style="width: 100%; height: 100%;">
   </ag-grid-angular>
 </div>

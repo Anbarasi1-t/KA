@@ -5,9 +5,9 @@ exports.getProfile = (req, res) => {
     aid: 50,
     designation: "Professional",
     manager: "Srinivasan Subbiah",
-    annualContribution: 100000,
-    annualEligibleReferral: 200000,
-    balanceEligibleReferral: 20000,
+    annualContribution: 1000,
+    annualEligibleReferral: 0,
+    balanceEligibleReferral: 0,
     myReferrals: 0
     
   };

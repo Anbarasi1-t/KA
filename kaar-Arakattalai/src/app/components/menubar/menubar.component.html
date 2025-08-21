@@ -1,34 +1,45 @@
 <div class="menubar-container">
   <div class="left-section">
-    <div class="left-text">Total Contribution <span class="contribution-value">{{ totalContribution }}</span></div>
+    <div class="left-text">
+      Total Contribution <span class="contribution-value">{{ totalContribution }}</span>
+    </div>
   </div>
   
-  <div class="right-section">
-<div class="search-container">
-  <label class="search-label">Search</label>
-  <input 
-    type="text" 
-    class="search-input" 
-    placeholder="Search" 
-    [(ngModel)]="searchTerm"
-    (input)="onSearchChange($event)"
-    [class.has-value]="searchTerm"
-  >
-  <button class="search-button" type="button" (click)="onSearchClick()">
-    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="white" viewBox="0 0 24 24"><path d="M21 20l-5.6-5.6a7 7 0 1 0-1.4 1.4L20 21zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg>
-  </button>
-  <button 
-    *ngIf="searchTerm" 
-    class="clear-button" 
-    (click)="clearSearch()"
-    type="button"
-  >
-    ×
-  </button>
-</div>
+  <!-- Show right section unless annualContribution is explicitly 0 -->
+  <div class="right-section" *ngIf="annualContribution === null || annualContribution === undefined || annualContribution > 0">
+    <div class="search-container">
+      <label class="search-label">Search</label>
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search" 
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange($event)"
+        [class.has-value]="searchTerm"
+      >
+      <button class="search-button" type="button" (click)="onSearchClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="white" viewBox="0 0 24 24">
+          <path d="M21 20l-5.6-5.6a7 7 0 1 0-1.4 1.4L20 21zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+        </svg>
+      </button>
+      <button 
+        *ngIf="searchTerm" 
+        class="clear-button" 
+        (click)="clearSearch()"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
     
     <button class="right-button" (click)="showOverlay = true">Refer Someone</button>
   </div>
   
-  <app-form-type-overlay *ngIf="showOverlay" (closed)="showOverlay = false"></app-form-type-overlay>
+  
+  <!-- <app-form-type-overlay *ngIf="showOverlay" (closed)="showOverlay = false"></app-form-type-overlay> -->
 </div>
+<app-form-type-overlay
+  *ngIf="showOverlay"
+  class="overlay-container"
+  (closed)="showOverlay = false">
+</app-form-type-overlay>
