@@ -41,3 +41,6 @@ input, textarea, select, button, div, span, a {
   width: 100%;
   font-family: 'DM Sans', sans-serif;
 }
+html {
+  overflow-y: scroll; /* always show scrollbar */
+}
