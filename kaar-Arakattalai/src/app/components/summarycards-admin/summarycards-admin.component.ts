@@ -1,8 +1,6 @@
-// src/app/components/summarycards-admin/summarycards-admin.component.ts
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../services/summarycards.service';
-import { HttpClientModule } from '@angular/common/http';
 
 interface SummaryCard {
   key: string;
@@ -14,28 +12,16 @@ interface SummaryCard {
 @Component({
   standalone: true,
   selector: 'app-summarycards-admin',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './summarycards-admin.component.html',
   styleUrls: ['./summarycards-admin.component.scss'],
-  // AdminService providedIn: 'root' already, no need to add providers here
 })
 export class SummarycardsAdminComponent implements OnInit, AfterViewInit {
+  @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef<HTMLDivElement>;
   canScrollRight = false;
   canScrollLeft = false;
-  ngAfterViewInit(): void {
-    this.updateScrollButtons();
-    this.scrollContainer.nativeElement.addEventListener('scroll', () => this.updateScrollButtons());
-    window.addEventListener('resize', () => this.updateScrollButtons());
-  }
-
-  updateScrollButtons(): void {
-    const el = this.scrollContainer.nativeElement;
-    this.canScrollRight = el.scrollLeft + el.clientWidth < el.scrollWidth - 1;
-    this.canScrollLeft = el.scrollLeft > 1;
-  }
-  @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef<HTMLDivElement>;
-
   hoverKey = '';
+
   summaryCards: SummaryCard[] = [
     { key: 'requests', label: 'Requests', count: 0, color: '#ff5722' },
     { key: 'approvals', label: 'Approvals', count: 0, color: '#4caf50' },
@@ -53,28 +39,32 @@ export class SummarycardsAdminComponent implements OnInit, AfterViewInit {
     this.loadCounts();
   }
 
+  ngAfterViewInit(): void {
+    this.updateScrollButtons();
+    this.scrollContainer.nativeElement.addEventListener('scroll', () => this.updateScrollButtons());
+    window.addEventListener('resize', () => this.updateScrollButtons());
+  }
+
   loadCounts(): void {
-    // Each call typed properly to avoid implicit any
-    this.adminService.getRequestsCount().subscribe((count: number) => this.setCount('requests', count), (err) => this.handleError('requests', err));
-    this.adminService.getApprovalsCount().subscribe((count: number) => this.setCount('approvals', count), (err) => this.handleError('approvals', err));
-    this.adminService.getRejectedCount().subscribe((count: number) => this.setCount('rejected', count), (err) => this.handleError('rejected', err));
-    this.adminService.getScholarshipFormCount().subscribe((count: number) => this.setCount('scholarship-form', count), (err) => this.handleError('scholarship-form', err));
-    this.adminService.getAssistanceNgoCount().subscribe((count: number) => this.setCount('assistance-ngo', count), (err) => this.handleError('assistance-ngo', err));
-    this.adminService.getMedicalAssistanceCount().subscribe((count: number) => this.setCount('medical-assistance', count), (err) => this.handleError('medical-assistance', err));
-    this.adminService.getLaptopRequestCount().subscribe((count: number) => this.setCount('laptop-request', count), (err) => this.handleError('laptop-request', err));
-    this.adminService.getCsrAdvancesCount().subscribe((count: number) => this.setCount('csr-advances', count), (err) => this.handleError('csr-advances', err));
+    this.adminService.getRequestsCount().subscribe(count => this.setCount('requests', count));
+    this.adminService.getApprovalsCount().subscribe(count => this.setCount('approvals', count));
+    this.adminService.getRejectedCount().subscribe(count => this.setCount('rejected', count));
+    this.adminService.getScholarshipFormCount().subscribe(count => this.setCount('scholarship-form', count));
+    this.adminService.getAssistanceNgoCount().subscribe(count => this.setCount('assistance-ngo', count));
+    this.adminService.getMedicalAssistanceCount().subscribe(count => this.setCount('medical-assistance', count));
+    this.adminService.getLaptopRequestCount().subscribe(count => this.setCount('laptop-request', count));
+    this.adminService.getCsrAdvancesCount().subscribe(count => this.setCount('csr-advances', count));
   }
 
   setCount(key: string, value: number): void {
-    const item = this.summaryCards.find(i => i.key === key);
-    if (item) {
-      item.count = value;
-    }
+    const card = this.summaryCards.find(c => c.key === key);
+    if (card) card.count = value;
   }
 
-  handleError(key: string, error: any): void {
-    console.error(`Error loading ${key} count:`, error);
-    // keep count as 0 or set to -1 to indicate failure as you prefer
+  updateScrollButtons(): void {
+    const el = this.scrollContainer.nativeElement;
+    this.canScrollRight = el.scrollLeft + el.clientWidth < el.scrollWidth - 1;
+    this.canScrollLeft = el.scrollLeft > 1;
   }
 
   scrollLeft(): void {
