@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-treasury-view-details',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './treasury-view-details.component.html',
-  styleUrls: ['./treasury-view-details.component.scss']
+  templateUrl: './treasuryviewdetails.component.html',
+  styleUrls: ['./treasuryviewdetails.component.scss']
 })
 export class TreasuryViewDetailsComponent {
   @Input() treasury: any;

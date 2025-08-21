@@ -1,15 +1,15 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-referral-details',
+  selector: 'app-admin-view-details',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './referral-details.component.html',
-  styleUrls: ['./referral-details.component.scss']
+  templateUrl: './adminviewdetails.component.html',
+  styleUrls: ['./adminviewdetails.component.scss']
 })
-export class ReferralDetailsComponent {
-  @Input() referral: any;
+export class AdminViewDetailsComponent {
+  @Input() data: any;  // 👈 receive selected row data
   @Output() close = new EventEmitter<void>();
 
   onClose() {

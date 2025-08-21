@@ -15,6 +15,8 @@ import {
   GridOptions
 } from 'ag-grid-community';
 import { AdminTableService } from '../../services/admintable.service';
+import { AdminActionComponent } from '../adminaction/adminaction.component';
+import { AdminViewDetailsComponent } from '../adminviewdetails/adminviewdetails.component';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 // Register AG Grid modules
@@ -31,7 +33,7 @@ ModuleRegistry.registerModules([
 @Component({
   selector: 'app-admin-table',
   standalone: true,
-  imports: [CommonModule, AgGridModule],
+  imports: [CommonModule, AgGridModule, AdminActionComponent, AdminViewDetailsComponent],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './admintable.component.html',
   styleUrls: ['./admintable.component.scss']
@@ -41,6 +43,10 @@ export class AdminTableComponent implements OnInit, OnChanges {
 
   rowData: any[] = [];
   filteredData: any[] = [];
+
+  // Selected items for modals
+  selectedAdmin: any = null;
+  selectedAction: any = null;
 
   columnDefs: ColDef[] = [
     { headerName: 'S. No.', field: 'sno', width: 80, sortable: true, cellClass: 'grey-cell' },
@@ -56,8 +62,7 @@ export class AdminTableComponent implements OnInit, OnChanges {
       cellRenderer: (params: ICellRendererParams) => {
         return `<button class="action-btn" data-action="edit" data-id="${params.data?.id || ''}" title="Edit">&#9998;</button>`;
       },
-      cellRendererParams: { suppressSanitizeHtml: true },
-      // Keep actions in the main grid (not pinned) so it doesn't look like a separate table
+      cellRendererParams: { suppressSanitizeHtml: true }
     }
   ];
 
@@ -80,7 +85,7 @@ export class AdminTableComponent implements OnInit, OnChanges {
         this.filteredData = this.rowData;
         this.setGridHeight();
       },
-      error: (err: any) => { // <-- added type here
+      error: (err: any) => {
         console.error('Error fetching employees:', err);
         this.rowData = [];
         this.filteredData = [];
@@ -131,13 +136,21 @@ export class AdminTableComponent implements OnInit, OnChanges {
   onCellClicked(event: any): void {
     const target = event.event?.target as HTMLElement;
     const action = target?.getAttribute('data-action');
-    const id = target?.getAttribute('data-id');
-    if (action === 'edit' && id) {
-      this.onEdit(id);
+
+    if (action === 'edit') {
+      this.selectedAction = event.data; // pass full row to AdminAction
+      this.selectedAdmin = null;
+    } else if (event.colDef.field !== 'actions') {
+      this.selectedAdmin = event.data; // pass full row to AdminViewDetails
+      this.selectedAction = null;
     }
   }
 
-  onEdit(id: string): void {
-    console.log('Edit clicked for ID:', id);
+  closeDetails() {
+    this.selectedAdmin = null;
+  }
+
+  closeAction() {
+    this.selectedAction = null;
   }
 }
