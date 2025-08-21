@@ -6,40 +6,40 @@ exports.getAllEmployeeRequests = (req, res) => {
     const employees = [
       {
         id: '1',
-        employeeName: 'Arun Chakravarthi V',
-        employeeAID: '123',
+        employeeName: 'Aiswarya G',
+        employeeAID: '901722',
         referralType: 'Education',
         annualContribution: 100000,
         amountRequested: 50000
       },
       {
         id: '2',
-        employeeName: 'Devika G',
-        employeeAID: '220242',
+        employeeName: 'Anbarasi T',
+        employeeAID: '901723',
         referralType: 'Medical',
         annualContribution: 100000,
         amountRequested: 50000
       },
       {
         id: '3',
-        employeeName: 'Saalai Chaitanyan K',
-        employeeAID: '12344',
+        employeeName: 'Naren Sairam S',
+        employeeAID: '901726',
         referralType: 'CSR & claims',
         annualContribution: 100000,
         amountRequested: 50000
       },
       {
         id: '4',
-        employeeName: 'Mark Atwood',
-        employeeAID: '98765',
+        employeeName: 'Simon Xavier',
+        employeeAID: '987651',
         referralType: 'Laptop',
         annualContribution: 100000,
         amountRequested: 50000
       },
       {
         id: '5',
-        employeeName: 'Corin Freemark',
-        employeeAID: '8765',
+        employeeName: 'Deva Raj',
+        employeeAID: '582100',
         referralType: 'Education',
         annualContribution: 100000,
         amountRequested: 50000
