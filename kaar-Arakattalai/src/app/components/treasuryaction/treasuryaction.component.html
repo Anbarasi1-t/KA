@@ -1,5 +1,5 @@
-<div class="overlay-backdrop" *ngIf="isOpen">
-  <div class="overlay-panel">
+<div class="overlay-backdrop" *ngIf="isOpen" (click)="closePopup()">
+  <div class="overlay-panel" (click)="$event.stopPropagation()">
     <span class="close-button" (click)="closePopup()">&times;</span>
 
     <h2>Add Transaction Details</h2>
