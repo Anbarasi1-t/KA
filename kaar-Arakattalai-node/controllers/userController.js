@@ -3,7 +3,7 @@ const db = require('../db');   // <-- add this line
 exports.getProfile = async (req, res) => {
   try {
     const { associate_id, employee_name } = req.params || req.query || req.body;
-    const targetAssociateId = associate_id || employee_name || 50;
+    const targetAssociateId = associate_id || employee_name || 432;
 
     const profileQuery = `
       SELECT 

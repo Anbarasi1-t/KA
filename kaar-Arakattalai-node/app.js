@@ -14,6 +14,8 @@ const summaryConsRoutes = require('./routes/summaryconsroutes'); // lowercase fi
 const userRoutes = require('./routes/userRoutes');
 const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
+const updatecontributionRoutes = require('./routes/updatecontributionRoutes');
+const educationRoutes = require("./routes/educationRoutes");
 
 // Mount the routes
 app.use('/api/referrals', referralRoutes);
@@ -23,6 +25,8 @@ app.use('/api/summarycons', summaryConsRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/employees', adminTableRoutes);
 app.use('/api/summaryCards', summaryCardsRoutes);
+// app.use("/api", educationRoutes);
+app.use('/api/updatecontribution', updatecontributionRoutes);
  // Ensure this file exists
 
 const PORT = process.env.PORT || 3000;
