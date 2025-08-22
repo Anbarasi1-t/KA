@@ -1,142 +1,311 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+// import { Component, OnInit, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
+// import { CommonModule } from '@angular/common';
+// import { AgGridModule } from 'ag-grid-angular';
+// import {
+//   ModuleRegistry,
+//   ClientSideRowModelModule,
+//   TextFilterModule,
+//   NumberFilterModule,
+//   DateFilterModule,
+//   CustomFilterModule,
+//   CellStyleModule,
+//   ValidationModule,
+//   ColDef,
+//   ICellRendererParams,
+//   GridOptions
+// } from 'ag-grid-community';
+// import { AdminTableService } from '../../services/admintable.service';
+// import { TreasuryActionComponent } from '../treasuryaction/treasuryaction.component';
+// import { TreasuryViewDetailsComponent } from '../treasuryviewdetails/treasuryviewdetails.component';
+// import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+// // Register AG Grid modules
+// ModuleRegistry.registerModules([
+//   ClientSideRowModelModule,
+//   TextFilterModule,
+//   NumberFilterModule,
+//   DateFilterModule,
+//   CustomFilterModule,
+//   CellStyleModule,
+//   ValidationModule
+// ]);
+
+// @Component({
+//   selector: 'app-referral-table-new',
+//   standalone: true,
+//   imports: [CommonModule, AgGridModule, TreasuryActionComponent, TreasuryViewDetailsComponent],
+//   encapsulation: ViewEncapsulation.None,
+//   templateUrl: './referral-table-new.component.html',
+//   styleUrls: ['./referral-table-new.component.scss']
+// })
+// export class ReferralTableNewComponent implements OnInit, OnChanges {
+//   @Input() searchTerm: string = '';
+
+//   rowData: any[] = [];
+//   filteredData: any[] = [];
+
+//   // Selected items for modals
+//   selectedAdmin: any = null;
+//   selectedAction: any = null;
+
+//   columnDefs: ColDef[] = [
+//     { headerName: 'S. No.', field: 'sno', width: 80, sortable: true, cellClass: 'grey-cell' },
+//     { headerName: 'Employee Name', field: 'employeeName', flex: 2, cellClass: 'grey-cell', sortable: true, filter: 'agTextColumnFilter' },
+//     { headerName: 'Employee AID', field: 'employeeAID', flex: 1, sortable: true, filter: 'agNumberColumnFilter' },
+//     { headerName: 'Referral Type', field: 'referralType', flex: 1.5, sortable: true },
+//     { headerName: 'Annual Contribution', field: 'annualContribution', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
+//     { headerName: 'Amount Requested', field: 'amountRequested', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
+//     {
+//       headerName: 'Actions',
+//       field: 'actions',
+//       width: 90,
+//       cellRenderer: (params: ICellRendererParams) => {
+//         return `<button class="action-btn" data-action="edit" data-id="${params.data?.id || ''}" title="Edit">&#9998;</button>`;
+//       },
+//       cellRendererParams: { suppressSanitizeHtml: true }
+//     }
+//   ];
+
+//   defaultColDef: ColDef = { sortable: true, filter: false, resizable: true };
+
+//   gridOptions: GridOptions = {
+//     suppressMovableColumns: true,
+//     onCellClicked: event => this.onCellClicked(event)
+//   };
+
+//   gridApi: any;
+//   gridColumnApi: any;
+
+//   constructor(private adminTableService: AdminTableService) {}
+
+//   ngOnInit(): void {
+//     this.adminTableService.getEmployees().subscribe({
+//       next: (data: any[]) => {
+//         this.rowData = data.map((row, index) => ({ ...row, sno: index + 1 }));
+//         this.filteredData = this.rowData;
+//         this.setGridHeight();
+//       },
+//       error: (err: any) => {
+//         console.error('Error fetching employees:', err);
+//         this.rowData = [];
+//         this.filteredData = [];
+//       }
+//     });
+//   }
+
+//   ngOnChanges(changes: SimpleChanges): void {
+//     if (changes['searchTerm']) {
+//       this.applyFilter();
+//     }
+//   }
+
+//   onGridReady(params: any) {
+//     this.gridApi = params.api;
+//     this.gridColumnApi = params.columnApi;
+//     this.setGridHeight();
+//   }
+
+//   applyFilter(): void {
+//     if (!this.searchTerm) {
+//       this.filteredData = this.rowData;
+//     } else {
+//       const term = this.searchTerm.toLowerCase();
+//       this.filteredData = this.rowData.filter(item =>
+//         Object.values(item).some(val => val && val.toString().toLowerCase().includes(term))
+//       );
+//     }
+//     this.setGridHeight();
+//   }
+
+//   setGridHeight() {
+//     const rowCount = this.filteredData.length;
+//     const headerHeight = 40;
+//     const rowHeight = 45;
+//     const maxHeight = 800;
+//     const height = Math.min(headerHeight + rowCount * rowHeight + 10, maxHeight);
+//     const gridDiv = document.querySelector('.custom-ag-grid') as HTMLElement;
+//     if (gridDiv) {
+//       gridDiv.style.height = height + 'px';
+//     }
+//   }
+
+//   currencyFormatter(value: any): string {
+//     return value == null ? '' : Number(value).toLocaleString('en-IN');
+//   }
+
+//   onCellClicked(event: any): void {
+//     const target = event.event?.target as HTMLElement;
+//     const action = target?.getAttribute('data-action');
+
+//     if (action === 'edit') {
+//       this.selectedAction = event.data; // pass full row to TreasuryAction
+//       this.selectedAdmin = null;
+//     } else if (event.colDef.field !== 'actions') {
+//       this.selectedAdmin = event.data; // pass full row to TreasuryViewDetails
+//       this.selectedAction = null;
+//     }
+//   }
+
+//   closeDetails() {
+//     this.selectedAdmin = null;
+//   }
+
+//   closeAction() {
+//     this.selectedAction = null;
+//   }
+// }
+import { Component, OnInit, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { AgGridAngular, AgGridModule,  } from 'ag-grid-angular';
-import { ModuleRegistry } from 'ag-grid-community';
-import { ColDef } from 'ag-grid-community';
-import { RowSelectionModule } from 'ag-grid-community';
-import { RequestService } from '../../services/requests.service';
- 
- 
-ModuleRegistry.registerModules([RowSelectionModule]);
- 
-interface Referral {
-  id: number;
-  employeeName: string;
-  employeeAID: string;
-  referralType: string;
-  annualContribution: number;
-  amountRequested: number;
-  status: 'Pending' | 'Approved' | 'Rejected' | 'In Progress';
-  submissionDate: string;
-  beneficiaryName?: string;
-}
- 
+import { AgGridModule } from 'ag-grid-angular';
+import {
+  ModuleRegistry,
+  ClientSideRowModelModule,
+  TextFilterModule,
+  NumberFilterModule,
+  DateFilterModule,
+  CustomFilterModule,
+  CellStyleModule,
+  ValidationModule,
+  ColDef,
+  ICellRendererParams,
+  GridOptions
+} from 'ag-grid-community';
+import { AdminTableService } from '../../services/admintable.service';
+import { TreasuryActionComponent } from '../treasuryaction/treasuryaction.component';
+import { TreasuryViewDetailsComponent } from '../treasuryviewdetails/treasuryviewdetails.component';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+// Register AG Grid modules
+ModuleRegistry.registerModules([
+  ClientSideRowModelModule,
+  TextFilterModule,
+  NumberFilterModule,
+  DateFilterModule,
+  CustomFilterModule,
+  CellStyleModule,
+  ValidationModule
+]);
+
 @Component({
   selector: 'app-referral-table-new',
   standalone: true,
-  imports: [CommonModule, AgGridModule],
+  imports: [CommonModule, AgGridModule, TreasuryActionComponent, TreasuryViewDetailsComponent],
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './referral-table-new.component.html',
   styleUrls: ['./referral-table-new.component.scss']
 })
-export class ReferralTableNewComponent implements OnInit {
+export class ReferralTableNewComponent implements OnInit, OnChanges {
   @Input() searchTerm: string = '';
-  @Output() referralSelected = new EventEmitter<Referral>();
- 
-  referrals: Referral[] = [];
-  filteredReferrals: Referral[] = [];
-  loading: boolean = true;
-  error: string | null = null;
- 
-  colDefs: ColDef[] = [
-    { headerName: 'S. No.', valueGetter: 'node.rowIndex + 1', width: 90 },
+
+  rowData: any[] = [];
+  filteredData: any[] = [];
+
+  selectedAdmin: any = null;
+  selectedAction: any = null;
+
+  columnDefs: ColDef[] = [
+    { headerName: 'S. No.', field: 'sno', width: 80, sortable: true, cellClass: 'grey-cell' },
+    { headerName: 'Employee Name', field: 'employeeName', flex: 2, cellClass: 'grey-cell', sortable: true, filter: 'agTextColumnFilter' },
+    { headerName: 'Employee AID', field: 'employeeAID', flex: 1, sortable: true, filter: 'agNumberColumnFilter' },
+    { headerName: 'Referral Type', field: 'referralType', flex: 1.5, sortable: true },
+    { headerName: 'Annual Contribution', field: 'annualContribution', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
+    { headerName: 'Amount Requested', field: 'amountRequested', flex: 1, sortable: true, valueFormatter: params => this.currencyFormatter(params.value) },
     {
-      headerName: 'Employee Name',
-      field: 'employeeName',
-      flex: 1,
-      cellRenderer: (params: any) => `
-        <img src="assets/profile_picture.png" class="avatar"/>
-        ${params.value || ''}
-      `
-    },
-    { headerName: 'Employee AID', field: 'employeeAID', flex: 1 },
-    { headerName: 'Referral Type', field: 'referralType', flex: 1 },
-    {
-      headerName: 'Annual Contribution',
-      field: 'annualContribution',
-      flex: 1,
-      valueFormatter: (p) => this.formatCurrency(p.value)
-    },
-    {
-      headerName: 'Amount Requested',
-      field: 'amountRequested',
-      flex: 1,
-      valueFormatter: (p) => this.formatCurrency(p.value)
-    },
-    {
-  headerName: 'Actions',
-  cellRenderer: () => `
-    <button class="edit-button" aria-label="Edit">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 20h9"></path>
-        <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-      </svg>
-    </button>
-  `,
-  width: 100
-}
- 
-  ];
- 
-  defaultColDef: ColDef = {
-    sortable: true,
-    filter: false,
-    resizable: false,
-  };
- 
-  constructor(private requestService: RequestService) {}
- 
-  ngOnInit(): void {
-    this.loadReferrals();
-  }
- 
-  loadReferrals(): void {
-    this.loading = true;
-    this.requestService.getRequests().subscribe({
-      next: (data) => {
-        this.referrals = data.map(item => ({
-          id: item.id || item._id,
-          employeeName: item.employeeName || 'N/A',
-          employeeAID: item.employeeAID || 'N/A',
-          referralType: item.referralType || 'N/A',
-          annualContribution: Number(item.annualContribution) || 0,
-          amountRequested: Number(item.amountRequested) || 0,
-          status: item.status || 'Pending',
-          submissionDate: item.submissionDate || new Date().toISOString(),
-          beneficiaryName: item.beneficiaryName || item.beneficiaryName
-        }));
-        this.applyFilters();
-        this.loading = false;
+      headerName: 'Actions',
+      field: 'actions',
+      width: 90,
+      cellRenderer: (params: ICellRendererParams) => {
+        return `<button class="action-btn" data-action="edit" data-id="${params.data?.id || ''}" title="Edit">&#9998;</button>`;
       },
-      error: () => {
-        this.error = 'Failed to load referrals';
-        this.loading = false;
+      cellRendererParams: { suppressSanitizeHtml: true }
+    }
+  ];
+
+  defaultColDef: ColDef = { sortable: true, filter: false, resizable: true };
+
+  gridOptions: GridOptions = {
+    suppressMovableColumns: true,
+    onCellClicked: event => this.onCellClicked(event)
+  };
+
+  gridApi: any;
+  gridColumnApi: any;
+
+  constructor(private adminTableService: AdminTableService) {}
+
+  ngOnInit(): void {
+    this.adminTableService.getEmployees().subscribe({
+      next: (data: any[]) => {
+        this.rowData = data.map((row, index) => ({ ...row, sno: index + 1 }));
+        this.filteredData = this.rowData;
+        this.setGridHeight();
+      },
+      error: (err: any) => {
+        console.error('Error fetching employees:', err);
+        this.rowData = [];
+        this.filteredData = [];
       }
     });
   }
- 
-  applyFilters(): void {
-    if (!this.searchTerm) {
-      this.filteredReferrals = this.referrals;
-      return;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['searchTerm']) {
+      this.applyFilter();
     }
-    const term = this.searchTerm.toLowerCase();
-    this.filteredReferrals = this.referrals.filter(referral =>
-      referral.employeeName.toLowerCase().includes(term) ||
-      referral.employeeAID.toLowerCase().includes(term) ||
-      referral.referralType.toLowerCase().includes(term)
-    );
   }
- 
-  onReferralSelect(referral: Referral): void {
-    this.referralSelected.emit(referral);
+
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.setGridHeight();
   }
- 
-  formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR'
-    }).format(amount);
+
+  applyFilter(): void {
+    if (!this.searchTerm) {
+      this.filteredData = this.rowData;
+    } else {
+      const term = this.searchTerm.toLowerCase();
+      this.filteredData = this.rowData.filter(item =>
+        Object.values(item).some(val => val && val.toString().toLowerCase().includes(term))
+      );
+    }
+    this.setGridHeight();
+  }
+
+  setGridHeight() {
+    const rowCount = this.filteredData.length;
+    const headerHeight = 40;
+    const rowHeight = 45;
+    const maxHeight = 800;
+    const height = Math.min(headerHeight + rowCount * rowHeight + 10, maxHeight);
+    const gridDiv = document.querySelector('.custom-ag-grid') as HTMLElement;
+    if (gridDiv) {
+      gridDiv.style.height = height + 'px';
+    }
+  }
+
+  currencyFormatter(value: any): string {
+    return value == null ? '' : Number(value).toLocaleString('en-IN');
+  }
+
+  onCellClicked(event: any): void {
+    const target = event.event?.target as HTMLElement;
+    const action = target?.getAttribute('data-action');
+
+    if (action === 'edit') {
+      this.selectedAction = event.data;
+      this.selectedAdmin = null;
+    } else if (event.colDef.field !== 'actions') {
+      this.selectedAdmin = event.data;
+      this.selectedAction = null;
+    }
+  }
+
+  closeDetails() {
+    this.selectedAdmin = null;
+  }
+
+  closeAction() {
+    this.selectedAction = null;
   }
 }
- 

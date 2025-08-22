@@ -1,0 +1,15 @@
+<div class="treasurybar-container">
+  <div 
+    class="tab" 
+    [class.active]="activeTab === 'pending'" 
+    (click)="setActiveTab('pending')">
+    Pending({{ pendingCount }})
+  </div>
+
+  <div 
+    class="tab" 
+    [class.active]="activeTab === 'completed'" 
+    (click)="setActiveTab('completed')">
+    Completed({{ completedCount }})
+  </div>
+</div>
