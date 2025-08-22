@@ -15,20 +15,6 @@ const userRoutes = require('./routes/userRoutes');
 const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
 
-
-
-// // ✅ Enable CORS for all origins (with preflight)
-// app.use(cors({
-//   origin: '*',              // Allow all domains
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization']
-// }));
-
-// // ✅ Handle preflight OPTIONS requests globally
-// app.options('*', cors());
-
-// app.use(express.json());
-
 // Mount the routes
 app.use('/api/referrals', referralRoutes);
 app.use('/api/contributions', contributionRoutes);
@@ -36,10 +22,11 @@ app.use('/api/totalcontributions', totalContributionsRoutes);
 app.use('/api/summarycons', summaryConsRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/employees', adminTableRoutes);
-app.use('/api/summarycards', summaryCardsRoutes);
+app.use('/api/summaryCards', summaryCardsRoutes);
  // Ensure this file exists
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+

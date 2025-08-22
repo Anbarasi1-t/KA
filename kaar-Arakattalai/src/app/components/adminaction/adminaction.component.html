@@ -1,0 +1,53 @@
+<div class="overlay-backdrop" (click)="onClose()">
+  <div class="overlay-panel" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+      <h3>Final Amount To Be Approved</h3>
+    </div>
+
+    <div class="popup-body">
+      <!-- Show selected row details -->
+      <div class="detail-row">
+        <div class="label">Employee Name:</div>
+        <div class="value">{{ data?.employeeName || '-' }}</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">Employee AID:</div>
+        <div class="value">{{ data?.employeeAID || '-' }}</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">Requested Amount:</div>
+        <div class="value">{{ data?.amountRequested || '-' }}</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">Beneficiary Name:</div>
+        <div class="value">{{ data?.beneficiaryName || '-' }}</div>
+      </div>
+
+      <!-- Input for approval -->
+      <div class="input-wrapper">
+        <label for="amountInput">Enter Final Approved Amount:</label>
+        <input 
+          id="amountInput" 
+          type="number" 
+          [(ngModel)]="amount" 
+          placeholder="Enter amount in digits"
+        />
+      </div>
+    </div>
+
+    <div class="popup-footer">
+      <button 
+        class="approve-btn" 
+        [ngClass]="{ 'active': amount && amount > 0 }"
+        [disabled]="!amount || amount <= 0"
+        (click)="onApprove()"
+      >
+        Save & Approve
+      </button>
+      <button class="close-btn" (click)="onClose()">Cancel</button>
+    </div>
+  </div>
+</div>

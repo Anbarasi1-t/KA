@@ -1,23 +1,34 @@
-// controllers/summaryCards.js
-// Controller to fetch summary card data
+// controllers/summarycardsController.js
 
-// Example data - replace with DB queries later if needed
-exports.getSummaryCards = (req, res) => {
-  try {
-    const summaryData = [
-      { label: 'Requests', count: 120 },
-      { label: 'Approvals', count: 95 },
-      { label: 'Rejected', count: 15 },
-      { label: 'Scholarship Form', count: 40 },
-      { label: 'Assistance to NGO', count: 25 },
-      { label: 'Medical Assistance', count: 18 },
-      { label: 'Laptop Request', count: 12 },
-      { label: 'CSR – Advances & Expenses', count: 8 }
-    ];
+// ✅ Individual count controllers returning number directly
+exports.getRequestsCount = (req, res) => {
+  res.status(200).json(120);
+};
 
-    res.status(200).json(summaryData);
-  } catch (error) {
-    console.error("Error fetching summary cards:", error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+exports.getApprovalsCount = (req, res) => {
+  res.status(200).json(95);
+};
+
+exports.getRejectedCount = (req, res) => {
+  res.status(200).json(15);
+};
+
+exports.getScholarshipFormCount = (req, res) => {
+  res.status(200).json(40);
+};
+
+exports.getAssistanceNgoCount = (req, res) => {
+  res.status(200).json(25);
+};
+
+exports.getMedicalAssistanceCount = (req, res) => {
+  res.status(200).json(18);
+};
+
+exports.getLaptopRequestCount = (req, res) => {
+  res.status(200).json(12);
+};
+
+exports.getCsrAdvancesCount = (req, res) => {
+  res.status(200).json(8);
 };
