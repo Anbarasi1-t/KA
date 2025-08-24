@@ -1,7 +1,7 @@
-import db from "../config/db.js";  // adjust path based on your project
+const db = require("../db.js");
 
 // Add a contribution entry
-export const addContribution = async (req, res) => {
+const addContribution = async (req, res) => {
   try {
     const {
       contributor_id,
@@ -51,7 +51,7 @@ export const addContribution = async (req, res) => {
 };
 
 // Fetch all contributions
-export const getContributions = async (req, res) => {
+const getContributions = async (req, res) => {
   try {
     const [rows] = await db.query(
       "SELECT * FROM t_ka_contribution_item_history WHERE is_active = 1 ORDER BY created_on DESC"
@@ -61,4 +61,9 @@ export const getContributions = async (req, res) => {
     console.error("Error fetching contributions:", err);
     res.status(500).json({ error: "Failed to fetch contributions" });
   }
+};
+
+module.exports = {
+  addContribution,
+  getContributions
 };

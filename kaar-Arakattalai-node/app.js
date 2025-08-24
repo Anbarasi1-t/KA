@@ -15,7 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
 const updatecontributionRoutes = require('./routes/updatecontributionRoutes');
-const educationRoutes = require("./routes/educationRoutes");
+// const educationRoutes = require("./routes/educationRoutes");
 
 // Mount the routes
 app.use('/api/referrals', referralRoutes);
