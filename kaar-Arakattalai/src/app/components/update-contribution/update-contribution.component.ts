@@ -12,9 +12,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UpdateContributionComponent {
   @Input() isOpen: boolean = false;
+  @Input() name: string = '';   // employee name
+  @Input() aid: number = 0;     // contributor_id / associate_id
   @Output() close = new EventEmitter<void>();
   
-  isSaving = false; // <-- Add this line
+  isSaving = false;
 
   // Form data
   paymentMethod: string = 'salary';
@@ -26,12 +28,6 @@ export class UpdateContributionComponent {
   // Calculated data
   calculatedYears: Array<{year: string, amount: number}> = [];
   eligibleReferralAmount: number = 0;
-  
-  // Backend arrays to store data
-  salaryContributions: Array<any> = [];
-  bankTransfers: Array<any> = [];
-  
-  contribution: number | null = null; // or string, depending on your form
 
   constructor(private http: HttpClient) {}
   
@@ -70,7 +66,7 @@ export class UpdateContributionComponent {
         months = 36;
         break;
       case 'retirement':
-        months = 240; // 20 years as default for retirement
+        months = 240; // 20 years default
         break;
     }
     
@@ -110,85 +106,56 @@ export class UpdateContributionComponent {
 
   onSubmit() {
     if (!this.isFormValid()) return;
-    
+    this.isSaving = true;
+
+    const fy = new Date().getFullYear().toString();
+    const month = new Date().toLocaleString('default', { month: 'long' });
+
     let formData: any;
-    
+
     if (this.paymentMethod === 'salary') {
       formData = {
-        paymentMethod: this.paymentMethod,
-        timestamp: new Date().toISOString(),
-        monthlyContribution: this.monthlyContribution,
-        selectedDuration: this.selectedDuration,
-        calculatedYears: this.calculatedYears,
-        eligibleReferralAmount: this.eligibleReferralAmount
+        contributor_id: this.aid,
+        fy,
+        month,
+        amount: this.monthlyContribution,
+        transfer_type: 'salary',
+        annual_contribution: this.annualContribution,
+        monthly_contribution: this.monthlyContribution,
+        eligible_amount: this.eligibleReferralAmount,
+        balance_amount: 0,
+        referral_count: 0,
+        created_by: this.name
       };
-      this.salaryContributions.push(formData);
     } else {
       formData = {
-        paymentMethod: this.paymentMethod,
-        timestamp: new Date().toISOString(),
-        transferAmount: this.transferAmount,
-        bankDetails: {
-          accountHolder: 'Kaar Arakattalai',
-          accountType: 'Current Account',
-          accountNumber: '0630102000026743',
-          ifscCode: 'IBKL0000630',
-          bankBranch: 'IDBI, Ashok Nagar Branch'
-        }
+        contributor_id: this.aid,
+        fy,
+        month,
+        amount: this.transferAmount,
+        transfer_type: 'bank',
+        annual_contribution: null,
+        monthly_contribution: null,
+        eligible_amount: 0,
+        balance_amount: 0,
+        referral_count: 0,
+        created_by: this.name
       };
-      this.bankTransfers.push(formData);
     }
-    
-    // Send email
-    this.sendEmail(formData);
-    
-    console.log('Form submitted:', formData);
-    console.log('Salary Contributions:', this.salaryContributions);
-    console.log('Bank Transfers:', this.bankTransfers);
-    
-    this.onClose();
+
+    this.http.post('http://localhost:3000/api/contribution-history', formData).subscribe({
+      next: (res) => {
+        console.log("✅ Contribution saved:", res);
+        this.isSaving = false;
+        this.onClose();
+      },
+      error: (err) => {
+        console.error("❌ Error saving contribution:", err);
+        this.isSaving = false;
+      }
+    });
   }
-  
-  sendEmail(data: any) {
-    const emailData = {
-      to: 'narensairam2004@gmail.com',
-      subject: `Contribution Update - ${this.paymentMethod === 'salary' ? 'Salary' : 'Bank Transfer'}`,
-      body: this.generateEmailBody(data)
-    };
-    
-    // This would typically be handled by a backend service
-    // For now, we'll log the email data
-    console.log('Email to be sent:', emailData);
-    
-    // In a real implementation, you would call your backend API
-    // this.http.post('/api/send-email', emailData).subscribe();
-  }
-  
-  generateEmailBody(data: any): string {
-    let body = `Contribution Update Details:\n\n`;
-    body += `Payment Method: ${data.paymentMethod}\n`;
-    body += `Timestamp: ${data.timestamp}\n\n`;
-    
-    if (data.paymentMethod === 'salary') {
-      body += `Monthly Contribution: ₹${data.monthlyContribution}\n`;
-      body += `Selected Duration: ${data.selectedDuration}\n`;
-      body += `Annual Contributions:\n`;
-      data.calculatedYears.forEach((year: {year: string, amount: number}) => {
-        body += `  ${year.year}: ₹${year.amount}\n`;
-      });
-      body += `\nEligible Referral Amount: ₹${data.eligibleReferralAmount}\n`;
-    } else {
-      body += `Transfer Amount: ₹${data.transferAmount}\n`;
-      body += `Bank Details:\n`;
-      body += `  Account Holder: ${data.bankDetails.accountHolder}\n`;
-      body += `  Account Number: ${data.bankDetails.accountNumber}\n`;
-      body += `  IFSC Code: ${data.bankDetails.ifscCode}\n`;
-      body += `  Bank & Branch: ${data.bankDetails.bankBranch}\n`;
-    }
-    
-    return body;
-  }
-  
+
   resetForm() {
     this.paymentMethod = 'salary';
     this.monthlyContribution = 0;
@@ -203,8 +170,8 @@ export class UpdateContributionComponent {
   }
 
   get annualContribution(): number {
-    // Example calculation, adjust as needed
     if (!this.duration || this.duration === 'retirement') return 0;
     return Number(this.duration) * (this.monthlyContribution || 0);
   }
 }
+
