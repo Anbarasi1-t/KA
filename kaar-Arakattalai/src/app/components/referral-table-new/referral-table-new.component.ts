@@ -2,10 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgGridAngular, AgGridModule,  } from 'ag-grid-angular';
 import { ModuleRegistry } from 'ag-grid-community';
-import { AgGridAngular, AgGridModule,  } from 'ag-grid-angular';
-import { ModuleRegistry } from 'ag-grid-community';
 import { ColDef } from 'ag-grid-community';
-import { RowSelectionModule } from 'ag-grid-community';
 import { RowSelectionModule } from 'ag-grid-community';
 import { RequestService } from '../../services/requests.service';
 
