@@ -1,5 +1,5 @@
-import express from "express";
-import { addContribution, getContributions } from "../controllers/updatecontributionController.js";
+const express = require("express");
+const { addContribution, getContributions } = require("../controllers/updatecontributionController");
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.post("/contribution-history", addContribution);
 // Get all contributions
 router.get("/contribution-history", getContributions);
 
-export default router;
+module.exports = router;
