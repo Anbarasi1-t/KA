@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TreasurybarService } from './treasurybar.service';
+import { AdminactionService } from './adminaction.service';
 
-describe('TreasurybarService', () => {
-  let service: TreasurybarService;
+describe('AdminactionService', () => {
+  let service: AdminactionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TreasurybarService);
+    service = TestBed.inject(AdminactionService);
   });
 
   it('should be created', () => {
