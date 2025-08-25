@@ -14,11 +14,12 @@ import {
   FormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-education-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss'],
 })
@@ -34,6 +35,9 @@ export class EducationFormComponent implements OnInit {
   showDropdown = false;
   currentForm = 'Scholarship Form';
 
+  // Store uploaded files by type
+  uploadedFiles: { [key: string]: File | null } = {};
+
   formOptions = [
     { id: 'ngo', name: 'NGO Form' },
     { id: 'medical', name: 'Medical Assistance Form' },
@@ -41,7 +45,11 @@ export class EducationFormComponent implements OnInit {
     { id: 'csr', name: 'CSR - Claims & Expenses Form' }
   ];
 
-  constructor(private fb: FormBuilder, private eRef: ElementRef) {
+  constructor(
+    private fb: FormBuilder,
+    private eRef: ElementRef,
+    private http: HttpClient
+  ) {
     this.scholarshipForm = this.fb.group({
       beneficiaryName: ['', Validators.required],
       whatsappNumber: ['', Validators.required],
@@ -50,20 +58,14 @@ export class EducationFormComponent implements OnInit {
       tuitionFees: ['', Validators.required],
       otherFees: ['', Validators.required],
       semester: ['', Validators.required],
-      justification: ['', Validators.required],
+      justification: ['', [Validators.required, Validators.maxLength(225)]],
       bankAccountName: ['', Validators.required],
-      requestLetter: [null, Validators.required],
-      idCard: [null, Validators.required],
-      aadharCard: [null, Validators.required],
-      rationCard: [null, Validators.required],
-      bonafideCertificate: [null, Validators.required],
-      deathCertificate: [null],
       declaration: [false, Validators.requiredTrue]
+      // File fields handled separately
     });
   }
 
   ngOnInit() {
-    // Remove CSR option for non-admin routes
     if (!this.isAdminRoute()) {
       this.formOptions = this.formOptions.filter(option => option.id !== 'csr');
     }
@@ -71,9 +73,10 @@ export class EducationFormComponent implements OnInit {
 
   private isAdminRoute(): boolean {
     const adminComponent = document.querySelector('app-adminlandingpage');
-    const isVisible = adminComponent !== null &&
-                     !adminComponent.closest('[style*="display: none"]') &&
-                     !adminComponent.parentElement?.hasAttribute('hidden');
+    const isVisible =
+      adminComponent !== null &&
+      !adminComponent.closest('[style*="display: none"]') &&
+      !adminComponent.parentElement?.hasAttribute('hidden');
     return isVisible;
   }
 
@@ -100,17 +103,6 @@ export class EducationFormComponent implements OnInit {
     this.charCount = input.length;
   }
 
-  onFileChange(event: any, field: string) {
-    const file = event.target.files[0];
-    if (file) {
-      this.scholarshipForm.patchValue({ [field]: file });
-      const fileNameSpan = event.target.parentElement.querySelector('.file-name');
-      if (fileNameSpan) {
-        fileNameSpan.textContent = file.name;
-      }
-    }
-  }
-
   showError(message: string) {
     this.errorMessage = message;
     this.showErrorPopup = true;
@@ -119,22 +111,51 @@ export class EducationFormComponent implements OnInit {
     }, 3000);
   }
 
+  // ✅ File upload handler
+  onFileChange(event: Event, fileType: string) {
+    const input = event.target as HTMLInputElement;
+    if (input?.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.uploadedFiles[fileType] = file;
+
+      // show filename in UI
+      const fileNameElement = input.parentElement?.querySelector(
+        '.file-name'
+      ) as HTMLElement;
+      if (fileNameElement) {
+        fileNameElement.textContent = file.name;
+      }
+
+      console.log(`File uploaded for ${fileType}:`, file.name);
+    }
+  }
+
+  // ✅ Submit form with both text + files
   onSubmit() {
     if (this.scholarshipForm.valid) {
       const requiredFields = [
-        'beneficiaryName', 'whatsappNumber', 'institutionName', 
-        'institutionLocation', 'tuitionFees', 'otherFees', 'semester',
-        'justification', 'bankAccountName', 'requestLetter', 'idCard',
-        'aadharCard', 'rationCard', 'bonafideCertificate', 'declaration'
+        'beneficiaryName',
+        'whatsappNumber',
+        'institutionName',
+        'institutionLocation',
+        'tuitionFees',
+        'otherFees',
+        'semester',
+        'justification',
+        'bankAccountName',
+        'declaration',
       ];
 
-      const missingFields = requiredFields.filter(field => {
+      const missingFields = requiredFields.filter((field) => {
         const control = this.scholarshipForm.get(field);
-        return !control?.value || (control.value === '' && control.hasError('required'));
+        return (
+          !control?.value ||
+          (control.value === '' && control.hasError('required'))
+        );
       });
 
       if (missingFields.length > 0) {
-        this.showError('Please fill all required fields and upload all required documents.');
+        this.showError('Please fill all required fields.');
         return;
       }
 
@@ -143,11 +164,38 @@ export class EducationFormComponent implements OnInit {
         return;
       }
 
-      alert('Scholarship form submitted successfully!');
-      this.formSubmitted.emit();
-      this.formClosed.emit();
+      // ✅ Prepare FormData for both text + files
+      const formData = new FormData();
+
+      // add text fields
+      Object.keys(this.scholarshipForm.value).forEach((key) => {
+        formData.append(key, this.scholarshipForm.value[key]);
+      });
+
+      // add uploaded files
+      Object.keys(this.uploadedFiles).forEach((key) => {
+        if (this.uploadedFiles[key]) {
+          formData.append(key, this.uploadedFiles[key] as File);
+        }
+      });
+
+      // ✅ Send data to backend
+      this.http
+        .post('http://localhost:3000/api/education-form', formData)
+        .subscribe({
+          next: (res) => {
+            console.log('Form submitted successfully:', res);
+            alert('Scholarship form submitted successfully!');
+            this.formSubmitted.emit();
+            this.formClosed.emit();
+          },
+          error: (err) => {
+            console.error('Error submitting form:', err);
+            this.showError('Failed to submit form. Please try again later.');
+          },
+        });
     } else {
-      this.showError('Please fill all required fields and upload all required documents.');
+      this.showError('Please fill all required fields.');
     }
   }
 

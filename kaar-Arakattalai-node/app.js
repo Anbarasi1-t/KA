@@ -1,5 +1,7 @@
-// app.js
-const express = require('express'); 
+
+require('dotenv').config();
+const express = require('express');
+
 const cors = require('cors');
 const app = express();
 
@@ -12,9 +14,13 @@ const contributionRoutes = require('./routes/contributionRoutes');
 const totalContributionsRoutes = require('./routes/totalcontributionsroutes'); 
 const summaryConsRoutes = require('./routes/summaryconsroutes'); 
 const userRoutes = require('./routes/userRoutes');
+
 const adminTableRoutes = require('./routes/admintableRoutes'); 
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); 
 const treasurybarRoutes = require('./routes/treasurybarRoute'); // ✅ matches your file
+// const updatecontributionRoutes = require('./routes/updatecontributionRoutes');
+// const educationRoutes = require("./routes/educationRoutes");
+
 
 // --- Mount the routes with API prefixes ---
 app.use('/api/referrals', referralRoutes);
@@ -24,7 +30,13 @@ app.use('/api/summarycons', summaryConsRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/employees', adminTableRoutes);
 app.use('/api/summaryCards', summaryCardsRoutes);
+// <<<<<<< feature/treasury
 app.use('/api/treasurybar', treasurybarRoutes); // ✅ mount treasurybar
+// =======
+// // app.use("/api", educationRoutes);
+// app.use('/api/updatecontribution', updatecontributionRoutes);
+//  // Ensure this file exists
+// >>>>>>> main
 
 // --- Default route just to check server status ---
 app.get('/', (req, res) => {
