@@ -1,0 +1,16 @@
+<app-menubar
+  (searchChange)="onSearchChange($event)"
+  (filterToggle)="onFilterToggle()">
+</app-menubar>
+
+<!-- ✅ Treasury Bar comes right above the table -->
+<app-treasurybar></app-treasurybar>
+
+<div class="admin-content">
+  <div class="table-section">
+    <app-referral-table-new
+      [searchTerm]="searchTerm"
+      style="width: 100%;">
+    </app-referral-table-new>
+  </div>
+</div>

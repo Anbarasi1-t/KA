@@ -2,82 +2,93 @@
 <div class="details-container" (click)="$event.stopPropagation()">
   <div class="header">
     <button class="back-button" (click)="onClose()"> ← </button>
-    <h2>Treasury View Details</h2>
+    <h2>Details</h2>
   </div>
 
-  <!-- Employee Details -->
+  <!-- Employee Details Section -->
   <section class="employee-details-section">
     <h3 class="section-title">Employee Details</h3>
     <div class="details-grid">
       <div class="detail-item">
         <label>Employee Name</label>
-        <div class="value">{{ treasury?.employeeName || '-' }}</div>
+        <div class="value">{{ data?.employeeName || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Employee AID</label>
-        <div class="value">{{ treasury?.employeeAID || '-' }}</div>
+        <div class="value">{{ data?.employeeAID || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Annual Contribution</label>
-        <div class="value">{{ treasury?.annualContribution || '-' }}</div>
+        <div class="value">{{ data?.annualContribution || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Amount Requested</label>
-        <div class="value">{{ treasury?.amountRequested || '-' }}</div>
+        <div class="value">{{ data?.amountRequested || '-' }}</div>
       </div>
     </div>
   </section>
 
-  <!-- Beneficiary Details -->
+  <!-- Beneficiary Details Section -->
   <section class="beneficiary-details-section">
     <h3 class="section-title">Beneficiary Details</h3>
     <div class="details-grid">
       <div class="detail-item">
         <label>Beneficiary Type</label>
-        <div class="value">{{ treasury?.beneficiaryType || '-' }}</div>
+        <div class="value">{{ data?.beneficiaryType || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Beneficiary Name</label>
-        <div class="value">{{ treasury?.beneficiaryName || '-' }}</div>
+        <div class="value">{{ data?.beneficiaryName || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Beneficiary Mobile Number</label>
-        <div class="value">{{ treasury?.beneficiaryMobileNumber || '-' }}</div>
+        <div class="value">{{ data?.beneficiaryMobileNumber || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Institution Name</label>
-        <div class="value">{{ treasury?.institutionName || '-' }}</div>
+        <div class="value">{{ data?.institutionName || '-' }}</div>
       </div>
 
       <div class="detail-item">
         <label>Institution Location</label>
-        <div class="value">{{ treasury?.institutionLocation || '-' }}</div>
+        <div class="value">{{ data?.institutionLocation || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Annual Contribution (INR)</label>
-        <div class="value">{{ treasury?.annualContribution || '-' }}</div>
+        <div class="value">{{ data?.annualContribution || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Amount Requested (INR)</label>
-        <div class="value">{{ treasury?.amountRequested || '-' }}</div>
+        <div class="value">{{ data?.amountRequested || '-' }}</div>
       </div>
       <div class="detail-item">
         <label>Account Name For DD</label>
-        <div class="value">{{ treasury?.accountNameForDD || '-' }}</div>
+        <div class="value">{{ data?.accountNameForDD || '-' }}</div>
       </div>
 
       <div class="detail-item full-width">
         <label>Employee Justification</label>
-        <div class="value">{{ treasury?.employeeJustification || '-' }}</div>
+        <div class="value">{{ data?.employeeJustification || '-' }}</div>
       </div>
     </div>
   </section>
+
+    <!-- ✅ Amount Approved Section -->
+  <section class="approved-amount-section">
+    <h3 class="section-title">Amount Approved By Admin/Trustee</h3>
+    <div class="details-grid">
+      <div class="detail-item full-width">
+        <div class="value">{{ data?.amountRequested || '-' }}</div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- Attachments -->
   <section class="attachments-section">
     <h3 class="section-title">Attachments</h3>
     <div class="attachments-list">
-      <div class="attachment-item" *ngFor="let file of treasury?.attachments || []">
+      <div class="attachment-item" *ngFor="let file of data?.attachments || []">
         <div class="file-icon">PDF</div>
         <div class="file-info">
           <div class="file-title">{{ file.title || 'File Title.pdf' }}</div>
@@ -87,21 +98,6 @@
           <button class="view-btn" title="View"> 👁️ </button>
           <button class="download-btn" title="Download"> ⬇️ </button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final Amount Sanctioned Section -->
-  <section class="final-amount-section">
-    <h3 class="section-title">Final Amount Sanctioned By Admin / Trustee</h3>
-    <div class="details-grid">
-      <div class="detail-item">
-        <label>Final Sanctioned Amount</label>
-        <div class="value">{{ treasury?.finalSanctionedAmount || '-' }}</div>
-      </div>
-      <div class="detail-item">
-        <label>Remarks</label>
-        <div class="value">{{ treasury?.remarks || '-' }}</div>
       </div>
     </div>
   </section>

@@ -1,0 +1,25 @@
+.treasurybar-container {
+  display: flex;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.tab {
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  margin-right: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab.active {
+  background-color: #EE4961;
+  color: #ffffff;
+  border-color: #EE4961;
+}

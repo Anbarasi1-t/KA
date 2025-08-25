@@ -1,0 +1,35 @@
+.adminlandingpage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+/* Summary Cards Section */
+.summary-section {
+  flex: 0 0 auto;
+}
+
+/* Table Section */
+.table-section {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .adminlandingpage-content {
+    padding: 8px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adminlandingpage-content {
+    padding: 6px;
+    gap: 10px;
+  }
+}
