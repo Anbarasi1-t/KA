@@ -24,6 +24,6 @@ export class TreasuryPageComponent {
   }
 
   onFilterToggle() {}
-    // add logic if you need filter toggling
+  
   
 }
