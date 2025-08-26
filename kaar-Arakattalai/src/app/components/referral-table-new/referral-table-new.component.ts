@@ -156,6 +156,7 @@
 // }
 import { Component, OnInit, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
+
 import { AgGridModule } from 'ag-grid-angular';
 import {
   ModuleRegistry,
@@ -183,8 +184,22 @@ ModuleRegistry.registerModules([
   DateFilterModule,
   CustomFilterModule,
   CellStyleModule,
-  ValidationModule
+  ValidationModule,
+  RowSelectionModule
 ]);
+
+interface Referral {
+  id: number;
+  employeeName: string;
+  employeeAID: string;
+  referralType: string;
+  annualContribution: number;
+  amountRequested: number;
+  status: 'Pending' | 'Approved' | 'Rejected' | 'In Progress';
+  submissionDate: string;
+  beneficiaryName?: string;
+}
+ 
 
 @Component({
   selector: 'app-referral-table-new',

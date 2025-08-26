@@ -1,3 +1,4 @@
+
 /* admin-table.component.scss */
 
 /* === RESET AG GRID BORDERS AND OUTLINES === */
@@ -21,6 +22,13 @@
   width: 100%;
   max-width: 100%;
   font-family: 'Inter', sans-serif;
+
+:host ::ng-deep .ag-theme-alpine {
+  display : block;
+  height: 100%;
+  border: none !important;
+  font-family: 'DM Sans', sans-serif;
+
 
   .ag-root-wrapper {
     border: none !important;
