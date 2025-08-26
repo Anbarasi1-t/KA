@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.4);
   z-index: 999;
 }
 
@@ -16,7 +16,7 @@
   background: #fff;
   border-radius: 8px;
   padding: 24px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
   width: 80vw;
   max-width: 900px;
   max-height: 80vh;
@@ -30,7 +30,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-
   h2 {
     margin: 0 0 0 8px;
     font-weight: 600;
@@ -102,6 +101,20 @@
   margin-bottom: 24px;
 }
 
+.approved-amount-section {
+  margin: 24px 0;
+
+  .details-grid {
+    grid-template-columns: 1fr; /* full width */
+  }
+
+  .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+}
+
 .attachments-section {
   margin-top: 24px;
 }
@@ -123,49 +136,4 @@
   font-size: 14px;
   color: #6b7280;
   background: #fff;
-}
-
-.file-icon {
-  background: #f44336;
-  color: white;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  user-select: none;
-}
-
-.file-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.file-title {
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.file-meta {
-  font-size: 11px;
-  color: #9ca3af;
-}
-
-.file-actions button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #9ca3af;
-  padding: 0 4px;
-}
-
-.file-actions button:hover {
-  color: #e94a5a;
-}
-
-/* ✅ New Final Amount section */
-.final-amount-section {
-  margin-top: 24px;
 }

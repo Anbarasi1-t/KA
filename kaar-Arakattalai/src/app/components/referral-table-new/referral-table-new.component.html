@@ -1,11 +1,25 @@
-<div class="ag-theme-alpine referral-grid" style="width: 100%; height: 100%;">
-  <ag-grid-angular
-    [rowData]="filteredReferrals"
-    [rowHeight]="30"
-    [columnDefs]="colDefs"
-    [defaultColDef]="defaultColDef"
-    rowSelection="single"
-    (rowClicked)="onReferralSelect($event.data)"
-    style="width: 100%; height: 100%;">
-  </ag-grid-angular>
-</div>
+<ag-grid-angular
+  class="ag-theme-alpine custom-ag-grid"
+  style="width: 100%; height: 100%;"
+  [rowData]="filteredData"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [animateRows]="true"
+  [rowHeight]="40"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular>
+
+<!-- View Details Popup -->
+<app-treasuryviewdetails
+  *ngIf="selectedAdmin"
+  [data]="selectedAdmin"
+  (close)="closeDetails()">
+</app-treasuryviewdetails>
+
+<!-- Action Popup -->
+<app-treasuryaction
+  *ngIf="selectedAction"
+  [data]="selectedAction"
+  (close)="closeAction()">
+</app-treasuryaction>
