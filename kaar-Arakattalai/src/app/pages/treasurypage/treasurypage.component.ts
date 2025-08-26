@@ -23,7 +23,7 @@ export class TreasuryPageComponent {
     this.searchTerm = term;
   }
 
-  onFilterToggle() {
+  onFilterToggle() {}
     // add logic if you need filter toggling
-  }
+  
 }
