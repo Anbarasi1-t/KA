@@ -24,6 +24,10 @@
       
       <app-update-contribution 
         [isOpen]="showUpdateModal" 
-        (close)="closeUpdateModal()">
+        [name]="user.name"
+        [aid]="user.aid"
+        
+        (close)="closeUpdateModal()"
+        (contributionUpdated)="onContributionUpdated()">
       </app-update-contribution>
     </div>

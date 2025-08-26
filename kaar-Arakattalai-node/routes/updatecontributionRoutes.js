@@ -1,10 +1,11 @@
 const express = require("express");
-const { addContribution, getContributions } = require("../controllers/updatecontributionController");
+const { saveContribution, getContributions } = require("../controllers/updatecontributionController");
 
 const router = express.Router();
 
-// Add a new contribution
-router.post("/contribution-history", addContribution);
+// Save contribution (add or update)
+router.post("/contribution-history", saveContribution); // first-time or update with history_id
+router.put("/contribution-history", saveContribution);  // update only if history_id is provided
 
 // Get all contributions
 router.get("/contribution-history", getContributions);

@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getContributions } = require('../controllers/contributionController');
+const contributionController = require('../controllers/contributionController');
 
-router.get('/', getContributions);
+// Return contributions (currently static; replace with DB-backed implementation as needed)
+router.get('/', contributionController.getContributions);
 
 module.exports = router;
-
-

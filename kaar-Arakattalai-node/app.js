@@ -15,6 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const adminTableRoutes = require('./routes/admintableRoutes'); // exact file name in your folder
 const summaryCardsRoutes = require('./routes/summarycardsRoutes'); // exact file name in your folder
 const updatecontributionRoutes = require('./routes/updatecontributionRoutes');
+const contributorRoutes=require('./routes/contributorRoutes')
 // const educationRoutes = require("./routes/educationRoutes");
 
 // Mount the routes
@@ -27,6 +28,7 @@ app.use('/api/employees', adminTableRoutes);
 app.use('/api/summaryCards', summaryCardsRoutes);
 // app.use("/api", educationRoutes);
 app.use('/api/updatecontribution', updatecontributionRoutes);
+app.use('/api/contributors', contributorRoutes);
  // Ensure this file exists
 
 const PORT = process.env.PORT || 3000;

@@ -138,7 +138,19 @@
       <!-- Form Actions -->
       <div class="form-actions">
         <button type="button" class="btn btn-cancel" (click)="onClose()">Cancel</button>
-        <button type="submit" class="btn btn-save" [disabled]="isSaving">Save</button>
+        <button type="submit" class="btn btn-save" [disabled]="isSaving">
+          {{ isSaving ? 'Saving...' : 'Save' }}
+        </button>
+      </div>
+
+      <!-- Success Message -->
+      <div class="message success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <!-- Error Message -->
+      <div class="message error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
       </div>
     </form>
   </div>

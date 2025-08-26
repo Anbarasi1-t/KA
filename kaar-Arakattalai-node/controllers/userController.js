@@ -39,7 +39,7 @@ exports.getProfile = async (req, res) => {
       aid: employeeData.associate_id,
       designation: employeeData.employee_designation || "N/A",
       manager: employeeData.direct_manager_name || "No Manager Assigned",
-      annualContribution: 100000,
+      annualContribution: 0,
       annualEligibleReferral: 200000,
       balanceEligibleReferral: 20000,
       myReferrals: 0

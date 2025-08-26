@@ -6,7 +6,7 @@
 
 <div class="dashboard-content">
   <div class="left-section" #leftCol>
-    <app-user-profile></app-user-profile>
+    <app-user-profile (contributionsRefreshed)="refreshContributions()"></app-user-profile>
   </div>
 
   <div class="right-section" #rightCol>

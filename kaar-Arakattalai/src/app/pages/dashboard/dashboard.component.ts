@@ -82,6 +82,12 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  // Public method to refresh contributions (can be called from child components)
+  refreshContributions() {
+    this.loadContributions();
+    this.loadUserProfile(); // Also refresh user profile data
+  }
+
   private loadUserProfile() {
     this.userService.getUserProfile().subscribe((profile: UserProfile) => {
       this.userProfile = profile;

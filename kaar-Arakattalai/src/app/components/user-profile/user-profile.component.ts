@@ -109,7 +109,7 @@
 //   `]
 // })
 // export class UserProfileComponent { }
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService, UserProfile } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -123,12 +123,18 @@ import { UpdateContributionComponent } from '../update-contribution/update-contr
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent implements OnInit {
+  @Output() contributionsRefreshed = new EventEmitter<void>();
+  
   user!: UserProfile;
   showUpdateModal: boolean = false;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
+    this.loadUserProfile();
+  }
+
+  loadUserProfile() {
     this.userService.getUserProfile().subscribe(data => {
       this.user = data;
     });
@@ -140,6 +146,13 @@ export class UserProfileComponent implements OnInit {
 
   closeUpdateModal() {
     this.showUpdateModal = false;
+  }
+
+  onContributionUpdated() {
+    // Refresh user profile data after contribution update
+    this.loadUserProfile();
+    // Emit event to notify parent component to refresh contributions table
+    this.contributionsRefreshed.emit();
   }
 }
 
